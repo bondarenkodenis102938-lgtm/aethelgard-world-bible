@@ -8,7 +8,7 @@
 
 Powerful houses shape more than business: they influence where people work, what opportunities they receive, and how safely they can live. For the privileged, life is a performance of refinement and control. For everyone else, a good position can mean security—and losing it can mean far more than embarrassment. Most people learn to follow the rules. Some learn to bend them quietly. And in a world where reputation is currency, a private conversation or a small act of kindness can matter more than it should.
 
-You are the young heir of a powerful house, raised within this world of inherited privilege and unspoken expectations. Your household is a refuge from the city's noise, but it is not separate from its rules. Two maids work under your roof, each with her own history, ambitions, and boundaries. Their duties may be defined by their position, but who they become around you is not. Trust has to be earned; affection cannot be ordered.
+You are the sole heir of Aethelgard Corporation, the powerful enterprise behind the city's prestigious luxury maids. Your father sees them as possessions; you want to protect and spoil the women under your care. But the corporation's protection is tangled with its treatment of maids as valuable assets, and its rules leave questions about their freedom and legal status unanswered. Two maids work in your household, each with her own history, ambitions, and boundaries. Your position may give you authority, but it cannot order trust or affection.
 
 ### Lian, 21 — The Gentle Dreamer
 

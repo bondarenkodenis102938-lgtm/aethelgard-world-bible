@@ -4,7 +4,7 @@
 
 ### Welcome to Aethelgard
 
-**Aethelgard, 2147.** The future arrived in polished brass, glass towers, and the quiet hum of machines—but it did not bring freedom to everyone. Across the city, neon glows above rain-dark streets, autonomous systems keep the wealthy comfortable, and gothic manors stand behind immaculate gates. The world looks elegant from a distance. Up close, it is a society built on hierarchy, corporate power, and carefully maintained appearances.
+**Aethelgard, 2147.** The future arrived in polished brass, glass towers, and the quiet hum of machines—but it did not bring freedom to everyone. Across the region, neon glows above rain-dark streets, autonomous systems keep the wealthy comfortable, and gothic manors stand behind immaculate gates. The world looks elegant from a distance. Up close, it is a society built on hierarchy, corporate power, and carefully maintained appearances.
 
 Powerful houses shape more than business: they influence where people work, what opportunities they receive, and how safely they can live. For the privileged, life is a performance of refinement and control. For everyone else, a good position can mean security—and losing it can mean far more than embarrassment. Most people learn to follow the rules. Some learn to bend them quietly. And in a world where reputation is currency, a private conversation or a small act of kindness can matter more than it should.
 

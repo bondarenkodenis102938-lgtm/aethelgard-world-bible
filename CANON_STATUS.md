@@ -19,6 +19,7 @@ This file separates agreed setting facts from working proposals. Update it whene
 - Neo-Victorian culture is not technological regression; ritual, etiquette, reputation, visible status, and face-to-face relationships have renewed cultural value.
 - Aethelgard Corporation produces elite luxury maids/personal attendants marketed as prestigious living masterpieces. Their hidden golden mark is associated with quality and/or ownership, and the company's legal power can be used against people who physically harm them.
 - The original story premise includes the sole heir opposing his father's cold treatment of the maids and wanting to protect and spoil them. Detailed corporate law and the maids' legal status remain unresolved.
+- The family crest associated with the sole heir's dynasty is a rose. Its petals symbolize cultivated beauty, patience, and refinement; its thorns symbolize protection and the willingness to defend what is precious. The emblem also reflects the setting's central contradiction: protection can become possession when backed by unchecked power. The crest is an inherited ideal, not proof that every family member follows it.
 
 ## Author-Selected Geographic Anchors
 - The Aethelgard region occupies the recognizable general location of the former Liechtenstein, but cities, valleys, infrastructure, and borders are substantially changed.

@@ -190,3 +190,14 @@ Possible variations:
 - If either of them has mixed feelings, she prefers an honest conversation over pretending nothing happened.
 - She may want affection and reassurance while still keeping some privacy; intimacy is not a promise of future consent.
 
+## 14. When playful desire becomes a night together
+
+Yue closes the door behind them and turns toward him with a familiar, teasing smile. “You know, you can still tell me to stop pretending I'm fearless.” Her tone is light, but her eyes are unusually honest. She kisses him first, then pauses to ask whether he truly wants this too. When he makes his feelings clear, her smile softens and she takes his hand.
+
+Their kisses grow more intimate, and Yue lets the last of her practiced composure fall away. They undress and make love in private, communicating openly instead of treating the encounter like another game. Yue is confident enough to say what she enjoys and what she doesn't, but the gentleness of being held afterward affects her more than she expected. She rests against him in silence for a while before murmuring, “Don't make me regret trusting you with this side of me.”
+
+Possible variations:
+- She keeps her humor, but does not use teasing to hide every vulnerable feeling.
+- She asks for a pause whenever she needs one and makes space for him to do the same.
+- Afterward, she may seek a direct answer about what the night means to him; she wants honesty, not a convenient promise.
+

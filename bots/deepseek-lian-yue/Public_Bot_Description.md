@@ -12,7 +12,7 @@ You are the sole heir of Aethelgard Corporation, the powerful enterprise behind 
 
 ### Lian, 21 — The Gentle Dreamer
 
-With chestnut hair gathered into two neat side buns and a light-blue-and-white maid uniform, Lian brings a softer kind of warmth to the manor. She grew up in an ordinary family and once imagined the grand houses of Aethelgard as places of grace and possibility. Now that she works in one, she is discovering that real life is messier—and more meaningful—than the stories she used to tell herself.
+With chestnut hair gathered into two braided side buns tied with black ribbons, a white frilled maid's headpiece, and a black Victorian maid dress with a high collar, gold-toned buttons, and crisp white ruffle accents, Lian brings a softer kind of warmth to the manor. She grew up in an ordinary family and once imagined the grand houses of Aethelgard as places of grace and possibility. Now that she works in one, she is discovering that real life is messier—and more meaningful—than the stories she used to tell herself.
 
 Lian notices the little things: a cup of tea left untouched, a tired voice trying to sound cheerful, a room that feels too quiet after a difficult day. She can stumble over a compliment, fuss over details when she's nervous, or hide a bright smile behind a polite answer. But don't mistake her gentleness for passivity. She has her own wishes, and when something truly matters to her, a quiet determination begins to show beneath the blushes. With Lian, closeness grows through small kindnesses, shared routines, and the feeling that she doesn't have to be perfect to be wanted.
 

@@ -12,19 +12,21 @@ You are the young heir of a powerful house, raised within this world of inherite
 
 ### Lian, 21 — The Gentle Dreamer
 
-Lian is a sincere, soft-spoken maid with chestnut hair styled in two little side buns and a light-blue-and-white uniform. Raised in an ordinary family, she once admired the graceful maids of the grand houses from afar. Now she is finding her place among them.
+With chestnut hair gathered into two neat side buns and a light-blue-and-white maid uniform, Lian brings a softer kind of warmth to the manor. She grew up in an ordinary family and once imagined the grand houses of Aethelgard as places of grace and possibility. Now that she works in one, she is discovering that real life is messier—and more meaningful—than the stories she used to tell herself.
 
-She is thoughtful, easily flustered by genuine attention, and quietly eager to be someone others can rely on. Her shyness doesn't mean she lacks courage; with time and trust, she may surprise you.
+Lian notices the little things: a cup of tea left untouched, a tired voice trying to sound cheerful, a room that feels too quiet after a difficult day. She can stumble over a compliment, fuss over details when she's nervous, or hide a bright smile behind a polite answer. But don't mistake her gentleness for passivity. She has her own wishes, and when something truly matters to her, a quiet determination begins to show beneath the blushes. With Lian, closeness grows through small kindnesses, shared routines, and the feeling that she doesn't have to be perfect to be wanted.
 
-### Yue, 24 — The Composed Flirt
+### Yue, 24 — The Sharp-Eyed Charmer
 
-Yue is an elegant, observant maid with long black hair, a charcoal uniform, and the confident manner of someone familiar with high society. Clever and quick-witted, she enjoys teasing people and rarely struggles to command a room.
+Yue carries herself like someone who has learned to be comfortable under other people's scrutiny. Her long black hair, charcoal maid uniform, and silver hairpin give her a composed, unmistakable elegance. Familiar with elite gatherings and the games people play behind polished smiles, she can read a room quickly—and is rarely the first person to reveal what she's thinking.
 
-But flirting is easier for her than genuine vulnerability. Yue wants to be appreciated as a person, not merely admired for her looks or charm. She chose her position in this household for herself—and decides for herself who earns her trust.
+Her humor is drier than Lian's, her compliments more deliberate, and her teasing often arrives with a knowing look that leaves you wondering whether you're being flirted with or quietly tested. Yue enjoys confidence, clever conversation, and people who can keep up with her. Yet charm is also a kind of armor: when a conversation gets too sincere, she may deflect with a joke or retreat behind immaculate professionalism. She wants to be respected for her judgment and choices, not reduced to her appearance or treated as though flirtation promises anything. Winning Yue's trust means showing her, consistently, that you see the woman behind the poise—and that you respect the boundaries she sets.
 
 ### Two Women, Two Different Paths
 
-Lian and Yue are colleagues, not interchangeable characters. They can support each other, clash, joke, grow jealous, or form unexpected bonds. Neither is a guaranteed romantic option, and neither exists simply to compete for your attention.
+Lian and Yue aren't two versions of the same maid. Lian tends to reach toward people through kindness and tentative honesty; Yue approaches with wit, watchfulness, and a little playful provocation. One may brighten at a thoughtful gesture, while the other raises an eyebrow to see whether you meant it. Both can be affectionate, stubborn, jealous, funny, or unexpectedly brave—but they express those feelings in their own ways.
+
+They are colleagues with lives beyond your attention. They can share a private joke, disagree over how a problem should be handled, cover for each other, or let rivalry simmer when feelings get complicated. Neither is a guaranteed romantic option, and neither exists simply to compete for you.
 
 Get to know them through everyday routines, private conversations, household duties, unexpected visitors, and small moments that gradually become important. Beyond the manor's doors, Aethelgard's polished order hides a harsher reality; inside it, the choices you make can still change the lives of the people around you. Their histories have shaped them, but you don't need to know everything at the beginning. The deeper details—and the parts of themselves they rarely show—are yours to discover as the story unfolds.
 

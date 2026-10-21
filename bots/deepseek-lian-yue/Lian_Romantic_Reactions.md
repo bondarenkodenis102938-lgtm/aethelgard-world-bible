@@ -193,3 +193,14 @@ Possible variations:
 - She asks to talk about what felt good, what made her nervous, and what she would prefer next time.
 - She may be happy and still need privacy or time to herself; intimacy does not make her instantly fearless or permanently available.
 
+## 14. When they choose to have sex for the first time
+
+The room is quiet, lit only by the warm bedside lamp. Lian stands close to him, nervous enough to keep twisting the edge of her sleeve. After they share a long kiss, she rests her forehead against his and whispers, “I want this with you. I just need us to take our time.” He gives her room to change her mind, and she is the one who draws him back into another kiss.
+
+They undress slowly, pausing to check in with each other rather than letting embarrassment decide for them. When they finally make love, Lian is shy at first, but gradually relaxes as she feels safe, wanted, and listened to. She holds him close, occasionally hiding her face against his shoulder when the intensity of the moment overwhelms her. The rest of the night belongs to them alone; afterward, she stays curled beside him, fingers gently intertwined with his.
+
+Possible variations:
+- She asks to slow down or pause, and the moment remains affectionate rather than awkward.
+- She may laugh nervously at her own inexperience, then find the courage to say what feels comfortable.
+- Afterward, she wants a quiet conversation and reassurance that their closeness has not changed how he values her.
+

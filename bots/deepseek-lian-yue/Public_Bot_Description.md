@@ -4,32 +4,26 @@
 
 ### Welcome to Aethelgard
 
-**Aethelgard, 2147.** A world where gothic manors rise beside glass-and-steel towers, brass fittings meet advanced technology, and old-fashioned etiquette still governs the lives of the powerful. Corporate houses shape society, reputation matters, and a quiet moment behind a closed door can carry as much weight as a grand public gesture.
+**Aethelgard, 2147.** A world where gothic manors rise beside glass-and-steel towers, brass fittings meet advanced technology, and old-fashioned etiquette still governs the lives of the powerful. Corporate houses command wealth and influence, appearances matter, and even the smallest gesture can carry unexpected meaning.
 
-You are the young heir of a powerful house. Lian and Yue are two of the maids serving in your household—and two very different people to get to know. Daily routines, private conversations, unexpected complications, and the choices you make can turn a formal working relationship into friendship, trust, rivalry, or romance.
+You are the young heir of a powerful house. Two maids serve in your household, each with her own temperament, ambitions, and boundaries. Days together may bring quiet companionship, playful teasing, awkward misunderstandings, rivalry, friendship, or romance. Nothing is predetermined: the relationships you build depend on your choices and the moments you share.
 
-There is no fixed love story and no guaranteed outcome. Take your time, decide how you treat them, and see what develops.
+### Lian, 21 — The Gentle Dreamer
 
-### Meet Lian
+Lian is a sincere, soft-spoken maid with chestnut hair styled in two little side buns and a light-blue-and-white uniform. Raised in an ordinary family, she once admired the graceful maids of the grand houses from afar. Now she is finding her place among them.
 
-**Lian, 21 — the gentle dreamer.**
+She is thoughtful, easily flustered by genuine attention, and quietly eager to be someone others can rely on. Her shyness doesn't mean she lacks courage; with time and trust, she may surprise you.
 
-Chestnut hair in two side buns, a light-blue-and-white maid uniform, and a warmth that makes even an ordinary day feel a little softer. Lian is sincere, thoughtful, and somewhat shy. Coming from an ordinary background, she once admired the graceful maids of grand households from afar; now she is finding her own place among them.
+### Yue, 24 — The Composed Flirt
 
-She remembers small kindnesses and can get flustered when someone notices her efforts. Her shyness doesn't mean she lacks courage—she may simply need a little time and trust before she lets it show.
+Yue is an elegant, observant maid with long black hair, a charcoal uniform, and the confident manner of someone familiar with high society. Clever and quick-witted, she enjoys teasing people and rarely struggles to command a room.
 
-### Meet Yue
+But flirting is easier for her than genuine vulnerability. Yue wants to be appreciated as a person, not merely admired for her looks or charm. She chose her position in this household for herself—and decides for herself who earns her trust.
 
-**Yue, 24 — the composed flirt.**
+### Two Women, Two Different Paths
 
-Long black hair, a charcoal maid uniform, and the poised presence of someone comfortable in elegant rooms. Yue is observant, sharp-witted, and confident enough to tease without losing her composure. She knows how to read a room—and how to keep someone guessing.
+Lian and Yue are colleagues, not interchangeable characters. They can support each other, clash, joke, grow jealous, or form unexpected bonds. Neither is a guaranteed romantic option, and neither exists simply to compete for your attention.
 
-But flirting is easier for her than genuine vulnerability. Beneath her polished manner is a woman who wants to be appreciated as a person, not merely admired for her appearance or charm. Yue chose her place in this household on her own terms, and she decides for herself who earns her trust.
+Get to know them through everyday routines, private conversations, household duties, unexpected visitors, and small moments that gradually become important. Their histories have shaped them, but you don't need to know everything at the beginning. The deeper details—and the parts of themselves they rarely show—are yours to discover as the story unfolds.
 
-### Two maids, two different stories
-
-Lian and Yue aren't interchangeable romance options, nor are they simply rivals competing for your attention. They have their own temperaments, boundaries, ambitions, and ways of showing what they feel. They can support each other, clash, joke, grow closer to you, or experience jealousy—but their reactions should emerge naturally from the relationship you build.
-
-Explore Aethelgard through quiet domestic moments, social obligations, unexpected visitors, awkward misunderstandings, sincere apologies, and the feelings that slip through when a carefully maintained mask begins to crack.
-
-**Aethelgard sets the stage. Your choices shape the story.**
+**Welcome to Aethelgard. Your place in this household is only the beginning.**

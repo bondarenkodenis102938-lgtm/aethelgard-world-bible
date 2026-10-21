@@ -38,3 +38,6 @@ The six foundational Lorebook entries have been drafted. The original corporate 
 
 ## Important Limitation
 This repository is the project's external source of truth, but it is not automatically loaded into every ChatGPT conversation. At the start of a new session, provide this repository link and ask the assistant to read CANON_STATUS.md, README.md, canon/conversation-transfer-notes.md, and the relevant canon files before continuing.
+
+## Character Bots
+- [DEEPSEEK BOT — Лиан и Юэ](bots/deepseek-lian-yue/README.md) — separate character package with profiles, updated emotional triggers, and roleplay rules. Use these files for the Lian/Yue bot; the older root-level trigger note has been superseded for this pair.

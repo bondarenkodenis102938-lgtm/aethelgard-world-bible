@@ -11,6 +11,7 @@ A structured reference for Aethelgard: Earth in 2147, a neo-Victorian high-tech 
 6. For continuity between chats, start with [Conversation Transfer Notes](canon/conversation-transfer-notes.md) and then read the relevant source files.
 
 ## Canon and Planning Files
+- [Regional Atlas: Aethelgard and the Alpine Region, 2147](canon/regional-atlas-aethelgard-2147.md) — map interpretation, labels, borders, corridors, and proposal status.
 - [Canon Status Register](CANON_STATUS.md)
 - [Worldbuilding Causal Framework](canon/worldbuilding-causal-framework.md)
 - [Original Aethelgard Corporation Premise](canon/aethelgard-corporation-premise.md)

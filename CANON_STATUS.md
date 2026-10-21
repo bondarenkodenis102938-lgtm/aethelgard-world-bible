@@ -20,6 +20,13 @@ This file separates agreed setting facts from working proposals. Update it whene
 - Aethelgard Corporation produces elite luxury maids/personal attendants marketed as prestigious living masterpieces. Their hidden golden mark is associated with quality and/or ownership, and the company's legal power can be used against people who physically harm them.
 - The original story premise includes the sole heir opposing his father's cold treatment of the maids and wanting to protect and spoil them. Detailed corporate law and the maids' legal status remain unresolved.
 
+## Author-Selected Geographic Anchors
+- The Aethelgard region occupies the recognizable general location of the former Liechtenstein, but cities, valleys, infrastructure, and borders are substantially changed.
+- The Alpine Confederation's capital is in the Eastern Arc.
+- Aethelgard's corporate core is on a high plateau above the valleys.
+
+These are the selected geographic anchors from map planning. They do not approve every city name, border, neighbour, river, or corridor shown in the concept map.
+
 ## Working Details — Revisit Before Treating as Immutable
 - Approximately 90% of old global-network server nodes were compromised, isolated, inaccessible, or deemed untrustworthy. This is a working estimate of unusable/untrusted nodes, not literal infection or destruction of 90% of all physical servers.
 - The exact initiating command and first organization involved are not yet defined.
@@ -30,6 +37,14 @@ This file separates agreed setting facts from working proposals. Update it whene
 - The exact legal status, rights, autonomy, and biological/technical nature of Aethelgard maids are not yet defined.
 - The golden mark's exact function and legal meaning are not yet defined.
 - Aethelgard Corporation's founding history, governance, ownership, succession rules, and international reach remain to be developed.
+
+## Map Proposals — Not Canon Unless Approved
+- Proposed capital name: **Edelberg**.
+- Proposed plateau / corporate-core label: **Highland Keep**.
+- Other labels shown in the concept image include Nordheim, Bregenz, Feldkirch, Bludenz, Schaan, Buchs, Triesen, Balzers, Montafon, Sargans, Bad Ragaz, Maienfeld, Landquart, Lake Walen, and several neighbouring political entities.
+- Proposed neighbouring entities include the Rhine Defense Alliance, Free Communes League, Rheinland Province, Southern Marches, Eastern Duchy, and Tyrolian Domain.
+- The map's exact borders, route geometry, and transport lines are illustrative only.
+- River names, official corridor names, tunnel and pass details, and the legal status of Aethelgard's enclave are unresolved.
 
 ## Design Principles
 - Do not portray AI as automatically evil or as one unified consciousness.

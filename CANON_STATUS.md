@@ -38,6 +38,9 @@ These are the selected geographic anchors from map planning. They do not approve
 - The exact legal status, rights, autonomy, and biological/technical nature of Aethelgard maids are not yet defined.
 - The golden mark's exact function and legal meaning are not yet defined.
 - Aethelgard Corporation's founding history, governance, ownership, succession rules, and international reach remain to be developed.
+- The headquarters' Vertical Impulse Lift Mainline is a working lore addition: a multi-level transport system of impulse platforms, intersecting shafts, and restricted routes. Its precise engineering remains undefined.
+- Restricted headquarters levels may include protected technical facilities and heavy mechanized platforms, including combat mechs, but the corporation's exact military inventory and legal authority remain undefined.
+- Yue has accumulated fragmentary informal knowledge of elite and corporate secrets through years of serving powerful masters; she is observant and well-informed, not omniscient.
 
 ## Map Proposals — Not Canon Unless Approved
 - Proposed capital name: **Edelberg**.

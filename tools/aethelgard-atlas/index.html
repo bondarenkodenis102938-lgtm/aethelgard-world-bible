@@ -44,8 +44,8 @@ main{height:calc(100vh - 58px);min-height:560px;display:grid;grid-template-colum
 <div class="map-footer">AAS / CARTOGRAPHIC DATUM<br>GRID REF. 2147-EU · <span id="pointCount">0</span> VERTICES</div>
 </section>
 <aside class="side">
-<section class="section"><h2>01 / Территории</h2><div id="territories"></div><div class="top-actions"><button class="btn" id="fitBtn">⌖ Вписать выбранную</button><button class="btn" id="new">＋ Новая территория</button></div></section>
-<section class="section"><h2>02 / Редактирование границ</h2><div class="top-actions"><button class="btn" id="editMode">◇ Редактировать границы</button><button class="btn" id="insertVertex" disabled>＋ Вставить вершину</button><button class="btn danger" id="deleteVertex" disabled>Удалить вершину</button></div><div id="boundaryInfo" class="boundary-card"><div class="boundary-name">Граница не выбрана</div><div class="boundary-detail">Включи редактирование и выбери линию границы. Общая линия соседних территорий редактируется как один объект.</div></div><div class="hint">В режиме редактирования перетаскивай узлы. Вставка точки работает на выбранной линии. Для перемещения карты тяни пустое место; масштаб — колёсиком или кнопками.</div></section>
+<section class="section"><h2>01 / Территории</h2><div class="top-actions"><button class="btn active" id="mapModeBtn">◎ Режим карты</button><button class="btn" id="editMode">◇ Редактирование</button></div><div id="territories"></div><div class="top-actions"><button class="btn" id="fitBtn">⌖ Вписать выбранную</button><button class="btn" id="new">✎ Нарисовать от руки</button></div></section>
+<section class="section"><h2>02 / Редактирование границ</h2><div class="top-actions"><button class="btn" id="insertVertex" disabled>＋ Вставить вершину</button><button class="btn danger" id="deleteVertex" disabled>Удалить вершину</button></div><div id="boundaryInfo" class="boundary-card"><div class="boundary-name">Граница не выбрана</div><div class="boundary-detail">Включи редактирование и выбери линию границы. Общая линия соседних территорий редактируется как один объект.</div></div><div class="hint">В режиме карты — обзор и перемещение. В режиме редактирования выбери границу, чтобы увидеть её узлы. Новую территорию обведи одним непрерывным движением мыши или стилуса: точки будут автоматически прорежены, а контур сглажен.</div></section>
 <section class="section"><h2>03 / Свойства объекта</h2><div class="field"><label for="name">Название</label><input id="name" autocomplete="off"></div><div class="field"><label for="type">Политическая форма</label><select id="type"><option>Корпоративная территория</option><option>Конфедерация</option><option>Республика</option><option>Монархия</option><option>Союз коммун</option><option>Провинция</option><option>Другое</option></select></div><div class="field-grid"><div class="field"><label for="capital">Столица</label><input id="capital" autocomplete="off"></div><div class="field"><label for="canon">Статус канона</label><select id="canon"><option>Канон</option><option>Предложение</option><option>Черновик</option></select></div></div><div class="field"><label for="color">Цвет на карте</label><input id="color" type="color" value="#c8a45e"></div><div class="field"><label for="notes">Заметки / лор</label><textarea id="notes"></textarea></div><div class="top-actions"><button class="btn primary" id="save">Сохранить свойства</button><button class="btn danger" id="delete">Удалить территорию</button></div></section>
 <section class="section"><h2>04 / История и файлы</h2><div class="top-actions"><button class="btn" id="undo" disabled>↶ Отменить</button><button class="btn" id="redo" disabled>↷ Повторить</button></div><div class="top-actions"><button class="btn" id="export">Экспорт проекта JSON</button><button class="btn" id="exportGeo">Экспорт GeoJSON</button><button class="btn" id="import">Импорт JSON</button><button class="btn" id="reset">Восстановить демо</button><input id="file" type="file" accept=".json,application/json" hidden></div><div id="status" class="status">Готово. Выбери территорию или начни редактирование.</div><p class="footnote">Автосохранение в IndexedDB этого браузера с резервной копией в localStorage. Экспортируй JSON, чтобы перенести проект на другое устройство. GitHub хранит код и документы, но не является рабочей базой геометрии.</p></section>
 </aside></main>
@@ -61,7 +61,7 @@ const seed=[
 {id:"south",name:"Southern Marches",type:"Другое",capital:"Не определена",canon:"Предложение",color:"#ad9167",notes:"Южные территории — предварительная концепция.",points:[[330,450],[390,400],[470,470],[520,510],[500,590],[390,600],[300,540],[250,420]]}
 ];
 const seedCities=[{name:"Highland Keep",x:420,y:345},{name:"Edelberg",x:550,y:445},{name:"Vaduz",x:395,y:365},{name:"Bregenz",x:365,y:340},{name:"Schaan",x:402,y:378},{name:"Buchs",x:430,y:380},{name:"Innsbruck",x:600,y:450}];
-let data=loadLocalProject(),selected=data.territories[0]?data.territories[0].id:null,selectedBoundary=null,selectedVertex=null,editMode=false,drawing=false,draft=[],insertMode=false,dragVertex=null,panState=null,view={x:0,y:0,w:1000,h:720},undoStack=[],redoStack=[],savedFlag=true,dbPromise=null;
+let data=loadLocalProject(),selected=data.territories[0]?data.territories[0].id:null,selectedBoundary=null,selectedVertex=null,editMode=false,drawing=false,draft=[],drawStroke=null,insertMode=false,dragVertex=null,panState=null,suppressNextClick=false,view={x:0,y:0,w:1000,h:720},undoStack=[],redoStack=[],savedFlag=true,dbPromise=null;
 function clone(o){return JSON.parse(JSON.stringify(o))}
 function vertexKey(x,y){return Math.round(x*1000)+","+Math.round(y*1000)}
 function normaliseProject(raw){
@@ -106,20 +106,66 @@ function allRingPoints(t){return (t.rings||[]).flatMap(r=>territoryRingPoints({.
 function getTerritory(id){return data.territories.find(t=>t.id===id)}
 function getBoundary(id){return data.boundaries.find(b=>b.id===id)}
 function boundaryUsers(id){return data.territories.filter(t=>(t.rings||[]).some(r=>r.edges.some(e=>e.boundaryId===id)))}
+function simplifyRDP(points,tolerance){
+ if(points.length<=2)return points.map(p=>[p[0],p[1]]);
+ const sqTol=tolerance*tolerance,keep=new Uint8Array(points.length);keep[0]=1;keep[points.length-1]=1;const stack=[[0,points.length-1]];
+ while(stack.length){const [first,last]=stack.pop();let best=sqTol,index=-1;const a=points[first],b=points[last],dx=b[0]-a[0],dy=b[1]-a[1],den=dx*dx+dy*dy;
+  for(let i=first+1;i<last;i++){const p=points[i];let t=den?((p[0]-a[0])*dx+(p[1]-a[1])*dy)/den:0;t=Math.max(0,Math.min(1,t));const qx=a[0]+t*dx,qy=a[1]+t*dy,dd=(p[0]-qx)**2+(p[1]-qy)**2;if(dd>best){best=dd;index=i}}
+  if(index>=0){keep[index]=1;stack.push([first,index],[index,last])}
+ }
+ return points.filter((p,i)=>keep[i]).map(p=>[p[0],p[1]]);
+}
+function simplifyClosedRing(points,tolerance){
+ let pts=points.map(p=>[p[0],p[1]]);if(pts.length>3&&Math.hypot(pts[0][0]-pts[pts.length-1][0],pts[0][1]-pts[pts.length-1][1])<tolerance*5)pts.pop();if(pts.length<4)return pts;
+ let far=1,max=-1;for(let i=1;i<pts.length;i++){const d=(pts[i][0]-pts[0][0])**2+(pts[i][1]-pts[0][1])**2;if(d>max){max=d;far=i}}
+ const first=simplifyRDP(pts.slice(0,far+1),tolerance),second=simplifyRDP(pts.slice(far).concat([pts[0]]),tolerance),joined=first.slice(0,-1).concat(second.slice(0,-1));return joined.length>3?joined:pts;
+}
+function displayTolerance(){return Math.max(.025,(view.w/Math.max(1,svg.clientWidth))*1.35)}
+function displayBoundaryCoords(boundary){const coords=boundary.vertexIds.map(id=>data.vertices.find(v=>v.id===id)).filter(Boolean).map(v=>[v.x,v.y]);return coords.length>2?simplifyRDP(coords,displayTolerance()):coords}
+function pathCurveCommands(points){
+ if(points.length<2)return "";if(points.length===2)return " L "+points[1][0].toFixed(3)+" "+points[1][1].toFixed(3);let d="";
+ for(let i=0;i<points.length-1;i++){const p0=points[i===0?0:i-1],p1=points[i],p2=points[i+1],p3=points[i+2]||points[i+1],c1=[p1[0]+(p2[0]-p0[0])/6,p1[1]+(p2[1]-p0[1])/6],c2=[p2[0]-(p3[0]-p1[0])/6,p2[1]-(p3[1]-p1[1])/6];d+=" C "+c1[0].toFixed(3)+" "+c1[1].toFixed(3)+" "+c2[0].toFixed(3)+" "+c2[1].toFixed(3)+" "+p2[0].toFixed(3)+" "+p2[1].toFixed(3)}
+ return d;
+}
+function boundaryPath(points){return points.length?"M "+points[0][0].toFixed(3)+" "+points[0][1].toFixed(3)+pathCurveCommands(points):""}
+function territoryRingPath(ring){
+ let d="",current=null;for(const edge of ring.edges||[]){const b=getBoundary(edge.boundaryId);if(!b)continue;let coords=displayBoundaryCoords(b);if(edge.reversed)coords.reverse();if(coords.length<2)continue;
+  if(!current)d="M "+coords[0][0].toFixed(3)+" "+coords[0][1].toFixed(3);else if(Math.hypot(current[0]-coords[0][0],current[1]-coords[0][1])>.001)d+=" L "+coords[0][0].toFixed(3)+" "+coords[0][1].toFixed(3);
+  d+=pathCurveCommands(coords);current=coords[coords.length-1]
+ }return d?d+" Z":"";
+}
+function turnAngle(prev,cur,next){const ax=cur[0]-prev[0],ay=cur[1]-prev[1],bx=next[0]-cur[0],by=next[1]-cur[1];return Math.abs(Math.atan2(ax*by-ay*bx,ax*bx+ay*by))}
+function segmentClosedRing(points){
+ const n=points.length;if(n<3)return [];let filtered=[];
+ for(let i=0;i<n;i++){const angle=turnAngle(points[(i+n-1)%n],points[i],points[(i+1)%n]);if(angle>.58)filtered.push({i,score:angle})}
+ filtered.sort((a,b)=>a.i-b.i);const spaced=[];
+ for(const c of filtered){if(!spaced.length||c.i-spaced[spaced.length-1].i>=3)spaced.push(c);else if(c.score>spaced[spaced.length-1].score)spaced[spaced.length-1]=c}
+ if(spaced.length>1&&spaced[0].i+n-spaced[spaced.length-1].i<3){if(spaced[0].score<spaced[spaced.length-1].score)spaced.shift();else spaced.pop()}
+ if(spaced.length<3){spaced.length=0;for(let k=0;k<4;k++)spaced.push({i:Math.floor(k*n/4),score:0})}
+ if(spaced.length>18)spaced=spaced.sort((a,b)=>b.score-a.score).slice(0,18);
+ const anchors=spaced.map(x=>x.i).sort((a,b)=>a-b),segments=[];
+ for(let k=0;k<anchors.length;k++){const start=anchors[k],end=anchors[(k+1)%anchors.length],chunk=[points[start]];let j=(start+1)%n,guard=0;while(j!==end&&guard++<n){chunk.push(points[j]);j=(j+1)%n}chunk.push(points[end]);if(chunk.length>=2)segments.push(chunk)}
+ return segments;
+}
+function updateDraftPreview(){
+ const layer=$("drawLayer");layer.replaceChildren();const points=drawStroke?drawStroke.points:draft;if(!points.length)return;
+ layer.append(node("path",{d:boundaryPath(points),fill:"none",stroke:"#f2d38a","stroke-width":2.5,"stroke-dasharray":drawStroke?"":"7 5","stroke-linejoin":"round","stroke-linecap":"round","pointer-events":"none"}));
+ if(drawing&&!drawStroke&&draft.length){for(const idx of [0,Math.floor(draft.length/2)]){const q=draft[idx];layer.append(node("circle",{cx:q[0],cy:q[1],r:3.5,fill:"#f9e7b4",stroke:"#18262b","stroke-width":1.5,"pointer-events":"none"}))}}
+}
+
 function renderMap(){
- const pg=$("polys"),bg=$("borders"),cg=$("cities"),vg=$("vertices"),dg=$("drawLayer");pg.replaceChildren();bg.replaceChildren();cg.replaceChildren();vg.replaceChildren();dg.replaceChildren();
- for(const t of data.territories){for(const ring of (t.rings||[])){const points=territoryRingPoints({...t,rings:[ring]},data);if(points.length<3)continue;const p=node("polygon",{points:points.map(p=>p.join(",")).join(" "),fill:t.color,"fill-opacity":t.id===selected?".35":".19",stroke:"none",class:"territory"});p.addEventListener("click",e=>{if(editMode||drawing||insertMode)return;e.stopPropagation();selectTerritory(t.id,false)});pg.append(p)}
+ const pg=$("polys"),bg=$("borders"),cg=$("cities"),vg=$("vertices");pg.replaceChildren();bg.replaceChildren();cg.replaceChildren();vg.replaceChildren();
+ for(const t of data.territories){
+  for(const ring of (t.rings||[])){const d=territoryRingPath(ring);if(!d)continue;const p=node("path",{d:d,fill:t.color,"fill-opacity":t.id===selected?".35":".19",stroke:"none",class:"territory"});p.addEventListener("click",e=>{if(editMode||drawing||insertMode)return;e.stopPropagation();selectTerritory(t.id,false)});pg.append(p)}
   const pts=allRingPoints(t);if(pts.length){const cx=pts.reduce((s,p)=>s+p[0],0)/pts.length,cy=pts.reduce((s,p)=>s+p[1],0)/pts.length;const label=node("text",{x:cx,y:cy,"text-anchor":"middle",fill:"#edf3e8","font-size":t.id===selected?14:12,"font-weight":t.id===selected?700:550,"paint-order":"stroke",stroke:"#15262b","stroke-width":4,"stroke-linejoin":"round","pointer-events":"none"});label.textContent=t.name;pg.append(label)}
  }
- for(const b of data.boundaries){const coords=b.vertexIds.map(id=>data.vertices.find(v=>v.id===id)).filter(Boolean).map(v=>[v.x,v.y]);if(coords.length<2)continue;const points=coords.map(p=>p.join(",")).join(" "),isSel=b.id===selectedBoundary;
-  const hit=node("polyline",{points:points,fill:"none",stroke:"transparent","stroke-width":16,class:"boundary-hit"});hit.addEventListener("click",e=>{if(editMode){e.stopPropagation();selectBoundary(b.id);if(insertMode)addVertexAt(point(e))}});bg.append(hit);
-  const line=node("polyline",{points:points,fill:"none",stroke:isSel?"#f2d38a":(b.uses.length>1?"#e4c98c":"#94aaa8"),"stroke-width":isSel?3.4:(b.uses.length>1?2.2:1.5),"stroke-opacity":isSel?1:.86,"stroke-linejoin":"round","stroke-linecap":"round","pointer-events":"none"});if(b.uses.length===1&&!isSel)line.setAttribute("stroke-dasharray","5 3");if(isSel)line.setAttribute("filter","url(#glow)");bg.append(line)
+ for(const b of data.boundaries){const coords=displayBoundaryCoords(b);if(coords.length<2)continue;const d=boundaryPath(coords),isSel=b.id===selectedBoundary;
+  const hit=node("path",{d:d,fill:"none",stroke:"transparent","stroke-width":16,"stroke-linejoin":"round","stroke-linecap":"round",class:"boundary-hit"});hit.addEventListener("click",e=>{if(editMode){e.stopPropagation();selectBoundary(b.id);if(insertMode)addVertexAt(point(e))}});bg.append(hit);
+  const line=node("path",{d:d,fill:"none",stroke:isSel?"#f2d38a":(b.uses.length>1?"#e4c98c":"#94aaa8"),"stroke-width":isSel?3.4:(b.uses.length>1?2.2:1.5),"stroke-opacity":isSel?1:.86,"stroke-linejoin":"round","stroke-linecap":"round","pointer-events":"none"});if(b.uses.length===1&&!isSel)line.setAttribute("stroke-dasharray","5 3");if(isSel)line.setAttribute("filter","url(#glow)");bg.append(line)
  }
  for(const city of data.cities||[]){const g=node("g",{class:"city"}),dot=node("circle",{cx:city.x,cy:city.y,r:3.3,fill:"#f0dfb2",stroke:"#18272c","stroke-width":1.5});const tx=node("text",{x:city.x+7,y:city.y-7,fill:"#e6efe6","font-size":10,"paint-order":"stroke",stroke:"#1a292f","stroke-width":3,"pointer-events":"none"});tx.textContent=city.name;g.append(dot,tx);cg.append(g)}
- if(editMode){const seen=new Set();for(const b of data.boundaries){for(const id of b.vertexIds){if(seen.has(id))continue;seen.add(id);const v=data.vertices.find(v=>v.id===id);if(!v)continue;const handle=node("circle",{cx:v.x,cy:v.y,r:id===selectedVertex?7:4.5,fill:id===selectedVertex?"#f6d891":"#172b32",stroke:id===selectedVertex?"#fff0c0":"#86d0d1","stroke-width":id===selectedVertex?2.2:1.5,class:"vertex"});handle.addEventListener("pointerdown",e=>startVertexDrag(e,id,b.id));handle.addEventListener("click",e=>{e.stopPropagation();selectedVertex=id;selectedBoundary=b.id;renderMap();renderBoundaryInfo()});vg.append(handle)}}
- }
- if(draft.length){const path=node("polyline",{points:draft.map(p=>p.join(",")).join(" "),fill:"none",stroke:"#f2d38a","stroke-width":2.5,"stroke-dasharray":"7 5"});dg.append(path);for(const p of draft)dg.append(node("circle",{cx:p[0],cy:p[1],r:4,fill:"#f9e7b4",stroke:"#18262b","stroke-width":1.5}))}
- $("pointCount").textContent=String(data.vertices.length);updateViewportLabel();
+ if(editMode&&selectedBoundary){const b=getBoundary(selectedBoundary);if(b)for(const id of b.vertexIds){const v=data.vertices.find(v=>v.id===id);if(!v)continue;const handle=node("circle",{cx:v.x,cy:v.y,r:id===selectedVertex?7:4.5,fill:id===selectedVertex?"#f6d891":"#172b32",stroke:id===selectedVertex?"#fff0c0":"#86d0d1","stroke-width":id===selectedVertex?2.2:1.5,class:"vertex"});handle.addEventListener("pointerdown",e=>startVertexDrag(e,id,b.id));handle.addEventListener("click",e=>{e.stopPropagation();selectedVertex=id;selectedBoundary=b.id;renderMap();renderBoundaryInfo()});vg.append(handle)}}
+ $("pointCount").textContent=String(data.vertices.length);updateViewportLabel();updateDraftPreview();
 }
 function renderList(){const list=$("territories");list.replaceChildren();for(const t of data.territories){const item=document.createElement("div");item.className="item"+(t.id===selected?" active":"");const sw=document.createElement("span");sw.className="swatch";sw.style.background=t.color;const main=document.createElement("div");main.className="item-main";const nm=document.createElement("div");nm.className="item-name";nm.textContent=t.name;const meta=document.createElement("div");meta.className="item-meta";meta.textContent=t.type;main.append(nm,meta);const badge=document.createElement("span");badge.className="badge "+(t.canon==="Канон"?"canon":t.canon==="Черновик"?"draft":"");badge.textContent=t.canon;item.append(sw,main,badge);item.onclick=()=>selectTerritory(t.id,false);item.ondblclick=()=>{selectTerritory(t.id,true)};list.append(item)}}
 function renderBoundaryInfo(){const box=$("boundaryInfo");const b=getBoundary(selectedBoundary);$("insertVertex").disabled=!editMode||!b;if(!b){box.innerHTML='<div class="boundary-name">Граница не выбрана</div><div class="boundary-detail">Включи редактирование и выбери линию границы. Общая линия соседних территорий редактируется как один объект.</div>';return}const names=boundaryUsers(b.id).map(t=>t.name);box.replaceChildren();const title=document.createElement("div");title.className="boundary-name";title.textContent=b.id+" · "+(b.uses.length>1?"Общая граница":"Локальный участок");const detail=document.createElement("div");detail.className="boundary-detail";detail.textContent="Смежные территории: "+(names.join(" ↔ ")||"не назначены")+". Вершин: "+b.vertexIds.length+". Перетаскивание узла меняет эту геометрию для всех соседей.";box.append(title,detail);$("insertVertex").disabled=!editMode;$("deleteVertex").disabled=!editMode||!selectedVertex}

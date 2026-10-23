@@ -66,6 +66,11 @@ function clone(o){return JSON.parse(JSON.stringify(o))}
 function vertexKey(x,y){return Math.round(x*1000)+","+Math.round(y*1000)}
 function normaliseProject(raw){
  if(raw&&raw.schemaVersion>=2&&Array.isArray(raw.vertices)&&Array.isArray(raw.boundaries)&&Array.isArray(raw.territories)&&raw.territories.every(t=>Array.isArray(t.rings))){
+  const vertexIds=new Set(raw.vertices.map(v=>v.id)),boundaryIds=new Set(raw.boundaries.map(b=>b.id));
+  if(raw.vertices.some(v=>typeof v.id!=="string"||!Number.isFinite(v.x)||!Number.isFinite(v.y)))throw Error("Invalid vertex");
+  if(raw.boundaries.some(b=>typeof b.id!=="string"||!Array.isArray(b.vertexIds)||b.vertexIds.length<2||b.vertexIds.some(id=>!vertexIds.has(id))))throw Error("Invalid boundary topology");
+  if(raw.territories.some(t=>t.rings.some(r=>!Array.isArray(r.edges)||r.edges.some(e=>!boundaryIds.has(e.boundaryId)))))throw Error("Invalid territory references");
+  raw.boundaries.forEach(b=>{b.uses=raw.territories.filter(t=>t.rings.some(r=>r.edges.some(e=>e.boundaryId===b.id))).map(t=>t.id)});
   raw.schemaVersion=2;raw.cities=Array.isArray(raw.cities)?raw.cities:[];raw.metadata=raw.metadata||{project:"Aethelgard Atlas",version:2};return raw;
  }
  const legacy=raw&&Array.isArray(raw.territories)?raw:{territories:clone(seed),cities:clone(seedCities)};
@@ -159,5 +164,5 @@ svg.addEventListener("pointermove",onPointerMove);svg.addEventListener("pointeru
 svg.addEventListener("wheel",e=>{e.preventDefault();zoomAt(e.deltaY>0?1.16:.86,e.clientX,e.clientY)},{passive:false});
 window.addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="z"){e.preventDefault();$("undo").click()}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="y"){e.preventDefault();$("redo").click()}if(e.key==="Escape"){if(drawing){drawing=false;draft=[];render();status("Рисование отменено")}if(insertMode){insertMode=false;render();status("Вставка точки отменена")}}});
 window.addEventListener("resize",()=>{const center=[view.x+view.w/2,view.y+view.h/2];setView(center[0]-view.w/2,center[1]-view.h/2,view.w,view.h)});
-(async function init(){try{const saved=await readDB();if(saved)data=normaliseProject(saved)}catch(e){}render();if(selected)fillFields(getTerritory(selected));fitAll();$("saveState").textContent="● locally saved";status("Готово. Общие сегменты границ хранятся единообразно; масштаб — колесом, вершины — в режиме редактирования.")})();
+(async function init(){let saved=null;try{saved=await readDB();if(saved)data=normaliseProject(saved)}catch(e){}if(!getTerritory(selected))selected=data.territories[0]?data.territories[0].id:null;if(!saved)await persist();render();if(selected)fillFields(getTerritory(selected));fitAll();$("saveState").textContent="● locally saved";status("Готово. Общие сегменты границ хранятся единообразно; масштаб — колесом, вершины — в режиме редактирования.")})();
 </script></body></html>

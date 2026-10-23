@@ -20,6 +20,8 @@ The following user requests are copied verbatim from this conversation, includin
 
 > так, да, изза того, что границы теперь стали парочкой точек они очень квадртаный и точки будут нагружать очень систему если они будет много и будут подробно изображать границу. Так что нужно подумать как сделать это иначе, может быть, нам просто рисаовать от руки? или два режима один редактирвани а второй скорее обычная карта
 
+> так, да, изза того, что границы теперь стали парочкой точек они очень квадртаный и точки будут нагружать очень систему если они будет много и будут подробно изображать границу. Так что нужно подумать как сделать это иначе, может быть, нам просто рисаовать от руки? или два режима один редактирвани а второй скорее обычная карта
+
 Ключевые формулировки из ответов ассистента, сохранённые дословно как рабочие правила:
 
 > Граница государства должна быть не отдельным контуром, который приходится править на каждой карте, а геометрией, определённой на самом подробном уровне. Все остальные масштабы должны получать её из этой геометрии.
@@ -122,7 +124,7 @@ Quick navigation should include:
 
 ### Scope note
 
-The current prototype now includes separate map/edit modes, one-stroke freehand contour creation, stroke simplification, smoothed rendering for multi-vertex boundary sections, view-dependent display simplification, a render-pass geometry cache, and vertex handles only on the selected boundary. It also supports vertex dragging and inserting/removing some intermediate vertices. Deleting junction vertices, robust topology repair, snapping, arbitrary intersections, full geometry validation, and editing an existing territory by replacing its full contour remain future work. The editor should state these limitations rather than silently corrupt shared topology.
+The current prototype now includes separate map/edit modes, one-stroke freehand contour creation, stroke simplification, smoothed rendering for multi-vertex boundary sections, view-dependent display simplification, a render-pass geometry cache, and vertex handles only on the selected boundary. It also supports freehand redraw of a selected boundary chain, preserving its endpoint vertices so all territories using that boundary update together. Redrawing is blocked if a section contains interior junctions shared with other boundary objects. Deleting junction vertices, robust topology repair, snapping, arbitrary intersections, full geometry validation, and replacing an entire territory ring remain future work. The editor should state these limitations rather than silently corrupt shared topology.
 
 ## 5. Data architecture
 
@@ -200,6 +202,7 @@ Current editor file: tools/aethelgard-atlas/index.html.
 - Separate Map and Edit modes; map mode supports panning by dragging and selecting territories by clicking.
 - Boundary handles are shown only for the currently selected boundary.
 - Freehand territory drawing with mouse/stylus; samples are simplified after the stroke, and multi-point sections render as smooth curved SVG paths.
+- Freehand redraw of a selected existing boundary chain, preserving its endpoint vertices and updating every territory that references the line.
 - Per-zoom display simplification and per-render caching reduce the displayed point count without deleting saved geometry.
 - Boundary objects can be shared by territories when a complete boundary chain matches exactly; vertex edits update every territory referencing that object.
 - Insert an intermediate vertex along the selected boundary and remove some safe intermediate vertices.

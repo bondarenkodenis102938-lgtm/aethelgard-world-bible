@@ -138,7 +138,7 @@ function turnAngle(prev,cur,next){const ax=cur[0]-prev[0],ay=cur[1]-prev[1],bx=n
 function segmentClosedRing(points){
  const n=points.length;if(n<3)return [];let filtered=[];
  for(let i=0;i<n;i++){const angle=turnAngle(points[(i+n-1)%n],points[i],points[(i+1)%n]);if(angle>.58)filtered.push({i,score:angle})}
- filtered.sort((a,b)=>a.i-b.i);const spaced=[];
+ filtered.sort((a,b)=>a.i-b.i);let spaced=[];
  for(const c of filtered){if(!spaced.length||c.i-spaced[spaced.length-1].i>=3)spaced.push(c);else if(c.score>spaced[spaced.length-1].score)spaced[spaced.length-1]=c}
  if(spaced.length>1&&spaced[0].i+n-spaced[spaced.length-1].i<3){if(spaced[0].score<spaced[spaced.length-1].score)spaced.shift();else spaced.pop()}
  if(spaced.length<3){spaced.length=0;for(let k=0;k<4;k++)spaced.push({i:Math.floor(k*n/4),score:0})}
@@ -160,7 +160,7 @@ function renderMap(){
   const pts=allRingPoints(t);if(pts.length){const cx=pts.reduce((s,p)=>s+p[0],0)/pts.length,cy=pts.reduce((s,p)=>s+p[1],0)/pts.length;const label=node("text",{x:cx,y:cy,"text-anchor":"middle",fill:"#edf3e8","font-size":t.id===selected?14:12,"font-weight":t.id===selected?700:550,"paint-order":"stroke",stroke:"#15262b","stroke-width":4,"stroke-linejoin":"round","pointer-events":"none"});label.textContent=t.name;pg.append(label)}
  }
  for(const b of data.boundaries){const coords=displayBoundaryCoords(b);if(coords.length<2)continue;const d=boundaryPath(coords),isSel=b.id===selectedBoundary;
-  const hit=node("path",{d:d,fill:"none",stroke:"transparent","stroke-width":16,"stroke-linejoin":"round","stroke-linecap":"round",class:"boundary-hit"});hit.addEventListener("click",e=>{if(editMode){e.stopPropagation();selectBoundary(b.id);if(insertMode)addVertexAt(point(e))}});bg.append(hit);
+  const hit=node("path",{d:d,fill:"none",stroke:"transparent","stroke-width":16,"stroke-linejoin":"round","stroke-linecap":"round",class:"boundary-hit"});hit.addEventListener("click",e=>{if(editMode&&!drawing){e.stopPropagation();selectBoundary(b.id);if(insertMode)addVertexAt(point(e))}});bg.append(hit);
   const line=node("path",{d:d,fill:"none",stroke:isSel?"#f2d38a":(b.uses.length>1?"#e4c98c":"#94aaa8"),"stroke-width":isSel?3.4:(b.uses.length>1?2.2:1.5),"stroke-opacity":isSel?1:.86,"stroke-linejoin":"round","stroke-linecap":"round","pointer-events":"none"});if(b.uses.length===1&&!isSel)line.setAttribute("stroke-dasharray","5 3");if(isSel)line.setAttribute("filter","url(#glow)");bg.append(line)
  }
  for(const city of data.cities||[]){const g=node("g",{class:"city"}),dot=node("circle",{cx:city.x,cy:city.y,r:3.3,fill:"#f0dfb2",stroke:"#18272c","stroke-width":1.5});const tx=node("text",{x:city.x+7,y:city.y-7,fill:"#e6efe6","font-size":10,"paint-order":"stroke",stroke:"#1a292f","stroke-width":3,"pointer-events":"none"});tx.textContent=city.name;g.append(dot,tx);cg.append(g)}

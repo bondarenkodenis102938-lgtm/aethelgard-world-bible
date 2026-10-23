@@ -18,6 +18,8 @@ The following user requests are copied verbatim from this conversation, includin
 
 > давай, во первых запиши все идеи внутрь, можешь даже скопироваь наши обсуждения дословно и добавить к ним свои окмментарии, во вторых можешь начать делать принимая во внимание все наши идеи
 
+> так, да, изза того, что границы теперь стали парочкой точек они очень квадртаный и точки будут нагружать очень систему если они будет много и будут подробно изображать границу. Так что нужно подумать как сделать это иначе, может быть, нам просто рисаовать от руки? или два режима один редактирвани а второй скорее обычная карта
+
 Ключевые формулировки из ответов ассистента, сохранённые дословно как рабочие правила:
 
 > Граница государства должна быть не отдельным контуром, который приходится править на каждой карте, а геометрией, определённой на самом подробном уровне. Все остальные масштабы должны получать её из этой геометрии.
@@ -93,14 +95,22 @@ Quick navigation should include:
 
 ### Expected interaction
 
-- A dedicated boundary-edit mode separates editing from ordinary selection.
-- Select a boundary line, inspect the territories that use it, and drag an existing vertex.
-- Moving a shared vertex updates all adjacent territorial outlines because they reference the same geometry.
-- Insert intermediate vertices along a selected boundary to create a more detailed local shape.
-- Remove intermediate vertices when safe.
-- Pan by dragging empty map space; zoom with the wheel or zoom controls.
-- Provide undo/redo, autosave feedback, explicit project export, and a safe recovery path.
-- Show errors or warnings for invalid geometry rather than silently accepting a broken outline.
+- Explicit **Map mode** and **Edit mode**. Map mode is for reading the atlas, selecting territories, zooming and panning; it does not expose edit handles. Edit mode reveals handles only for the selected boundary, not for every point on the map.
+- Select a boundary line, inspect which territories refer to it, and drag an existing vertex. A shared vertex updates all outlines that reference it.
+- Insert intermediate vertices along a selected boundary and remove intermediate vertices when safe.
+- Draw a new territory freehand with a mouse or stylus in one continuous stroke, then finish the contour. The editor samples the stroke rather than storing every pointer event, simplifies it, and groups it into a small number of curved boundary sections.
+- The display uses smooth SVG curves for multi-vertex boundary sections. The authoritative vertex chain remains saved separately; viewing/zooming does not replace the original geometry.
+- Zoom level controls display generalization. At overview scale, tiny deviations are removed from the rendered path; closer in, more of the stored detail is shown. Display simplification must not mutate stored geometry.
+- Pan by dragging the map and zoom with the wheel or controls. Map mode must suppress territory selection after a real drag, while a simple click can still select a territory.
+- Provide undo/redo, autosave feedback, explicit project export, and a safe recovery path. Invalid or risky geometry operations should warn rather than silently corrupt topology.
+
+### Stroke and rendering budget
+
+- Freehand input is sampled at a screen-space interval rather than on every raw pointer event. The current prototype samples at about 2.4 CSS pixels, then applies a closed-ring Ramer–Douglas–Peucker simplification using a tolerance related to current zoom.
+- The simplified contour is split at prominent turning points into curved boundary sections, capped at 18 sections per new contour in the prototype. Many sample points can therefore be held by a few SVG path elements instead of producing one DOM element for each point.
+- The map renderer simplifies long polylines for display at roughly 1.35 screen pixels of tolerance, and caches simplified coordinates for the duration of a render pass. Zoom changes cause the display geometry to be regenerated from the stored geometry.
+- Smooth curves are a rendering interpolation over the stored polyline, not yet a persistent spline geometry format. The current GeoJSON export follows the stored straight segments and may not exactly reproduce the on-screen interpolated curve. A future geographic export should densify/render the interpolated curve or adopt an explicitly shared curve model.
+- Do not make every border permanently dense. Keep detail where the author drew it; when a scale cannot resolve that detail, display generalized geometry instead of creating unnecessary SVG objects.
 
 ### Topology guardrails
 
@@ -112,7 +122,7 @@ Quick navigation should include:
 
 ### Scope note
 
-The current prototype implements vertex dragging and adding/removing some intermediate vertices. Deleting junction vertices, robust topology repair, snapping, arbitrary line intersections, and full geometry validation remain future work. The editor should state this limitation rather than silently corrupt shared topology.
+The current prototype now includes separate map/edit modes, one-stroke freehand contour creation, stroke simplification, smoothed rendering for multi-vertex boundary sections, view-dependent display simplification, a render-pass geometry cache, and vertex handles only on the selected boundary. It also supports vertex dragging and inserting/removing some intermediate vertices. Deleting junction vertices, robust topology repair, snapping, arbitrary intersections, full geometry validation, and editing an existing territory by replacing its full contour remain future work. The editor should state these limitations rather than silently corrupt shared topology.
 
 ## 5. Data architecture
 
@@ -187,10 +197,12 @@ Current editor file: tools/aethelgard-atlas/index.html.
 
 - Zoom via wheel and controls, pan by dragging empty map space.
 - Fit all and fit selected territory, so small territories can be inspected without changing their canonical geometry.
-- Boundary edit mode with visible vertices and draggable geometry.
-- Boundary objects can be shared by territories when legacy edges match exactly; a shared boundary is rendered once and its vertices are the authoritative geometry for all territories referencing it.
+- Separate Map and Edit modes; map mode supports panning by dragging and selecting territories by clicking.
+- Boundary handles are shown only for the currently selected boundary.
+- Freehand territory drawing with mouse/stylus; samples are simplified after the stroke, and multi-point sections render as smooth curved SVG paths.
+- Per-zoom display simplification and per-render caching reduce the displayed point count without deleting saved geometry.
+- Boundary objects can be shared by territories when a complete boundary chain matches exactly; vertex edits update every territory referencing that object.
 - Insert an intermediate vertex along the selected boundary and remove some safe intermediate vertices.
-- Create a new territory outline; exact existing boundary edges can be reused.
 - Undo/redo for project edits.
 - Browser autosave using IndexedDB plus localStorage fallback.
 - Import/export project JSON and an initial GeoJSON-shaped export.
@@ -199,13 +211,13 @@ Current editor file: tools/aethelgard-atlas/index.html.
 
 ## 8. Known limitations of this implementation
 
-- The underlying map and relief are stylized schematic SVG artwork, not real Europe GIS data or a canonical terrain model.
+- The underlying map and relief are stylized schematic SVG artwork, not real Europe GIS data or a canonical terrain model. The seed territories still have coarse/angular outlines; freehand redraw or more detailed source geometry is required to make those boundaries detailed.
 - Zoom/pan is implemented, but there are not yet true separate regional/city/local-plan datasets or automatic data-driven level-of-detail switching.
-- Shared boundaries are recognised for exact matching edges during legacy migration and edge creation. Arbitrary overlaps, partial overlaps, line intersections, auto-snapping, and full planar topology are not solved yet.
+- Shared boundaries are reused when the complete ordered vertex-ID chain matches (forward or reversed). Partial overlaps, edge intersections, auto-snapping, and full planar topology are not solved yet. A separately drawn border will not automatically merge with a nearby existing border.
 - Junction deletion is guarded; a proper merge/split tool is still needed.
 - City points can be displayed but do not yet have a full drag/edit workflow.
 - Undo/redo is in-memory for the current session; it is not a durable long-term revision history. Autosave is not cloud sync.
-- The GeoJSON-shaped export uses schematic coordinates and should not be treated as geographically referenced longitude/latitude data.
+- The GeoJSON-shaped export uses schematic coordinates and should not be treated as geographically referenced longitude/latitude data. It exports the saved polyline vertices, not the smooth screen-interpolated spline exactly; curve-aware geographic export remains future work.
 - There is no multiuser locking, access control, cloud backup, or collaborative editing yet.
 
 ## 9. Implementation order

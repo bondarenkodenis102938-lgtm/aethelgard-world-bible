@@ -18,6 +18,16 @@ The following user requests are copied verbatim from this conversation, includin
 
 > давай, во первых запиши все идеи внутрь, можешь даже скопироваь наши обсуждения дословно и добавить к ним свои окмментарии, во вторых можешь начать делать принимая во внимание все наши идеи
 
+Ключевые формулировки из ответов ассистента, сохранённые дословно как рабочие правила:
+
+> Граница государства должна быть не отдельным контуром, который приходится править на каждой карте, а геометрией, определённой на самом подробном уровне. Все остальные масштабы должны получать её из этой геометрии.
+
+> Масштаб — это не только увеличение пикселей. При изменении масштаба система должна переключать наборы объектов, подписи и уровень детализации. Геометрия канона при этом не должна меняться.
+
+> Не стоит считать, что каждая страна обязана иметь собственную независимую линию на каждом уровне детализации. Лучше хранить единую точную геометрию границ, а для отображения создавать упрощённые представления.
+
+> Нам не обязательно сразу поднимать сервер или оплачивать облако. Сначала стоит укрепить геометрию и локальное сохранение; облако подключать, когда появится реальная потребность в синхронизации и совместной работе.
+
 Earlier project context, summarized from the design discussion:
 - The user wanted a small browser-based editor inspired by Google Maps for the fictional political geography, using Europe as a starting geography but allowing substantial alterations. The user explicitly did not want hand-drawn illustrative maps as the main solution.
 - Aethelgard Atlas should ultimately support easy boundary editing, a continuous sense of scale, local details, and a visual language believable for a sophisticated cartographic system in 2147.

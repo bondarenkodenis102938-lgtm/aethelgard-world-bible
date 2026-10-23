@@ -121,7 +121,7 @@ function renderBoundaryInfo(){const box=$("boundaryInfo");const b=getBoundary(se
 function render(){renderMap();renderList();renderBoundaryInfo();$("modeChip").textContent="MODE / "+(drawing?"DRAW":insertMode?"ADD VERTEX":editMode?"BOUNDARY EDIT":"SELECT");$("editMode").classList.toggle("active",editMode);$("editMode").textContent=editMode?"✓ Редактирование включено":"◇ Редактировать границы";$("insertVertex").classList.toggle("active",insertMode);updateHistoryButtons()}
 function fillFields(t){for(const k of ["name","type","capital","canon","color","notes"])$(k).value=t[k]||""}
 function selectTerritory(id,fit){const t=getTerritory(id);if(!t)return;selected=id;fillFields(t);render();if(fit)fitTerritory(id)}
-function selectBoundary(id){selectedBoundary=id;selectedVertex=null;insertMode=false;$("insertVertex").classList.remove("active");render();status("Выбрана линия "+id+" — узлы редактируются совместно для всех смежных территорий")}
+function selectBoundary(id){selectedBoundary=id;selectedVertex=null;render();status("Выбрана линия "+id+" — узлы редактируются совместно для всех смежных территорий")}
 function saveProperties(){const t=getTerritory(selected);if(!t)return;checkpoint();for(const k of ["name","type","capital","canon","color","notes"])t[k]=$(k).value.trim();if(!t.name)t.name="Без названия";persist();render();status("Свойства сохранены")}
 function point(e){const p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;const q=p.matrixTransform(svg.getScreenCTM().inverse());return [q.x,q.y]}
 function setView(x,y,w,h){const ratio=svg.clientWidth/(svg.clientHeight||1);h=w/ratio;if(!Number.isFinite(x+y+w+h)||w<=0)return;view={x:x,y:y,w:w,h:h};svg.setAttribute("viewBox",[x,y,w,h].join(" "));updateViewportLabel()}

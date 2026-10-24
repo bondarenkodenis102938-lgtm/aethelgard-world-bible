@@ -108,7 +108,7 @@ const STORAGE_KEY="aethelgard-terrain-lab-v1";
 const state={style:"dark",hillshade:true,terrain3d:true,buildings3d:false,roads:true,rail:true,buildings:true,labels:true};
 let map=null,mapReady=false,baseVisibility=new Map(),mapErrorCount=0,lastFeature=null,lastPhotonRequestAt=0,photonSearchBusy=false;
 function readSavedView(){try{const v=JSON.parse(localStorage.getItem(STORAGE_KEY)||"null");if(v&&Array.isArray(v.center)&&Number.isFinite(v.zoom))return v}catch(e){}return null}
-function saveView(){if(!map||!mapReady)return;try{localStorage.setItem(STORAGE_KEY,JSON.stringify({center:map.getCenter().toArray(),zoom:map.getZoom(),pitch:map.getPitch(),bearing:map.getBearing(),style:state.style,hillshade:state.hillshade,terrain3d:state.terrain3d}))}catch(e){}}
+function saveView(){if(!map||!mapReady)return;try{localStorage.setItem(STORAGE_KEY,JSON.stringify({center:map.getCenter().toArray(),zoom:map.getZoom(),pitch:map.getPitch(),bearing:map.getBearing(),style:state.style,hillshade:state.hillshade,terrain3d:state.terrain3d,buildings3d:state.buildings3d,roads:state.roads,rail:state.rail,buildings:state.buildings,labels:state.labels}))}catch(e){}}
 function setConnection(s,error){$("connectionState").textContent=s;$("connectionState").style.color=error?"#d79186":"#9bc8a5"}
 function updateScale(){
  if(!map)return;const z=map.getZoom(),c=map.getCenter();let label=z<6?"EUROPEAN OVERVIEW":z<8.8?"ALPINE REGION":z<11.8?"REGIONAL DETAIL":z<14.7?"CITY PLAN":z<16.6?"STREETS & RAIL":"LOCAL PLAN / BUILDINGS";
@@ -179,9 +179,9 @@ function chooseFeature(e){
 }
 async function searchPlaces(event){
  event.preventDefault();const query=$("searchQuery").value.trim();if(!query)return;
- $("searchStatus").textContent="Ищем: "+query+"…";$("searchResults").replaceChildren();
+ if(photonSearchBusy){$("searchStatus").textContent="Поиск уже выполняется…";return}
+ $("searchStatus").textContent="Ищем: "+query+"…";$("searchResults").replaceChildren();photonSearchBusy=true;
  try{
-  if(photonSearchBusy){$("searchStatus").textContent="Поиск уже выполняется…";return}photonSearchBusy=true;
   const wait=Math.max(0,1000-(Date.now()-lastPhotonRequestAt));if(wait)await new Promise(resolve=>setTimeout(resolve,wait));lastPhotonRequestAt=Date.now();
   const url="https://photon.komoot.io/api/?q="+encodeURIComponent(query)+"&limit=6&lat=47.14&lon=9.52";
   const response=await fetch(url,{headers:{Accept:"application/json"}});if(!response.ok)throw Error("HTTP "+response.status);
@@ -200,7 +200,7 @@ function updateMapLayerState(){applyLayerVisibility();if(mapReady)saveView()}
 function applyPresetClicks(){document.querySelectorAll(".level").forEach(btn=>btn.addEventListener("click",()=>goTo(btn.dataset.view)))}
 function init(){
  if(!window.maplibregl){$("loading").querySelector(".loading-title").textContent="MAP ENGINE UNAVAILABLE";$("loading").querySelector(".loading-text").textContent="Не удалось загрузить MapLibre GL JS. Проверь интернет или открой страницу через браузер с доступом к CDN.";setConnection("ENGINE ERROR",true);return}
- const saved=readSavedView();if(saved){state.style=STYLE_URLS[saved.style]?saved.style:"dark";state.hillshade=saved.hillshade!==false;state.terrain3d=saved.terrain3d!==false}
+ const saved=readSavedView();if(saved){state.style=STYLE_URLS[saved.style]?saved.style:"dark";state.hillshade=saved.hillshade!==false;state.terrain3d=saved.terrain3d!==false;state.buildings3d=saved.buildings3d===true;state.roads=saved.roads!==false;state.rail=saved.rail!==false;state.buildings=saved.buildings!==false;state.labels=saved.labels!==false}
  $("darkStyle").classList.toggle("active",state.style==="dark");$("lightStyle").classList.toggle("active",state.style==="light");
  map=new maplibregl.Map({container:"map",style:STYLE_URLS[state.style],center:saved?saved.center:PRESETS.city.center,zoom:saved?saved.zoom:PRESETS.city.zoom,pitch:saved?saved.pitch:PRESETS.city.pitch,bearing:saved?saved.bearing:PRESETS.city.bearing,minZoom:3.4,maxZoom:19.2,maxPitch:78,renderWorldCopies:false,antialias:true,cooperativeGestures:true,attributionControl:false});
  map.addControl(new maplibregl.NavigationControl({showCompass:true,showZoom:true,visualizePitch:true}),"top-right");

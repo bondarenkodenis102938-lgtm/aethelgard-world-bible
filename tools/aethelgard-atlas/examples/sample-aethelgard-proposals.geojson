@@ -1,0 +1,56 @@
+{
+  "type": "FeatureCollection",
+  "name": "Aethelgard concept overlay — illustrative only",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Study Area — Draft",
+        "status": "illustrative proposal, not canon",
+        "fill": "#bca36f",
+        "stroke": "#745633",
+        "stroke-width": 2
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [9.5169, 47.1430],
+          [9.5211, 47.1430],
+          [9.5211, 47.1460],
+          [9.5169, 47.1460],
+          [9.5169, 47.1430]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Concept Elevated Transit Link",
+        "status": "illustrative proposal, not canon",
+        "stroke": "#87443b",
+        "stroke-width": 3
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [9.5080, 47.1370],
+          [9.5150, 47.1405],
+          [9.5200, 47.1435],
+          [9.5280, 47.1460]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Potential Aethelgard Core — Test Marker",
+        "status": "illustrative proposal, not canon",
+        "marker-color": "#704130"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [9.5190, 47.1443]
+      }
+    }
+  ]
+}

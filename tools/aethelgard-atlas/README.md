@@ -17,7 +17,7 @@ Serve this folder with a local static HTTP server and open `index.html` in a mod
 - Mouse wheel / map controls: continuous zoom; drag to pan.
 - Top shortcuts: Europe, Alps, Rhine Valley, city and local block. The map's navigation is constrained to Europe.
 - Relief controls: hillshade, 3D terrain and experimental 3D buildings.
-- Basemap appearance: Victorian Atlas, dark and modern light.
+- Basemap appearance: Neo-Victorian Cartography Engine, graphite and light.
 - Basemap layer groups: land cover/parks, water, administrative boundaries, roads, rail/transit, building footprints, POIs and labels can be toggled separately. Layer matching follows the current provider style's layer names, so some provider-specific items may be grouped imperfectly.
 - Search: look up towns and streets within the European bounding area.
 - Click a named map feature to inspect the attributes exposed by the source.
@@ -37,7 +37,7 @@ These first overlays are for adding reference geometry and future Aethelgard con
 - The base map remains contemporary real-world geography and OSM-derived data, not an authoritative map of Aethelgard 2147.
 - Local detail depends on OpenStreetMap coverage and the published vector tiles. High zoom does not invent unmapped roads or building footprints.
 - The elevation tiles have a lower native maximum zoom than the vector map; at very close zooms the terrain may be overzoomed.
-- Victorian styling recolours provider layers when their style schema permits it and applies a mild canvas tint. It is a starting aesthetic, not yet engraved contour cartography.
+- Neo-Victorian styling recolours provider layers where their style schema permits it and applies a very subtle technical-grid/vignette treatment. It is a first pass, not yet a full custom renderer with bespoke contour engraving and map symbols.
 - Layer grouping is inferred from provider layer/source-layer names. If a new provider style uses different names, some features may not follow the expected toggle.
 - Public services are external dependencies; keep attribution visible and follow their terms.
 

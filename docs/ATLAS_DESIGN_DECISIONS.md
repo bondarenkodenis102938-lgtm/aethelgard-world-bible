@@ -1,7 +1,7 @@
 # Aethelgard Atlas — design decisions, discussion record, and implementation plan
 
 **Status:** living design document  
-**Last updated:** 2026-10-23  
+**Last updated:** 2026-10-24  
 **Applies to:** tools/aethelgard-atlas/index.html, docs/ATLAS_ROADMAP.md, future map-data schema and storage.
 
 This document preserves the ideas agreed in conversation, distinguishes user requirements from implementation proposals, and records what is implemented versus what is still aspirational. It is not a claim that the prototype is already a full GIS.
@@ -246,3 +246,14 @@ Active entry point: tools/aethelgard-atlas/index.html. Previous political sketch
 ## 10. Acceptance criteria for a dependable first release
 
 A user can open the active map with an internet connection, see real roads and railways in the priority region, switch relief and map layers, navigate smoothly from regional to local zoom, search for a place, inspect available feature attributes, and distinguish the contemporary reference map from future Aethelgard canon. The app must clearly disclose missing map detail and data-source limits. Political editing is a later milestone, not a requirement for this first terrain-first release.
+
+
+## 11. Victorian cartography and first custom-layer workflow (24 October 2026)
+
+The active prototype now has a first-pass **Victorian Atlas** appearance. It starts from the public OpenFreeMap Liberty vector style, then repaints accessible vector-layer colours into a paper, sepia, muted-olive and stone palette; the canvas receives a restrained tint/print texture. The dark and modern light styles remain available. This is a visual treatment of contemporary OSM-derived data, not a 19th-century source dataset or proof that current objects exist unchanged in Aethelgard 2147.
+
+Basemap layer visibility is split into inferred groups: land cover/use, water, administrative boundaries, roads, rail/transit, buildings, POIs and labels, plus the existing hillshade / 3D terrain / experimental 3D buildings controls. Grouping depends on provider layer and source-layer names and needs browser verification.
+
+The prototype can now import each GeoJSON file as an independent user layer; each can be toggled, exported, or removed. The combined export marks each feature with an `_atlas_layer` property. Imported data and visibility persist in browser localStorage. This gives us an initial separation between provider basemap and Aethelgard-authored geography. It is not yet direct vertex editing, drawing, topological validation, terrain editing, or shared/cloud storage. Export important work as a backup.
+
+The next practical test is local browser validation: confirm the Victorian paint changes remain readable, each basemap toggle affects the intended group, and a small GeoJSON test file can be imported, hidden, exported, restored after refresh, and deleted. Do not publish automatically; the deployment workflow remains manual-only.

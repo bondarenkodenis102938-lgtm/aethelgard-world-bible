@@ -6,6 +6,8 @@
 
 This document preserves the ideas agreed in conversation, distinguishes user requirements from implementation proposals, and records what is implemented versus what is still aspirational. It is not a claim that the prototype is already a full GIS.
 
+**Priority decision (24 October 2026):** the active application is now a real-data, terrain-first map viewer. Political borders and the previous drawing prototype are deliberately parked until the base map, terrain, scale behaviour and local feature detail are satisfactory. The former boundary editor is archived at tools/aethelgard-atlas/legacy-political-editor.html.
+
 ## 1. Discussion record
 
 The following user requests are copied verbatim from this conversation, including the original spelling.
@@ -20,7 +22,7 @@ The following user requests are copied verbatim from this conversation, includin
 
 > так, да, изза того, что границы теперь стали парочкой точек они очень квадртаный и точки будут нагружать очень систему если они будет много и будут подробно изображать границу. Так что нужно подумать как сделать это иначе, может быть, нам просто рисаовать от руки? или два режима один редактирвани а второй скорее обычная карта
 
-> так, да, изза того, что границы теперь стали парочкой точек они очень квадртаный и точки будут нагружать очень систему если они будет много и будут подробно изображать границу. Так что нужно подумать как сделать это иначе, может быть, нам просто рисаовать от руки? или два режима один редактирвани а второй скорее обычная карта
+> братан я думаю нам снчала не нужно заморчиваться с граниами государств и отрисовки политической карты. Я думаю сначаала нам нужно определить маштаб насколько близко можно приблизить каарту, сделать рельеф и начать именно с локального плана постепенно повыщая детализацию вверх, то есть сначала нам нужно детализироватьь и сделать макет карты, а потом с учетом всего. Выше мы выстроили карту на 4 уровня, думаю сначала лоичнее всего сделать карту картой, а потом уже налаживать на нее остальное. Если знаешь как лучше сделать делай, можешь пользоватья публичными данными, можешь также воспольщоваться опытом гугл карт как они это делают. То есть если маштаб похволяет я хочу видеть не просто точку, а реальный гррод, дороги железные дороги и тд. Жальше можно уже долелать. Нам не обязательно отрисовыватьвсю эвропу, пока только самое важное
 
 Ключевые формулировки из ответов ассистента, сохранённые дословно как рабочие правила:
 
@@ -193,60 +195,54 @@ Potential layers, ordered by practical value:
 
 The “future” should come from information design and confident cartographic hierarchy, not from a sci-fi texture pasted over the map.
 
-## 7. What is implemented in the prototype now
+## 7. What is implemented in the active prototype now
 
-Current editor file: tools/aethelgard-atlas/index.html.
+Active entry point: tools/aethelgard-atlas/index.html. Previous political sketch: tools/aethelgard-atlas/legacy-political-editor.html.
 
-- Zoom via wheel and controls, pan by dragging empty map space.
-- Fit all and fit selected territory, so small territories can be inspected without changing their canonical geometry.
-- Separate Map and Edit modes; map mode supports panning by dragging and selecting territories by clicking.
-- Boundary handles are shown only for the currently selected boundary.
-- Freehand territory drawing with mouse/stylus; samples are simplified after the stroke, and multi-point sections render as smooth curved SVG paths.
-- Freehand redraw of a selected existing boundary chain, preserving its endpoint vertices and updating every territory that references the line.
-- Per-zoom display simplification and per-render caching reduce the displayed point count without deleting saved geometry.
-- Boundary objects can be shared by territories when a complete boundary chain matches exactly; vertex edits update every territory referencing that object.
-- Insert an intermediate vertex along the selected boundary and remove some safe intermediate vertices.
-- Undo/redo for project edits.
-- Browser autosave using IndexedDB plus localStorage fallback.
-- Import/export project JSON and an initial GeoJSON-shaped export.
-- Territory names, political type, capital, canon status, colour, and notes.
-- Existing seed territories are schematic and provisional; they are not a declaration that names, borders, or capitals are canon.
+- MapLibre GL JS renders a real interactive base map from OpenFreeMap / OpenStreetMap vector tiles rather than the old illustrative SVG continent.
+- The initial camera opens at city scale around the former Liechtenstein reference area, so the workflow starts close and zooms outward as needed.
+- Camera bookmarks move from Central Europe to the Alps, Rhine Valley, city and local street/block scale. Zooming remains continuous between these bookmarks.
+- The basemap includes available real-world roads, railways/transit, named places, water features and building footprints from public vector data.
+- An AWS Terrarium elevation source is used for hillshade and MapLibre 3D terrain.
+- Layer switches control roads, rail/transit, building outlines, labels, hillshade, 3D terrain and (when the active style exposes building vector data) an experimental 3D building layer.
+- Search uses Photon over OpenStreetMap data on submit, with a basic request pause; clicking map features shows the attributes available in the tiles.
+- Dark and light basemap styles are available; map position, zoom and a few style options are saved in localStorage.
+- Visible provider/data attribution is included. A separate source register lives in docs/ATLAS_DATA_SOURCES.md.
 
 ## 8. Known limitations of this implementation
 
-- The underlying map and relief are stylized schematic SVG artwork, not real Europe GIS data or a canonical terrain model. The seed territories still have coarse/angular outlines; freehand redraw or more detailed source geometry is required to make those boundaries detailed.
-- Zoom/pan is implemented, but there are not yet true separate regional/city/local-plan datasets or automatic data-driven level-of-detail switching.
-- Shared boundaries are reused when the complete ordered vertex-ID chain matches (forward or reversed). Partial overlaps, edge intersections, auto-snapping, and full planar topology are not solved yet. A separately drawn border will not automatically merge with a nearby existing border.
-- Junction deletion is guarded; a proper merge/split tool is still needed.
-- City points can be displayed but do not yet have a full drag/edit workflow.
-- Undo/redo is in-memory for the current session; it is not a durable long-term revision history. Autosave is not cloud sync.
-- The GeoJSON-shaped export uses schematic coordinates and should not be treated as geographically referenced longitude/latitude data. It exports the saved polyline vertices, not the smooth screen-interpolated spline exactly; curve-aware geographic export remains future work.
-- There is no multiuser locking, access control, cloud backup, or collaborative editing yet.
+- The basemap is contemporary real-world geography around the former Liechtenstein area. It is a reference substrate, not a finished map of Aethelgard in 2147 and not a claim that modern borders, roads or buildings survived unchanged.
+- Detailed streets, railways and building footprints depend on OpenStreetMap coverage and the public vector-tile provider. A high zoom number does not guarantee that every alley or building plan exists.
+- The public terrain source has a lower maximum native zoom than the vector map; close-in relief may be overzoomed. Very precise local elevation or engineering plans will require better regional DEM/LiDAR data if available and appropriately licensed.
+- The 3D-building layer is experimental: footprint coverage and height attributes are uneven, so it can be empty in some styles/areas or estimate height for buildings lacking metadata.
+- The application is a map viewer, not yet a GIS editor for roads, buildings or terrain. It does not yet allow creating custom local features on top of the basemap.
+- The app loads MapLibre, vector tiles, elevation and place-search from external public services. An internet connection is required; these public services can change and generally do not guarantee an SLA.
+- The Photon public demo can throttle requests; search is deliberately user-triggered rather than search-as-you-type.
+- No offline mode, custom regional tile cache, own geodata backend, cloud sync, user accounts or collaborative editing exists yet.
+- The previous polygon/boundary editor remains in legacy-political-editor.html. Its point-based topology, freehand curves and schematic coordinates are not part of the active map-viewer workflow and should not be treated as geographic data.
 
 ## 9. Implementation order
 
-### P0 — protect the work and make editing dependable
-1. Test browser storage, restore behaviour, import validation, undo/redo and reload persistence.
-2. Add automated checks for schema and geometry references.
-3. Add reliable vertex selection, insert/delete, pointer/touch handling, and feedback for unsafe operations.
-4. Add topology diagnostics for missing references, invalid rings, self-intersections, gaps and overlaps.
-5. Store app/schema version and provide migration logic for old project files.
+### P0 — make the base map dependable
+1. Verify the map in a real browser and check loading/error behaviour for MapLibre, OpenFreeMap and elevation tiles.
+2. Test camera presets, zoom limits, clicking features, style switching, 2D/3D terrain, and each layer toggle.
+3. Adjust default zoom and camera so the first view shows useful local detail without hiding the wider Alpine relief.
+4. Confirm attribution and public-service usage constraints remain visible and documented.
 
-### P1 — proper map authoring
-1. Add safe vertex and boundary junction merge/split operations.
-2. Add snapping, edge splitting, and shared-boundary creation for partially overlapping or intersecting edges.
-3. Add editable cities and other feature types.
-4. Add layers, filters, search, minimap, coordinate readout, scale bar, and light print/atlas mode.
-5. Load real open geodata with license and provenance recorded; choose a geographic projection/CRS.
-6. Separate physical geography from political geometry, then author the alternate 2147 geography.
+### P1 — make the priority region truly useful
+1. Compare real data coverage at city, street and local-block scales around the Aethelgard reference region.
+2. Choose a small number of high-value local zones instead of building all of Europe in detail.
+3. Add supplemental authored GeoJSON/GeoPackage layers where open data is incomplete; keep them separate from the provider's base map.
+4. Add more precise regional elevation sources where licensing and access permit.
+5. Add a layer inspector/source-confidence field so real-world reference data can be distinguished from author-created 2147 geography.
 
-### P2 — detail and long-term canon
-1. Add linked city/local plans and scale-dependent label/feature visibility.
-2. Add stable feature IDs, source/confidence fields, validity dates, historical border snapshots and change comparison.
-3. Add SVG/PNG print output and correctly referenced GeoJSON.
-4. Add persistent revision history and reviewed canonical releases.
-5. Only then choose PostGIS hosting and implement account-based cross-device sync or collaborative editing.
+### P2 — build the fictional geography on top
+1. Define the Aethelgard 2147 physical changes: terrain, valleys, waterways, passes and engineered infrastructure, without immediately forcing political borders into the model.
+2. Store author-created features with stable IDs, provenance and a canon/proposal/draft status.
+3. Add editable political boundaries only after the physical/map foundation is good enough to work on.
+4. Bring back the shared-topology editor as a dedicated edit mode or module, using the map's real coordinate reference system.
+5. Consider local storage databases or PostGIS only when custom data volume, offline needs or collaboration justifies them.
 
 ## 10. Acceptance criteria for a dependable first release
 
-A user can select any territory even if small, zoom and pan predictably, fit the selected territory, drag a shared border without creating a gap between adjacent territories, insert a detailed local vertex, undo/redo changes, reload the page without losing work, export/import a project backup, and see whether a territory is canon, proposal, or draft. The app must clearly disclose when a displayed map or export is only schematic.
+A user can open the active map with an internet connection, see real roads and railways in the priority region, switch relief and map layers, navigate smoothly from regional to local zoom, search for a place, inspect available feature attributes, and distinguish the contemporary reference map from future Aethelgard canon. The app must clearly disclose missing map detail and data-source limits. Political editing is a later milestone, not a requirement for this first terrain-first release.

@@ -235,6 +235,7 @@ function addTerrainSourcesAndLayers(){
  updateScale();mapReady=true;$("loading").classList.add("hidden");setConnection("MAP DATA CONNECTED");renderUserOverlayList();saveView();
 }
 function add3DBuildingsLayer(){
+ $("buildings3dToggle").disabled=false;$("buildings3dToggle").parentElement.title="";
  if(map.getLayer("aethelgard-buildings-3d"))return;
  const style=map.getStyle(),sourceLayer=(style.layers||[]).find(l=>l["source-layer"]==="building"&&l.source&&map.getSource(l.source));
  if(!sourceLayer){$("buildings3dToggle").disabled=true;$("buildings3dToggle").parentElement.title="В текущем наборе тайлов нет отдельного слоя зданий";return}

@@ -43,8 +43,8 @@ main{height:calc(100% - 60px);min-height:520px;display:grid;grid-template-column
  <nav class="levels" aria-label="Уровни масштаба">
   <button class="level" data-view="europe">01 · Европа</button>
   <button class="level" data-view="alps">02 · Альпы</button>
-  <button class="level active" data-view="rhine">03 · Долина Рейна</button>
-  <button class="level" data-view="city">04 · Город</button>
+  <button class="level" data-view="rhine">03 · Долина Рейна</button>
+  <button class="level active" data-view="city">04 · Город</button>
   <button class="level" data-view="local">05 · Квартал</button>
  </nav>
  <div class="map-readout"><div class="readout-chip"><strong id="detailLevel">REGIONAL DETAIL</strong><br><span id="coordReadout">47.1400° N · 9.5200° E</span></div><div class="readout-chip"><span id="scaleReadout">ZOOM 10.5×</span><br><span id="elevationReadout">TERRAIN / DEM</span></div></div>
@@ -106,7 +106,7 @@ const PRESETS={
 };
 const STORAGE_KEY="aethelgard-terrain-lab-v1";
 const state={style:"dark",hillshade:true,terrain3d:true,buildings3d:false,roads:true,rail:true,buildings:true,labels:true};
-let map=null,mapReady=false,baseVisibility=new Map(),mapErrorCount=0,lastFeature=null;
+let map=null,mapReady=false,baseVisibility=new Map(),mapErrorCount=0,lastFeature=null,lastPhotonRequestAt=0,photonSearchBusy=false;
 function readSavedView(){try{const v=JSON.parse(localStorage.getItem(STORAGE_KEY)||"null");if(v&&Array.isArray(v.center)&&Number.isFinite(v.zoom))return v}catch(e){}return null}
 function saveView(){if(!map||!mapReady)return;try{localStorage.setItem(STORAGE_KEY,JSON.stringify({center:map.getCenter().toArray(),zoom:map.getZoom(),pitch:map.getPitch(),bearing:map.getBearing(),style:state.style,hillshade:state.hillshade,terrain3d:state.terrain3d}))}catch(e){}}
 function setConnection(s,error){$("connectionState").textContent=s;$("connectionState").style.color=error?"#d79186":"#9bc8a5"}
@@ -142,7 +142,7 @@ function add3DBuildingsLayer(){
  if(!sourceLayer){$("buildings3dToggle").disabled=true;$("buildings3dToggle").parentElement.title="В текущем наборе тайлов нет отдельного слоя зданий";return}
  const firstSymbol=(style.layers||[]).find(l=>l.type==="symbol");
  map.addLayer({id:"aethelgard-buildings-3d",type:"fill-extrusion",source:sourceLayer.source,"source-layer":"building",minzoom:14,paint:{
-  "fill-extrusion-color":["case",["boolean",["feature-state","selected"],false],"#e2c783","#6e9296"],
+  "fill-extrusion-color":"#6e9296",
   "fill-extrusion-height":["interpolate",["linear"],["zoom"],14,0,15,["to-number",["coalesce",["get","render_height"],["get","height"],6]]],
   "fill-extrusion-base":["to-number",["coalesce",["get","render_min_height"],["get","min_height"],0]],
   "fill-extrusion-opacity":0.78,"fill-extrusion-vertical-gradient":true
@@ -162,7 +162,7 @@ function styleLoaded(){
  mapReady=false;
  try{addTerrainSourcesAndLayers()}catch(e){console.error(e);setConnection("TERRAIN LAYER ERROR",true);$("loading").classList.add("hidden");$("searchStatus").textContent="Основная карта загрузилась, но не удалось подключить слой рельефа: "+(e.message||e)}
 }
-function changeStyle(name){if(!STYLE_URLS[name]||state.style===name)return;state.style=name;$("darkStyle").classList.toggle("active",name==="dark");$("lightStyle").classList.toggle("active",name==="light");$("loading").classList.remove("hidden");$("loading").querySelector(".loading-title").textContent="SWITCHING CARTOGRAPHIC STYLE";$("loading").querySelector(".loading-text").textContent="Перестраиваем базовую карту и восстанавливаем слои рельефа.";mapReady=false;map.setStyle(STYLE_URLS[name])}
+function changeStyle(name){if(!STYLE_URLS[name]||state.style===name)return;mapErrorCount=0;state.style=name;$("darkStyle").classList.toggle("active",name==="dark");$("lightStyle").classList.toggle("active",name==="light");$("loading").classList.remove("hidden");$("loading").querySelector(".loading-title").textContent="SWITCHING CARTOGRAPHIC STYLE";$("loading").querySelector(".loading-text").textContent="Перестраиваем базовую карту и восстанавливаем слои рельефа.";mapReady=false;map.setStyle(STYLE_URLS[name])}
 function goTo(name){const p=PRESETS[name];if(!p||!map)return;map.flyTo({center:p.center,zoom:p.zoom,pitch:p.pitch,bearing:p.bearing,duration:1100,essential:true});$("detailLevel").textContent=p.label}
 function updateFeature(feature,lngLat){
  if(!feature||!feature.properties){$("featureName").textContent="Объект не распознан";$("featureMeta").textContent="Попробуй приблизить карту или нажми непосредственно на линию/здание.";return}
@@ -181,6 +181,8 @@ async function searchPlaces(event){
  event.preventDefault();const query=$("searchQuery").value.trim();if(!query)return;
  $("searchStatus").textContent="Ищем: "+query+"…";$("searchResults").replaceChildren();
  try{
+  if(photonSearchBusy){$("searchStatus").textContent="Поиск уже выполняется…";return}photonSearchBusy=true;
+  const wait=Math.max(0,1000-(Date.now()-lastPhotonRequestAt));if(wait)await new Promise(resolve=>setTimeout(resolve,wait));lastPhotonRequestAt=Date.now();
   const url="https://photon.komoot.io/api/?q="+encodeURIComponent(query)+"&limit=6&lat=47.14&lon=9.52";
   const response=await fetch(url,{headers:{Accept:"application/json"}});if(!response.ok)throw Error("HTTP "+response.status);
   const json=await response.json(),features=json.features||[];
@@ -192,7 +194,7 @@ async function searchPlaces(event){
    const detail=document.createElement("small");detail.textContent=[p.street,p.city,p.state,p.country].filter(Boolean).filter((v,i,a)=>a.indexOf(v)===i).join(" · ")||p.type||"Place";
    btn.append(title,detail);btn.addEventListener("click",()=>{map.flyTo({center:coords,zoom:Math.max(map.getZoom(),p.osm_value?15:14),pitch:18,bearing:0,duration:1100});$("featureName").textContent=p.name||p.street||"Selected place";$("featureMeta").textContent=[p.type,p.city,p.state,p.country,coords[1].toFixed(5)+", "+coords[0].toFixed(5)].filter(Boolean).join(" · ");$("searchStatus").textContent="Переместились к найденному объекту.";});$("searchResults").append(btn);
   }
- }catch(e){$("searchStatus").textContent="Поиск недоступен: "+(e.message||"ошибка сети")+". Можно приблизиться вручную с помощью карты."}
+ }catch(e){$("searchStatus").textContent="Поиск недоступен: "+(e.message||"ошибка сети")+". Можно приблизиться вручную с помощью карты."}finally{photonSearchBusy=false}
 }
 function updateMapLayerState(){applyLayerVisibility();if(mapReady)saveView()}
 function applyPresetClicks(){document.querySelectorAll(".level").forEach(btn=>btn.addEventListener("click",()=>goTo(btn.dataset.view)))}
@@ -200,13 +202,13 @@ function init(){
  if(!window.maplibregl){$("loading").querySelector(".loading-title").textContent="MAP ENGINE UNAVAILABLE";$("loading").querySelector(".loading-text").textContent="Не удалось загрузить MapLibre GL JS. Проверь интернет или открой страницу через браузер с доступом к CDN.";setConnection("ENGINE ERROR",true);return}
  const saved=readSavedView();if(saved){state.style=STYLE_URLS[saved.style]?saved.style:"dark";state.hillshade=saved.hillshade!==false;state.terrain3d=saved.terrain3d!==false}
  $("darkStyle").classList.toggle("active",state.style==="dark");$("lightStyle").classList.toggle("active",state.style==="light");
- map=new maplibregl.Map({container:"map",style:STYLE_URLS[state.style],center:saved?saved.center:PRESETS.rhine.center,zoom:saved?saved.zoom:PRESETS.rhine.zoom,pitch:saved?saved.pitch:PRESETS.rhine.pitch,bearing:saved?saved.bearing:PRESETS.rhine.bearing,minZoom:3.4,maxZoom:19.2,maxPitch:78,renderWorldCopies:false,antialias:true,cooperativeGestures:true,attributionControl:false});
+ map=new maplibregl.Map({container:"map",style:STYLE_URLS[state.style],center:saved?saved.center:PRESETS.city.center,zoom:saved?saved.zoom:PRESETS.city.zoom,pitch:saved?saved.pitch:PRESETS.city.pitch,bearing:saved?saved.bearing:PRESETS.city.bearing,minZoom:3.4,maxZoom:19.2,maxPitch:78,renderWorldCopies:false,antialias:true,cooperativeGestures:true,attributionControl:false});
  map.addControl(new maplibregl.NavigationControl({showCompass:true,showZoom:true,visualizePitch:true}),"top-right");
  map.addControl(new maplibregl.ScaleControl({maxWidth:130,unit:"metric"}),"bottom-left");
  map.addControl(new maplibregl.AttributionControl({compact:true,customAttribution:"© OpenFreeMap · © OpenMapTiles · © OpenStreetMap contributors · Elevation: AWS Open Data"}),"bottom-right");
  map.on("style.load",styleLoaded);map.on("load",()=>{if(!mapReady)styleLoaded();$("loading").classList.add("hidden");setConnection("MAP DATA CONNECTED");updateScale()});
- map.on("error",e=>{mapErrorCount++;if(!map.loaded()&&mapErrorCount>2){setConnection("LOADING MAP DATA…",false);$("searchStatus").textContent="Часть источников ещё загружается. Нужен доступ к интернету."}});
- map.on("move",updateScale);map.on("moveend",()=>{updateScale();saveView()});map.on("click",chooseFeature);
+ map.on("error",e=>{mapErrorCount++;if(!mapReady&&mapErrorCount>2){setConnection("MAP CONNECTION ISSUES",true);$("loading").classList.add("hidden");$("searchStatus").textContent="Не удаётся загрузить одну из картографических служб. Проверь интернет; основная карта и рельеф используют внешние публичные источники."}});
+ map.on("move",updateScale);map.on("moveend",()=>{updateScale();saveView()});map.on("mousemove",e=>{try{const h=state.terrain3d&&map.queryTerrainElevation?map.queryTerrainElevation(e.lngLat):null;$("elevationReadout").textContent=Number.isFinite(h)?"ELEVATION "+Math.round(h)+" m":"TERRAIN / DEM"}catch(err){$("elevationReadout").textContent="TERRAIN / DEM"}});map.on("click",chooseFeature);
  $("goCore").onclick=()=>goTo("rhine");$("resetView").onclick=()=>goTo("rhine");
  $("hillshadeToggle").onchange=e=>{state.hillshade=e.target.checked;updateMapLayerState()};
  $("terrainToggle").onchange=e=>{state.terrain3d=e.target.checked;if(mapReady){try{map.setTerrain(state.terrain3d?{source:"aethelgard-dem",exaggeration:1.18}:null);if(state.terrain3d&&map.getPitch()<15)map.easeTo({pitch:42,duration:500});if(!state.terrain3d&&map.getPitch()>15)map.easeTo({pitch:0,duration:500})}catch(err){statusTerrainError(err)}}saveView()};

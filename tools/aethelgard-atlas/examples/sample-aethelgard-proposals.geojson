@@ -7,8 +7,8 @@
       "properties": {
         "name": "Study Area — Draft",
         "status": "illustrative proposal, not canon",
-        "fill": "#bca36f",
-        "stroke": "#745633",
+        "fill": "#2f9498",
+        "stroke": "#d0ad69",
         "stroke-width": 2
       },
       "geometry": {
@@ -27,7 +27,7 @@
       "properties": {
         "name": "Concept Elevated Transit Link",
         "status": "illustrative proposal, not canon",
-        "stroke": "#87443b",
+        "stroke": "#e2b86a",
         "stroke-width": 3
       },
       "geometry": {
@@ -45,7 +45,7 @@
       "properties": {
         "name": "Potential Aethelgard Core — Test Marker",
         "status": "illustrative proposal, not canon",
-        "marker-color": "#704130"
+        "marker-color": "#e5bc70"
       },
       "geometry": {
         "type": "Point",

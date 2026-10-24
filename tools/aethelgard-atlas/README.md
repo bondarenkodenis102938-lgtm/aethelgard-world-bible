@@ -6,13 +6,13 @@ This is the active, terrain-first map prototype. The older schematic political-b
 
 Open index.html in a modern browser with an internet connection. The page loads MapLibre GL JS from a CDN, vector map tiles from OpenFreeMap, elevation tiles from AWS Open Data and place search from Photon. It is a static client-side app; there is no server or API key required for the current public sources.
 
-A GitHub Pages workflow is included at .github/workflows/deploy-atlas.yml and publishes this folder as a website when Pages deployment is enabled for the repository. If the site does not deploy automatically on first use, open repository Settings → Pages and select “GitHub Actions” as the source.
+A GitHub Pages workflow is included at .github/workflows/deploy-atlas.yml. The first workflow attempt cannot create the Pages site because Pages is not enabled yet. To publish a live preview, open repository Settings → Pages → Build and deployment and set Source to “GitHub Actions”; then rerun “Deploy Aethelgard Atlas” in Actions. The expected URL is https://bondarenkodenis102938-lgtm.github.io/aethelgard-world-bible/ once the deployment succeeds.
 
 ## Controls
 
 - Mouse wheel or map zoom controls: continuous zoom.
 - Drag empty map area: pan.
-- Top scale shortcuts: Central Europe, Alps, Rhine Valley, city and local block.
+- Top scale shortcuts move outward from local block to city, Rhine Valley, Alps and the European overview.
 - Right-side checkboxes: hillshade, 3D terrain, optional 3D buildings, roads, rail/transit, building outlines and labels.
 - Search field: find a town, street or place; the request is sent only when the search form is submitted.
 - Click a named map feature to inspect its available attributes.

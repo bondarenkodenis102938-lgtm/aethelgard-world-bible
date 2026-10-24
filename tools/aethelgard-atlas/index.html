@@ -39,7 +39,7 @@ main{height:calc(100% - 60px);min-height:520px;display:grid;grid-template-column
 <main>
 <section id="map-wrap" aria-label="Интерактивная географическая карта">
  <div id="map"></div>
- <div class="map-label"><div class="eyebrow">Project / Geographic foundation</div><div class="map-title">Alpine Reference Region</div><div class="map-subtitle">Исходная местность вокруг бывшего Лихтенштейна · рельеф, дороги, города и локальные объекты</div></div>
+ <div class="map-label"><div class="eyebrow">Project / Geographic foundation</div><div class="map-title">Aethelgard Reference / Vaduz Local Plan</div><div class="map-subtitle">Стартуем с локального масштаба и отдаляемся к долине Рейна и Альпам · современные открытые геоданные как подложка</div></div>
  <nav class="levels" aria-label="Уровни масштаба">
   <button class="level" data-view="europe">01 · Европа</button>
   <button class="level" data-view="alps">02 · Альпы</button>
@@ -104,7 +104,7 @@ const PRESETS={
  city:{center:[9.5215,47.1413],zoom:14.5,pitch:32,bearing:-14,label:"CITY / STREET NETWORK"},
  local:{center:[9.5215,47.1413],zoom:17.6,pitch:0,bearing:0,label:"LOCAL PLAN / BUILDINGS"}
 };
-const STORAGE_KEY="aethelgard-terrain-lab-v1";
+const STORAGE_KEY="aethelgard-terrain-lab-v2";
 const state={style:"dark",hillshade:true,terrain3d:true,buildings3d:false,roads:true,rail:true,buildings:true,labels:true};
 let map=null,mapReady=false,baseVisibility=new Map(),mapErrorCount=0,lastFeature=null,lastPhotonRequestAt=0,photonSearchBusy=false;
 function readSavedView(){try{const v=JSON.parse(localStorage.getItem(STORAGE_KEY)||"null");if(v&&Array.isArray(v.center)&&Number.isFinite(v.zoom))return v}catch(e){}return null}
@@ -202,7 +202,7 @@ function init(){
  if(!window.maplibregl){$("loading").querySelector(".loading-title").textContent="MAP ENGINE UNAVAILABLE";$("loading").querySelector(".loading-text").textContent="Не удалось загрузить MapLibre GL JS. Проверь интернет или открой страницу через браузер с доступом к CDN.";setConnection("ENGINE ERROR",true);return}
  const saved=readSavedView();if(saved){state.style=STYLE_URLS[saved.style]?saved.style:"dark";state.hillshade=saved.hillshade!==false;state.terrain3d=saved.terrain3d!==false;state.buildings3d=saved.buildings3d===true;state.roads=saved.roads!==false;state.rail=saved.rail!==false;state.buildings=saved.buildings!==false;state.labels=saved.labels!==false}
  $("darkStyle").classList.toggle("active",state.style==="dark");$("lightStyle").classList.toggle("active",state.style==="light");
- map=new maplibregl.Map({container:"map",style:STYLE_URLS[state.style],center:saved?saved.center:PRESETS.city.center,zoom:saved?saved.zoom:PRESETS.city.zoom,pitch:saved?saved.pitch:PRESETS.city.pitch,bearing:saved?saved.bearing:PRESETS.city.bearing,minZoom:3.4,maxZoom:19.2,maxPitch:78,renderWorldCopies:false,antialias:true,cooperativeGestures:true,attributionControl:false});
+ map=new maplibregl.Map({container:"map",style:STYLE_URLS[state.style],center:saved?saved.center:PRESETS.local.center,zoom:saved?saved.zoom:PRESETS.local.zoom,pitch:saved?saved.pitch:PRESETS.local.pitch,bearing:saved?saved.bearing:PRESETS.local.bearing,minZoom:3.4,maxZoom:19.2,maxPitch:78,renderWorldCopies:false,antialias:true,cooperativeGestures:true,attributionControl:false});
  map.addControl(new maplibregl.NavigationControl({showCompass:true,showZoom:true,visualizePitch:true}),"top-right");
  map.addControl(new maplibregl.ScaleControl({maxWidth:130,unit:"metric"}),"bottom-left");
  map.addControl(new maplibregl.AttributionControl({compact:true,customAttribution:"© OpenFreeMap · © OpenMapTiles · © OpenStreetMap contributors · Elevation: AWS Open Data"}),"bottom-right");

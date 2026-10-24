@@ -250,10 +250,24 @@ A user can open the active map with an internet connection, see real roads and r
 
 ## 11. Victorian cartography and first custom-layer workflow (24 October 2026)
 
-The active prototype now has a first-pass **Victorian Atlas** appearance. It starts from the public OpenFreeMap Liberty vector style, then repaints accessible vector-layer colours into a paper, sepia, muted-olive and stone palette; the canvas receives a restrained tint/print texture. The dark and modern light styles remain available. This is a visual treatment of contemporary OSM-derived data, not a 19th-century source dataset or proof that current objects exist unchanged in Aethelgard 2147.
+The active prototype initially received a parchment/sepia treatment, but the visual direction was corrected on 24 October 2026: **Victorian-era design DNA must be expressed through futuristic engineering aesthetics, not literal antiquity**. The revised Neo-Victorian Cartography Engine uses a midnight graphite shell, mineral blue-green land, cyan water/rail, controlled brass/gold accents, modern precise typography and a subtle technical-grid overlay. It starts from the public OpenFreeMap Liberty vector style and repaints accessible vector layers; a separate dark and light appearance remains available. This is contemporary OSM-derived geography with a custom futuristic rendering treatment, not a historical 19th-century dataset or canon geography of 2147.
 
 Basemap layer visibility is split into inferred groups: land cover/use, water, administrative boundaries, roads, rail/transit, buildings, POIs and labels, plus the existing hillshade / 3D terrain / experimental 3D buildings controls. Grouping depends on provider layer and source-layer names and needs browser verification.
 
 The prototype can now import each GeoJSON file as an independent user layer; each can be toggled, exported, or removed. The combined export marks each feature with an `_atlas_layer` property. Imported data and visibility persist in browser localStorage. This gives us an initial separation between provider basemap and Aethelgard-authored geography. It is not yet direct vertex editing, drawing, topological validation, terrain editing, or shared/cloud storage. Export important work as a backup.
 
 The next practical test is local browser validation: confirm the Victorian paint changes remain readable, each basemap toggle affects the intended group, and a small GeoJSON test file can be imported, hidden, exported, restored after refresh, and deleted. Do not publish automatically; the deployment workflow remains manual-only.
+
+
+## 12. Visual direction clarification (24 October 2026)
+
+The user's explicit correction: “викторианская эпоха не означает, что в будущем используются настолько старые вещи” — Victorian design heritage is not a mandate to use antique-looking tools and materials.
+
+Approved direction:
+- futuristic neo-Victorian cartography for year 2147;
+- modern, high-contrast graphite UI and refined compact controls;
+- mineral blue/green relief, cyan/teal waterways and rail/transit, brass/gold highlights;
+- technical line hierarchy, precise instrument-panel detailing and understated ornament as the Victorian influence;
+- no parchment-first UI, global sepia filter, faux antique paper or old-fashioned interface.
+
+The updated page is a first visual pass. Actual browser appearance still requires local verification; layer names/paint support vary by provider style. Future work should replace broad provider-style recolouring with a more deliberate bespoke style definition, contour/relief treatment and a custom symbol library while preserving independent user-authored layers.

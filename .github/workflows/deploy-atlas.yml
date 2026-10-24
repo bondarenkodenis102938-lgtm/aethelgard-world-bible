@@ -1,11 +1,8 @@
 name: Deploy Aethelgard Atlas
 
+# Deployment is intentionally manual while Terrain Lab is under active development.
+# Run this workflow only when a live preview is explicitly needed.
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'tools/aethelgard-atlas/**'
-      - '.github/workflows/deploy-atlas.yml'
   workflow_dispatch:
 
 permissions:

@@ -3,8 +3,29 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Aethelgard Atlas · Terrain Lab</title>
-<link href="https://unpkg.com/maplibre-gl@6.15.0/dist/maplibre-gl.css" rel="stylesheet">
-<script src="https://unpkg.com/maplibre-gl@6.15.0/dist/maplibre-gl.js"></script>
+<link id="maplibre-css" href="https://cdn.jsdelivr.net/npm/maplibre-gl@6.15.0/dist/maplibre-gl.css" rel="stylesheet">
+<script type="module">
+(async function loadMapLibreModule(){
+ const cdns=[
+  {name:"jsDelivr",js:"https://cdn.jsdelivr.net/npm/maplibre-gl@6.15.0/dist/maplibre-gl.mjs",css:"https://cdn.jsdelivr.net/npm/maplibre-gl@6.15.0/dist/maplibre-gl.css"},
+  {name:"unpkg",js:"https://unpkg.com/maplibre-gl@6.15.0/dist/maplibre-gl.mjs",css:"https://unpkg.com/maplibre-gl@6.15.0/dist/maplibre-gl.css"}
+ ];
+ const errors=[];
+ for(const cdn of cdns){
+  try{
+   const engine=await import(cdn.js);
+   window.maplibregl=engine;
+   const css=document.getElementById("maplibre-css");
+   if(css)css.href=cdn.css;
+   window.dispatchEvent(new Event("maplibre-ready"));
+   return;
+  }catch(error){
+   errors.push(cdn.name+": "+(error&&error.message?error.message:String(error)));
+  }
+ }
+ window.dispatchEvent(new CustomEvent("maplibre-failed",{detail:errors}));
+})();
+</script>
 <style>
 :root{color-scheme:dark;--bg:#0b1117;--panel:#111a22;--panel2:#17252e;--line:#2b3d48;--text:#e2ebed;--muted:#91a6ad;--gold:#d7b56c;--teal:#84c6c5;--danger:#d79186;--green:#9bc8a5}
 *{box-sizing:border-box}html,body{height:100%;margin:0;background:var(--bg);color:var(--text);font:13px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select{font:inherit}button{color:inherit}
@@ -217,6 +238,17 @@ function init(){
  $("darkStyle").onclick=()=>changeStyle("dark");$("lightStyle").onclick=()=>changeStyle("light");$("searchForm").addEventListener("submit",searchPlaces);applyPresetClicks();
 }
 function statusTerrainError(err){$("searchStatus").textContent="Не удалось переключить 3D-рельеф: "+(err.message||"ошибка источника высот");$("terrainToggle").checked=false;state.terrain3d=false}
-init();
+if(window.maplibregl){
+ init();
+}else{
+ window.addEventListener("maplibre-ready",init,{once:true});
+ window.addEventListener("maplibre-failed",event=>{
+  $("loading").querySelector(".loading-title").textContent="MAP ENGINE UNAVAILABLE";
+  $("loading").querySelector(".loading-text").textContent="Не удалось загрузить MapLibre GL JS с двух CDN (jsDelivr и unpkg). Проверь интернет или блокировку внешних модулей/скриптов.";
+  setConnection("ENGINE ERROR",true);
+  const details=Array.isArray(event.detail)?event.detail.join(" | "):"";
+  $("searchStatus").textContent=details;
+ },{once:true});
+}
 </script>
 </body></html>

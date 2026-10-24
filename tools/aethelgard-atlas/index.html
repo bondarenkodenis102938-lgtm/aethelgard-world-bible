@@ -30,48 +30,51 @@
 :root{color-scheme:dark;--bg:#0b1117;--panel:#111a22;--panel2:#17252e;--line:#2b3d48;--text:#e2ebed;--muted:#91a6ad;--gold:#d7b56c;--teal:#84c6c5;--danger:#d79186;--green:#9bc8a5}
 *{box-sizing:border-box}html,body{height:100%;margin:0;background:var(--bg);color:var(--text);font:13px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select{font:inherit}button{color:inherit}
 header{height:60px;background:#0d171e;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:16px;padding:0 20px;position:relative;z-index:5}
-body.victorian-theme{--bg:#e6dcc4;--panel:#e1d4b8;--panel2:#d6c6a5;--line:#9e8d6d;--text:#352f27;--muted:#6c624f;--gold:#785a35;--teal:#526e68}
-body.victorian-theme header{background:#d9c8a6;border-bottom-color:#988264}
-body.victorian-theme .brand,body.victorian-theme .header-caption,body.victorian-theme .map-title,body.victorian-theme .section h2,body.victorian-theme .level{font-family:Georgia,"Times New Roman",serif;letter-spacing:.035em}
-body.victorian-theme #map-wrap{background:#d7c7a3}
-body.victorian-theme .loading-cover{background:#eee2c8ed;color:#493f31}
-body.victorian-theme .loading-title{color:#765632}
-body.victorian-theme .loading-text{color:#76684f}
-body.victorian-theme .brand{color:#74552f}
-body.victorian-theme .mark{border-color:#8e7046}
-body.victorian-theme .header-caption,body.victorian-theme .header-right{color:#6f624d}
-body.victorian-theme .status-dot{background:#826640;box-shadow:0 0 8px #82664055}
-body.victorian-theme .side{background:#e4d7bc;border-left-color:#b3a080}
-body.victorian-theme .section{border-bottom-color:#c8b795}
-body.victorian-theme .section h2{color:#705b3b}
-body.victorian-theme .intro,body.victorian-theme .data-note{color:#73664f}
-body.victorian-theme .btn{background:#d4c4a3;border-color:#a99978;color:#40382c}
-body.victorian-theme .btn:hover{border-color:#81633e;color:#231d16}
-body.victorian-theme .btn.active,body.victorian-theme .level.active{background:#c0a77b;border-color:#8a6b42;color:#2f261a}
-body.victorian-theme .btn.primary{background:#8b6c43;border-color:#725534;color:#fff4d8}
-body.victorian-theme .switch{color:#4d4538}
-body.victorian-theme .switch input{background:#c4b591;border-color:#9b8a68}
-body.victorian-theme .switch input:checked{background:#7a603c;border-color:#654d30}
-body.victorian-theme .switch input:checked::after{background:#f8edcf}
-body.victorian-theme .switch small{color:#847458}
-body.victorian-theme .input-row input{background:#f1e7d0;border-color:#b6a481;color:#352f27}
-body.victorian-theme .info-card{background:#eee3cc;border-color:#c3b18c}
-body.victorian-theme .info-name{color:#6b4b2e}
-body.victorian-theme .info-meta{color:#77684e}
-body.victorian-theme .search-result{background:#e9ddc2;border-color:#c4b18b;color:#352f27}
-body.victorian-theme .search-result small{color:#7b6b51}
-body.victorian-theme .map-label,body.victorian-theme .levels,body.victorian-theme .readout-chip,body.victorian-theme .map-warning{background:#eee2c8ed;border-color:#ad9977;color:#4e4434;box-shadow:0 7px 24px #55452922}
-body.victorian-theme .eyebrow,body.victorian-theme .readout-chip strong{color:#765632}
-body.victorian-theme .map-title{color:#423727}
-body.victorian-theme .map-subtitle{color:#76684f}
-body.victorian-theme .level{color:#62543f}
-body.victorian-theme .level:hover{background:#ddcfb1;color:#2f271b}
-body.victorian-theme .maplibregl-ctrl-group{border-color:#b5a17e!important;background:#e9ddc4ed!important}
-body.victorian-theme .maplibregl-ctrl-group button{filter:sepia(.55) saturate(.7)}
-body.victorian-theme .maplibregl-ctrl-attrib{background:#eee2c8ed!important;color:#65583f!important}
-body.victorian-theme .maplibregl-ctrl-attrib a{color:#59452b!important}
-#map-wrap.victorian-theme::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.12;mix-blend-mode:multiply;background:radial-gradient(ellipse at center,transparent 42%,#6d5635 100%),repeating-linear-gradient(0deg,#765d3710 0,#765d3710 1px,transparent 1px,transparent 4px)}
-#map-wrap.victorian-theme .maplibregl-canvas{filter:sepia(.46) saturate(.72) contrast(1.04)}
+body.neo-victorian-theme{--bg:#08111a;--panel:#0e1924;--panel2:#142430;--line:#2b424f;--text:#dce7e9;--muted:#91a8b1;--gold:#d2ad68;--teal:#66d4cf}
+body.neo-victorian-theme header{background:linear-gradient(100deg,#0d1a26 0%,#111e29 64%,#15242b 100%);border-bottom:1px solid #38515a;box-shadow:0 5px 26px #0004}
+body.neo-victorian-theme .brand{color:#e2c17d;text-shadow:0 0 16px #c49d4a22}
+body.neo-victorian-theme .mark{border-color:#b79453;box-shadow:0 0 12px #d0ae6330}
+body.neo-victorian-theme .header-caption{font-family:Inter,ui-sans-serif,system-ui,sans-serif;color:#8daeb8;letter-spacing:.13em;text-transform:uppercase;font-size:10px}
+body.neo-victorian-theme .header-right{color:#9ab9bd}
+body.neo-victorian-theme .status-dot{background:#66d4cf;box-shadow:0 0 9px #66d4cf80}
+body.neo-victorian-theme #map-wrap{background:#101d26}
+body.neo-victorian-theme .loading-cover{background:#09131ded;color:#dce7e9}
+body.neo-victorian-theme .loading-title{color:#e0c17b}
+body.neo-victorian-theme .loading-text{color:#8faeb7}
+body.neo-victorian-theme .side{background:linear-gradient(180deg,#0f1b26 0%,#0b151f 100%);border-left-color:#2a434f}
+body.neo-victorian-theme .section{border-bottom-color:#263e49}
+body.neo-victorian-theme .section h2{color:#9fc4c7;font-family:Inter,ui-sans-serif,system-ui,sans-serif;letter-spacing:.16em}
+body.neo-victorian-theme .intro,body.neo-victorian-theme .data-note{color:#8fa6ae}
+body.neo-victorian-theme .btn{background:linear-gradient(180deg,#1a2c38,#13232e);border-color:#36505b;color:#cbdadd;box-shadow:inset 0 1px #ffffff06}
+body.neo-victorian-theme .btn:hover{border-color:#7cc7c5;color:#f1f7f6;box-shadow:0 0 12px #56c4c422}
+body.neo-victorian-theme .btn.active,body.neo-victorian-theme .level.active{background:linear-gradient(180deg,#3a392e,#222f30);border-color:#c6a45f;color:#f2d899;box-shadow:inset 0 0 0 1px #c6a45f22,0 0 14px #c6a45f16}
+body.neo-victorian-theme .btn.primary{background:linear-gradient(180deg,#886d3f,#5a4a2d);border-color:#d0af69;color:#fff0ca}
+body.neo-victorian-theme .switch{color:#cad9dc}
+body.neo-victorian-theme .switch input{background:#172a35;border-color:#49606a}
+body.neo-victorian-theme .switch input:checked{background:#315b5d;border-color:#63c8c6}
+body.neo-victorian-theme .switch input:checked::after{background:#8de6df;box-shadow:0 0 7px #68dad080}
+body.neo-victorian-theme .switch small{color:#74939c}
+body.neo-victorian-theme .input-row input{background:#0a151e;border-color:#36515d;color:#e0ebed}
+body.neo-victorian-theme .input-row input:focus{border-color:#70cdca;box-shadow:0 0 0 2px #62d0ca16}
+body.neo-victorian-theme .info-card{background:#0a151e;border-color:#2c4652;box-shadow:inset 0 1px #ffffff05}
+body.neo-victorian-theme .info-name{color:#e2c17d}
+body.neo-victorian-theme .info-meta{color:#8ea7ae}
+body.neo-victorian-theme .search-result{background:#13232e;border-color:#2b444f;color:#d7e4e7}
+body.neo-victorian-theme .search-result:hover{border-color:#69cfc9;background:#172a35}
+body.neo-victorian-theme .search-result small{color:#7d9ca5}
+body.neo-victorian-theme .map-label,body.neo-victorian-theme .levels,body.neo-victorian-theme .readout-chip,body.neo-victorian-theme .map-warning{background:#0b1723ef;border-color:#3a5660;color:#b7cdd0;box-shadow:0 8px 28px #0005,inset 0 1px #ffffff08;backdrop-filter:blur(10px)}
+body.neo-victorian-theme .eyebrow,body.neo-victorian-theme .readout-chip strong{color:#e0bc70}
+body.neo-victorian-theme .map-title{color:#e0ecec;font-family:Inter,ui-sans-serif,system-ui,sans-serif;letter-spacing:.05em}
+body.neo-victorian-theme .map-subtitle{color:#88a7b0}
+body.neo-victorian-theme .level{color:#a6bdc2}
+body.neo-victorian-theme .level:hover{background:#1a303a;color:#e8f4f3}
+body.neo-victorian-theme .maplibregl-ctrl-group{border-color:#39545f!important;background:#0e1b26ef!important;box-shadow:0 5px 22px #0005!important}
+body.neo-victorian-theme .maplibregl-ctrl-group button{filter:invert(.82) sepia(.12) hue-rotate(135deg) saturate(.8)}
+body.neo-victorian-theme .maplibregl-ctrl-attrib{background:#0a151eef!important;color:#9fb7bb!important}
+body.neo-victorian-theme .maplibregl-ctrl-attrib a{color:#d4bd80!important}
+#map-wrap.neo-victorian-theme::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.20;background:radial-gradient(ellipse at center,transparent 46%,#06101944 100%),linear-gradient(#6fc9c90a 1px,transparent 1px),linear-gradient(90deg,#6fc9c90a 1px,transparent 1px);background-size:auto,48px 48px,48px 48px;mask-image:linear-gradient(180deg,#000 0%,#000b 70%,#0004 100%)}
+#map-wrap.neo-victorian-theme .maplibregl-canvas{filter:saturate(.82) contrast(1.08) brightness(.88)}
+#map-wrap.neo-victorian-theme .maplibregl-canvas-container{box-shadow:inset 0 0 80px #07141a35}
 .overlay-list{display:grid;gap:7px;margin-top:10px}
 .overlay-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:7px;align-items:center;background:#0d171e;border:1px solid #2b414b;border-radius:4px;padding:8px}
 .overlay-item-main{min-width:0}
@@ -79,11 +82,11 @@ body.victorian-theme .maplibregl-ctrl-attrib a{color:#59452b!important}
 .overlay-item-meta{font-size:9px;color:#82989e;margin-top:2px}
 .overlay-item-actions{display:flex;gap:4px;align-items:center}
 .overlay-item-actions .btn{padding:5px 7px;font-size:10px}
-body.victorian-theme .overlay-item{background:#eee3cc;border-color:#c3b18c}
-body.victorian-theme .overlay-item-meta{color:#786a50}
+body.neo-victorian-theme .overlay-item{background:#eee3cc;border-color:#c3b18c}
+body.neo-victorian-theme .overlay-item-meta{color:#786a50}
 .overlay-empty{font-size:10px;line-height:1.55;color:var(--muted);padding:8px 0}
 .overlay-status{font-size:10px;line-height:1.5;color:var(--muted);margin-top:7px}
-body.victorian-theme .overlay-status{color:#73664f}
+body.neo-victorian-theme .overlay-status{color:#73664f}
 .brand{display:flex;align-items:center;color:var(--gold);font-weight:800;letter-spacing:.15em;white-space:nowrap}.mark{width:27px;height:27px;border:1px solid #8e7646;display:grid;place-items:center;margin-right:11px;transform:rotate(45deg);font-size:13px}.mark span{transform:rotate(-45deg)}.header-caption{border-left:1px solid var(--line);padding-left:16px;color:var(--muted)}.header-right{margin-left:auto;display:flex;align-items:center;gap:12px;color:#8fa49c;font-size:10px;letter-spacing:.07em}.status-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#c6a25c;margin-right:7px;box-shadow:0 0 9px #c6a25c66}
 main{height:calc(100% - 60px);min-height:520px;display:grid;grid-template-columns:minmax(0,1fr) 330px}
 #map-wrap{position:relative;min-width:0;min-height:0;background:#16252b;overflow:hidden}#map{position:absolute;inset:0}
@@ -108,13 +111,13 @@ main{height:calc(100% - 60px);min-height:520px;display:grid;grid-template-column
 <body>
 <header>
  <div class="brand"><span class="mark"><span>✳</span></span>AETHELGARD ATLAS</div>
- <div class="header-caption">Victorian Cartography Lab · Geographic Foundation / 2147</div>
+ <div class="header-caption">Neo-Victorian Cartography Engine · 2147</div>
  <div class="header-right"><span><i class="status-dot"></i><span id="connectionState">CONNECTING TO MAP DATA</span></span><span id="viewState">ZOOM 10.5</span></div>
 </header>
 <main>
 <section id="map-wrap" aria-label="Интерактивная географическая карта">
  <div id="map"></div>
- <div class="map-label"><div class="eyebrow">Project / Geographic foundation</div><div class="map-title">Aethelgard Reference / Vaduz Local Plan</div><div class="map-subtitle">Старинная картографическая подача · реальные данные как редактируемая географическая подложка</div></div>
+ <div class="map-label"><div class="eyebrow">AE / 2147 · GEOENGINE</div><div class="map-title">Aethelgard Atlas / Rhine–Alpine Core</div><div class="map-subtitle">Неовикторианская картография · современные геоданные как редактируемая основа</div></div>
  <nav class="levels" aria-label="Уровни масштаба">
   <button class="level" data-view="europe">01 · Европа</button>
   <button class="level" data-view="alps">02 · Альпы</button>
@@ -145,8 +148,8 @@ main{height:calc(100% - 60px);min-height:520px;display:grid;grid-template-column
    <label class="switch"><input id="terrainToggle" type="checkbox" checked><span>Объёмный 3D-рельеф</span><small>DEM</small></label>
    <label class="switch"><input id="buildings3dToggle" type="checkbox"><span>Объёмные здания</span><small>3D BUILDINGS</small></label>
   </div>
-  <div class="btnrow" style="margin-top:10px"><button class="btn active" id="victorianStyle">Викторианский атлас</button><button class="btn" id="darkStyle">Тёмная</button><button class="btn" id="lightStyle">Современная светлая</button></div>
-  <p class="data-note" style="margin-top:9px">Викторианский режим перекрашивает доступные векторные слои в бумажно-сепийную палитру и добавляет лёгкую печатную фактуру. Это стиль отображения, а не копия исторической карты.</p>
+  <div class="btnrow" style="margin-top:10px"><button class="btn active" id="victorianStyle">Неовикторианский атлас</button><button class="btn" id="darkStyle">Графитовая схема</button><button class="btn" id="lightStyle">Светлая тема</button></div>
+  <p class="data-note" style="margin-top:9px">Неовикторианский режим сочетает высокотехнологичную тёмную картографию с тонкой инженерной орнаментальностью, латунными акцентами и светящимися водными/транспортными линиями — без имитации старой бумаги.</p>
   <p class="data-note" style="margin-top:6px">Рельеф берётся из открытой модели высот. Собственные GeoJSON-слои можно накладывать отдельно и выключать независимо от подложки.</p>
  </section>
  <section class="section">
@@ -197,7 +200,7 @@ const STORAGE_KEY="aethelgard-terrain-lab-v3";
 const OVERLAY_STORAGE_KEY="aethelgard-atlas-overlays-v1";
 const state={style:"victorian",hillshade:true,terrain3d:true,buildings3d:false,landcover:true,water:true,boundaries:true,roads:true,rail:true,buildings:true,poi:true,labels:true};
 let map=null,mapReady=false,baseVisibility=new Map(),mapErrorCount=0,lastFeature=null,lastPhotonRequestAt=0,photonSearchBusy=false,userOverlays=[];
-const VICTORIAN_PALETTE={paper:"#e7dcc2",land:"#d8ccb0",water:"#91aaa4",waterLine:"#718e88",forest:"#a9b394",landuse:"#c5c8a7",buildings:"#c2b397",road:"#ad9c7e",roadMajor:"#84664b",rail:"#8d7060",boundary:"#9b8769",text:"#493f31",halo:"#e9dfc9",poi:"#805c3c"};
+const NEOVICTORIAN_PALETTE={paper:"#101b24",land:"#23333b",water:"#173c4a",waterLine:"#62cbd0",forest:"#203b36",landuse:"#2b423d",buildings:"#526873",road:"#718691",roadMajor:"#d4ad64",rail:"#8be0d6",boundary:"#7899a2",text:"#d9e6e9",halo:"#0d1923",poi:"#f0c777"};
 function readSavedView(){try{const v=JSON.parse(localStorage.getItem(STORAGE_KEY)||"null");if(v&&Array.isArray(v.center)&&Number.isFinite(v.zoom))return v}catch(e){}return null}
 function saveView(){if(!map||!mapReady)return;try{localStorage.setItem(STORAGE_KEY,JSON.stringify({center:map.getCenter().toArray(),zoom:map.getZoom(),pitch:map.getPitch(),bearing:map.getBearing(),style:state.style,hillshade:state.hillshade,terrain3d:state.terrain3d,buildings3d:state.buildings3d,landcover:state.landcover,water:state.water,boundaries:state.boundaries,roads:state.roads,rail:state.rail,buildings:state.buildings,poi:state.poi,labels:state.labels}))}catch(e){}}
 function setConnection(s,error){$("connectionState").textContent=s;$("connectionState").style.color=error?"#d79186":"#9bc8a5"}
@@ -226,9 +229,9 @@ function addTerrainSourcesAndLayers(){
  baseVisibility=new Map();for(const layer of style.layers||[])baseVisibility.set(layer.id,(layer.layout&&layer.layout.visibility)||"visible");
  if(!map.getSource("aethelgard-dem"))map.addSource("aethelgard-dem",{type:"raster-dem",tiles:["https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"],tileSize:256,minzoom:0,maxzoom:15,encoding:"terrarium",attribution:"Elevation: AWS Open Data / Terrarium"});
  const firstSymbol=(map.getStyle().layers||[]).find(l=>l.type==="symbol");
- if(!map.getLayer("aethelgard-dem-hillshade"))map.addLayer({id:"aethelgard-dem-hillshade",type:"hillshade",source:"aethelgard-dem",paint:{"hillshade-method":"standard","hillshade-illumination-direction":315,"hillshade-exaggeration":state.style==="victorian"?0.28:0.38,"hillshade-shadow-color":state.style==="victorian"?"#7c6a4b":"#13232b","hillshade-highlight-color":state.style==="victorian"?"#efe3c7":"#d3dcca","hillshade-accent-color":state.style==="victorian"?"#9a8d6b":"#59746e"}},firstSymbol?firstSymbol.id:undefined);
+ if(!map.getLayer("aethelgard-dem-hillshade"))map.addLayer({id:"aethelgard-dem-hillshade",type:"hillshade",source:"aethelgard-dem",paint:{"hillshade-method":"standard","hillshade-illumination-direction":315,"hillshade-exaggeration":state.style==="victorian"?0.34:0.38,"hillshade-shadow-color":state.style==="victorian"?"#10232d":"#13232b","hillshade-highlight-color":state.style==="victorian"?"#8db9b6":"#d3dcca","hillshade-accent-color":state.style==="victorian"?"#3c7378":"#59746e"}},firstSymbol?firstSymbol.id:undefined);
  add3DBuildingsLayer();
- applyVictorianStyle();
+ applyNeoVictorianStyle();
  addUserOverlayMapLayers();
  applyLayerVisibility();
  applyTerrainState();
@@ -241,7 +244,7 @@ function add3DBuildingsLayer(){
  if(!sourceLayer){$("buildings3dToggle").disabled=true;$("buildings3dToggle").parentElement.title="В текущем наборе тайлов нет отдельного слоя зданий";return}
  const firstSymbol=(style.layers||[]).find(l=>l.type==="symbol");
  map.addLayer({id:"aethelgard-buildings-3d",type:"fill-extrusion",source:sourceLayer.source,"source-layer":"building",minzoom:14,paint:{
-  "fill-extrusion-color":state.style==="victorian"?"#aa9878":"#6e9296",
+  "fill-extrusion-color":state.style==="victorian"?"#527982":"#6e9296",
   "fill-extrusion-height":["interpolate",["linear"],["zoom"],14,0,15,["to-number",["coalesce",["get","render_height"],["get","height"],6]]],
   "fill-extrusion-base":["to-number",["coalesce",["get","render_min_height"],["get","min_height"],0]],
   "fill-extrusion-opacity":0.78,"fill-extrusion-vertical-gradient":true
@@ -267,9 +270,9 @@ function applyTerrainState(){
  try{map.setTerrain(state.terrain3d?{source:"aethelgard-dem",exaggeration:1.18}:null)}catch(e){console.warn("Terrain toggle failed",e)}
  applyLayerVisibility();
 }
-function applyVictorianStyle(){
+function applyNeoVictorianStyle(){
  if(!map||!map.isStyleLoaded()||state.style!=="victorian")return;
- const palette=VICTORIAN_PALETTE;
+ const palette=NEOVICTORIAN_PALETTE;
  for(const layer of map.getStyle().layers||[]){
   if(layer.id.startsWith("aethelgard-"))continue;
   const cat=styleCategory(layer),all=((layer.id||"")+" "+(layer["source-layer"]||"")).toLowerCase();
@@ -281,34 +284,37 @@ function applyVictorianStyle(){
     else if(cat==="buildings"||/building/.test(all))color=palette.buildings;
     else if(/wood|forest|scrub|vegetation|park|garden/.test(all))color=palette.forest;
     else if(cat==="landcover")color=palette.landuse;
-    else if(cat==="boundaries")color="#c3ae8a";
+    else if(cat==="boundaries")color="#3c555e";
     map.setPaintProperty(layer.id,"fill-color",color);
-    if(cat==="water")map.setPaintProperty(layer.id,"fill-opacity",0.92);
+    if(cat==="water")map.setPaintProperty(layer.id,"fill-opacity",0.96);
+    else if(cat==="landcover")map.setPaintProperty(layer.id,"fill-opacity",0.78);
    }else if(layer.type==="line"){
-    let color="#b6a789";
+    let color="#536975";
     if(cat==="water")color=palette.waterLine;
     else if(cat==="rail")color=palette.rail;
     else if(cat==="boundaries")color=palette.boundary;
     else if(cat==="roads")color=/motorway|trunk|primary|major/.test(all)?palette.roadMajor:palette.road;
     map.setPaintProperty(layer.id,"line-color",color);
     if(cat==="boundaries")map.setPaintProperty(layer.id,"line-dasharray",[3,2]);
+    if(cat==="rail")map.setPaintProperty(layer.id,"line-opacity",0.94);
    }else if(layer.type==="symbol"){
     const layout=layer.layout||{};
     if(layout["text-field"]!==undefined){
      map.setPaintProperty(layer.id,"text-color",palette.text);
      map.setPaintProperty(layer.id,"text-halo-color",palette.halo);
-     map.setPaintProperty(layer.id,"text-halo-width",1.2);
-     map.setPaintProperty(layer.id,"text-halo-blur",0.25);
+     map.setPaintProperty(layer.id,"text-halo-width",1.45);
+     map.setPaintProperty(layer.id,"text-halo-blur",0.3);
     }
     if(layout["icon-image"]!==undefined)map.setPaintProperty(layer.id,"icon-color",palette.poi);
    }else if(layer.type==="circle"){
     map.setPaintProperty(layer.id,"circle-color",palette.poi);
     map.setPaintProperty(layer.id,"circle-stroke-color",palette.halo);
+    map.setPaintProperty(layer.id,"circle-stroke-width",1.25);
    }
   }catch(e){/* Some provider layers do not expose every paint property. */}
  }
  const hs=map.getLayer("aethelgard-dem-hillshade");
- if(hs){try{map.setPaintProperty(hs.id,"hillshade-shadow-color","#7c6a4b");map.setPaintProperty(hs.id,"hillshade-highlight-color","#efe3c7");map.setPaintProperty(hs.id,"hillshade-accent-color","#9a8d6b");map.setPaintProperty(hs.id,"hillshade-exaggeration",0.28)}catch(e){}}
+ if(hs){try{map.setPaintProperty(hs.id,"hillshade-shadow-color","#10232d");map.setPaintProperty(hs.id,"hillshade-highlight-color","#8db9b6");map.setPaintProperty(hs.id,"hillshade-accent-color","#3c7378");map.setPaintProperty(hs.id,"hillshade-exaggeration",0.34)}catch(e){}}
 }
 function overlayIds(overlay){
  const token=String(overlay.id).replace(/[^a-zA-Z0-9_-]/g,"-"),prefix="aethelgard-user-"+token;
@@ -328,10 +334,10 @@ function addUserOverlayMapLayers(){
   const ids=overlayIds(overlay);
   if(!map.getSource(ids.source))map.addSource(ids.source,{type:"geojson",data:overlay.data});
   const source=ids.source;
-  if(!map.getLayer(ids.fill))map.addLayer({id:ids.fill,type:"fill",source,paint:{"fill-color":["coalesce",["get","fill"],["get","color"],"#bf9d64"],"fill-opacity":0.27}},beforeId);
-  if(!map.getLayer(ids.line))map.addLayer({id:ids.line,type:"line",source,paint:{"line-color":["coalesce",["get","stroke"],["get","color"],"#8c4f32"],"line-width":["coalesce",["get","stroke-width"],2],"line-opacity":0.9}},beforeId);
-  if(!map.getLayer(ids.point))map.addLayer({id:ids.point,type:"circle",source,paint:{"circle-radius":["interpolate",["linear"],["zoom"],4,3,12,5,17,7],"circle-color":["coalesce",["get","marker-color"],["get","color"],"#8c4f32"],"circle-stroke-color":"#f0e3c6","circle-stroke-width":1.3}},beforeId);
-  if(!map.getLayer(ids.label))map.addLayer({id:ids.label,type:"symbol",source,layout:{"text-field":["coalesce",["get","name"],["get","title"],["get","label"],""],"text-size":11,"text-font":["Noto Sans Regular"],"text-offset":[0,1.1],"text-anchor":"top","text-allow-overlap":false},paint:{"text-color":state.style==="victorian"?"#4c3d2d":"#f4e8d0","text-halo-color":state.style==="victorian"?"#eee1c6":"#17242b","text-halo-width":1.4}},beforeId);
+  if(!map.getLayer(ids.fill))map.addLayer({id:ids.fill,type:"fill",source,paint:{"fill-color":["coalesce",["get","fill"],["get","color"],"#5cbec0"],"fill-opacity":0.24}},beforeId);
+  if(!map.getLayer(ids.line))map.addLayer({id:ids.line,type:"line",source,paint:{"line-color":["coalesce",["get","stroke"],["get","color"],"#72d9d2"],"line-width":["coalesce",["get","stroke-width"],2.2],"line-opacity":0.94}},beforeId);
+  if(!map.getLayer(ids.point))map.addLayer({id:ids.point,type:"circle",source,paint:{"circle-radius":["interpolate",["linear"],["zoom"],4,3,12,5,17,7],"circle-color":["coalesce",["get","marker-color"],["get","color"],"#edc46f"],"circle-stroke-color":"#0b1923","circle-stroke-width":1.5}},beforeId);
+  if(!map.getLayer(ids.label))map.addLayer({id:ids.label,type:"symbol",source,layout:{"text-field":["coalesce",["get","name"],["get","title"],["get","label"],""],"text-size":11,"text-font":["Noto Sans Regular"],"text-offset":[0,1.1],"text-anchor":"top","text-allow-overlap":false},paint:{"text-color":state.style==="victorian"?"#dce7e9":"#f4e8d0","text-halo-color":state.style==="victorian"?"#0d1923":"#17242b","text-halo-width":1.5}},beforeId);
  }
  applyUserOverlayVisibility();
 }
@@ -403,8 +409,8 @@ function updateStyleButtons(){
  $("victorianStyle").classList.toggle("active",state.style==="victorian");
  $("darkStyle").classList.toggle("active",state.style==="dark");
  $("lightStyle").classList.toggle("active",state.style==="light");
- document.body.classList.toggle("victorian-theme",state.style==="victorian");
- $("map-wrap").classList.toggle("victorian-theme",state.style==="victorian");
+ document.body.classList.toggle("neo-victorian-theme",state.style==="victorian");
+ $("map-wrap").classList.toggle("neo-victorian-theme",state.style==="victorian");
 }
 function changeStyle(name){
  if(!STYLE_URLS[name]||state.style===name)return;

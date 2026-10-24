@@ -215,7 +215,7 @@ Active entry point: tools/aethelgard-atlas/index.html. Previous political sketch
 - Detailed streets, railways and building footprints depend on OpenStreetMap coverage and the public vector-tile provider. A high zoom number does not guarantee that every alley or building plan exists.
 - The public terrain source has a lower maximum native zoom than the vector map; close-in relief may be overzoomed. Very precise local elevation or engineering plans will require better regional DEM/LiDAR data if available and appropriately licensed.
 - The 3D-building layer is experimental: footprint coverage and height attributes are uneven, so it can be empty in some styles/areas or estimate height for buildings lacking metadata.
-- The application is a map viewer, not yet a GIS editor for roads, buildings or terrain. It does not yet allow creating custom local features on top of the basemap.
+- The application can import, display, hide, export and remove custom GeoJSON overlay layers, but it is not yet a GIS geometry editor for roads, buildings or terrain. It does not yet draw features or edit their vertices directly on the map.
 - The app loads MapLibre, vector tiles, elevation and place-search from external public services. An internet connection is required; these public services can change and generally do not guarantee an SLA.
 - The Photon public demo can throttle requests; search is deliberately user-triggered rather than search-as-you-type.
 - No offline mode, custom regional tile cache, own geodata backend, cloud sync, user accounts or collaborative editing exists yet.

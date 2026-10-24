@@ -119,7 +119,7 @@ main{height:calc(100% - 60px);min-height:520px;display:grid;grid-template-column
 const $=id=>document.getElementById(id);
 const STYLE_URLS={dark:"https://tiles.openfreemap.org/styles/dark",light:"https://tiles.openfreemap.org/styles/liberty"};
 const PRESETS={
- europe:{center:[9.53,47.14],zoom:4.7,pitch:0,bearing:0,label:"EUROPEAN OVERVIEW"},
+ europe:{center:[17,52],zoom:3.8,pitch:0,bearing:0,label:"EUROPEAN OVERVIEW"},
  alps:{center:[9.65,47.05],zoom:7.4,pitch:48,bearing:-15,label:"ALPINE RELIEF"},
  rhine:{center:[9.53,47.14],zoom:10.5,pitch:48,bearing:-18,label:"RHINE VALLEY / REGIONAL"},
  city:{center:[9.5215,47.1413],zoom:14.5,pitch:32,bearing:-14,label:"CITY / STREET NETWORK"},
@@ -204,7 +204,7 @@ async function searchPlaces(event){
  $("searchStatus").textContent="Ищем: "+query+"…";$("searchResults").replaceChildren();photonSearchBusy=true;
  try{
   const wait=Math.max(0,1000-(Date.now()-lastPhotonRequestAt));if(wait)await new Promise(resolve=>setTimeout(resolve,wait));lastPhotonRequestAt=Date.now();
-  const url="https://photon.komoot.io/api/?q="+encodeURIComponent(query)+"&limit=6&lat=47.14&lon=9.52";
+  const url="https://photon.komoot.io/api/?q="+encodeURIComponent(query)+"&limit=6&lat=47.14&lon=9.52&bbox=-25,34,60,72";
   const response=await fetch(url,{headers:{Accept:"application/json"}});if(!response.ok)throw Error("HTTP "+response.status);
   const json=await response.json(),features=json.features||[];
   if(!features.length){$("searchStatus").textContent="Ничего не найдено. Попробуй другое название.";return}
@@ -223,7 +223,7 @@ function init(){
  if(!window.maplibregl){$("loading").querySelector(".loading-title").textContent="MAP ENGINE UNAVAILABLE";$("loading").querySelector(".loading-text").textContent="Не удалось загрузить MapLibre GL JS. Проверь интернет или открой страницу через браузер с доступом к CDN.";setConnection("ENGINE ERROR",true);return}
  const saved=readSavedView();if(saved){state.style=STYLE_URLS[saved.style]?saved.style:"dark";state.hillshade=saved.hillshade!==false;state.terrain3d=saved.terrain3d!==false;state.buildings3d=saved.buildings3d===true;state.roads=saved.roads!==false;state.rail=saved.rail!==false;state.buildings=saved.buildings!==false;state.labels=saved.labels!==false}
  $("darkStyle").classList.toggle("active",state.style==="dark");$("lightStyle").classList.toggle("active",state.style==="light");
- map=new maplibregl.Map({container:"map",style:STYLE_URLS[state.style],center:saved?saved.center:PRESETS.local.center,zoom:saved?saved.zoom:PRESETS.local.zoom,pitch:saved?saved.pitch:PRESETS.local.pitch,bearing:saved?saved.bearing:PRESETS.local.bearing,minZoom:3.4,maxZoom:19.2,maxPitch:78,renderWorldCopies:false,antialias:true,cooperativeGestures:true,attributionControl:false});
+ map=new maplibregl.Map({container:"map",style:STYLE_URLS[state.style],center:saved?saved.center:PRESETS.local.center,zoom:saved?saved.zoom:PRESETS.local.zoom,pitch:saved?saved.pitch:PRESETS.local.pitch,bearing:saved?saved.bearing:PRESETS.local.bearing,minZoom:3.5,maxZoom:19.2,maxPitch:78,maxBounds:[[-25,34],[60,72]],renderWorldCopies:false,antialias:true,cooperativeGestures:true,attributionControl:false});
  map.addControl(new maplibregl.NavigationControl({showCompass:true,showZoom:true,visualizePitch:true}),"top-right");
  map.addControl(new maplibregl.ScaleControl({maxWidth:130,unit:"metric"}),"bottom-left");
  map.addControl(new maplibregl.AttributionControl({compact:true,customAttribution:"© OpenFreeMap · © OpenMapTiles · © OpenStreetMap contributors · Elevation: AWS Open Data"}),"bottom-right");

@@ -235,7 +235,7 @@ function add3DBuildingsLayer(){
  if(!sourceLayer){$("buildings3dToggle").disabled=true;$("buildings3dToggle").parentElement.title="В текущем наборе тайлов нет отдельного слоя зданий";return}
  const firstSymbol=(style.layers||[]).find(l=>l.type==="symbol");
  map.addLayer({id:"aethelgard-buildings-3d",type:"fill-extrusion",source:sourceLayer.source,"source-layer":"building",minzoom:14,paint:{
-  "fill-extrusion-color":"#6e9296",
+  "fill-extrusion-color":state.style==="victorian"?"#aa9878":"#6e9296",
   "fill-extrusion-height":["interpolate",["linear"],["zoom"],14,0,15,["to-number",["coalesce",["get","render_height"],["get","height"],6]]],
   "fill-extrusion-base":["to-number",["coalesce",["get","render_min_height"],["get","min_height"],0]],
   "fill-extrusion-opacity":0.78,"fill-extrusion-vertical-gradient":true

@@ -30,6 +30,55 @@
 :root{color-scheme:dark;--bg:#0b1117;--panel:#111a22;--panel2:#17252e;--line:#2b3d48;--text:#e2ebed;--muted:#91a6ad;--gold:#d7b56c;--teal:#84c6c5;--danger:#d79186;--green:#9bc8a5}
 *{box-sizing:border-box}html,body{height:100%;margin:0;background:var(--bg);color:var(--text);font:13px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select{font:inherit}button{color:inherit}
 header{height:60px;background:#0d171e;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:16px;padding:0 20px;position:relative;z-index:5}
+body.victorian-theme{--bg:#e6dcc4;--panel:#e1d4b8;--panel2:#d6c6a5;--line:#9e8d6d;--text:#352f27;--muted:#6c624f;--gold:#785a35;--teal:#526e68}
+body.victorian-theme header{background:#d9c8a6;border-bottom-color:#988264}
+body.victorian-theme .brand{color:#74552f}
+body.victorian-theme .mark{border-color:#8e7046}
+body.victorian-theme .header-caption,body.victorian-theme .header-right{color:#6f624d}
+body.victorian-theme .status-dot{background:#826640;box-shadow:0 0 8px #82664055}
+body.victorian-theme .side{background:#e4d7bc;border-left-color:#b3a080}
+body.victorian-theme .section{border-bottom-color:#c8b795}
+body.victorian-theme .section h2{color:#705b3b}
+body.victorian-theme .intro,body.victorian-theme .data-note{color:#73664f}
+body.victorian-theme .btn{background:#d4c4a3;border-color:#a99978;color:#40382c}
+body.victorian-theme .btn:hover{border-color:#81633e;color:#231d16}
+body.victorian-theme .btn.active,body.victorian-theme .level.active{background:#c0a77b;border-color:#8a6b42;color:#2f261a}
+body.victorian-theme .btn.primary{background:#8b6c43;border-color:#725534;color:#fff4d8}
+body.victorian-theme .switch{color:#4d4538}
+body.victorian-theme .switch input{background:#c4b591;border-color:#9b8a68}
+body.victorian-theme .switch input:checked{background:#7a603c;border-color:#654d30}
+body.victorian-theme .switch input:checked::after{background:#f8edcf}
+body.victorian-theme .switch small{color:#847458}
+body.victorian-theme .input-row input{background:#f1e7d0;border-color:#b6a481;color:#352f27}
+body.victorian-theme .info-card{background:#eee3cc;border-color:#c3b18c}
+body.victorian-theme .info-name{color:#6b4b2e}
+body.victorian-theme .info-meta{color:#77684e}
+body.victorian-theme .search-result{background:#e9ddc2;border-color:#c4b18b;color:#352f27}
+body.victorian-theme .search-result small{color:#7b6b51}
+body.victorian-theme .map-label,body.victorian-theme .levels,body.victorian-theme .readout-chip,body.victorian-theme .map-warning{background:#eee2c8ed;border-color:#ad9977;color:#4e4434;box-shadow:0 7px 24px #55452922}
+body.victorian-theme .eyebrow,body.victorian-theme .readout-chip strong{color:#765632}
+body.victorian-theme .map-title{color:#423727}
+body.victorian-theme .map-subtitle{color:#76684f}
+body.victorian-theme .level{color:#62543f}
+body.victorian-theme .level:hover{background:#ddcfb1;color:#2f271b}
+body.victorian-theme .maplibregl-ctrl-group{border-color:#b5a17e!important;background:#e9ddc4ed!important}
+body.victorian-theme .maplibregl-ctrl-group button{filter:sepia(.55) saturate(.7)}
+body.victorian-theme .maplibregl-ctrl-attrib{background:#eee2c8ed!important;color:#65583f!important}
+body.victorian-theme .maplibregl-ctrl-attrib a{color:#59452b!important}
+#map-wrap.victorian-theme::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.12;mix-blend-mode:multiply;background:radial-gradient(ellipse at center,transparent 42%,#6d5635 100%),repeating-linear-gradient(0deg,#765d3710 0,#765d3710 1px,transparent 1px,transparent 4px)}
+#map-wrap.victorian-theme .maplibregl-canvas{filter:sepia(.46) saturate(.72) contrast(1.04)}
+.overlay-list{display:grid;gap:7px;margin-top:10px}
+.overlay-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:7px;align-items:center;background:#0d171e;border:1px solid #2b414b;border-radius:4px;padding:8px}
+.overlay-item-main{min-width:0}
+.overlay-item-name{font-size:11px;font-weight:650;overflow-wrap:anywhere}
+.overlay-item-meta{font-size:9px;color:#82989e;margin-top:2px}
+.overlay-item-actions{display:flex;gap:4px;align-items:center}
+.overlay-item-actions .btn{padding:5px 7px;font-size:10px}
+body.victorian-theme .overlay-item{background:#eee3cc;border-color:#c3b18c}
+body.victorian-theme .overlay-item-meta{color:#786a50}
+.overlay-empty{font-size:10px;line-height:1.55;color:var(--muted);padding:8px 0}
+.overlay-status{font-size:10px;line-height:1.5;color:var(--muted);margin-top:7px}
+body.victorian-theme .overlay-status{color:#73664f}
 .brand{display:flex;align-items:center;color:var(--gold);font-weight:800;letter-spacing:.15em;white-space:nowrap}.mark{width:27px;height:27px;border:1px solid #8e7646;display:grid;place-items:center;margin-right:11px;transform:rotate(45deg);font-size:13px}.mark span{transform:rotate(-45deg)}.header-caption{border-left:1px solid var(--line);padding-left:16px;color:var(--muted)}.header-right{margin-left:auto;display:flex;align-items:center;gap:12px;color:#8fa49c;font-size:10px;letter-spacing:.07em}.status-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#c6a25c;margin-right:7px;box-shadow:0 0 9px #c6a25c66}
 main{height:calc(100% - 60px);min-height:520px;display:grid;grid-template-columns:minmax(0,1fr) 330px}
 #map-wrap{position:relative;min-width:0;min-height:0;background:#16252b;overflow:hidden}#map{position:absolute;inset:0}
@@ -54,13 +103,13 @@ main{height:calc(100% - 60px);min-height:520px;display:grid;grid-template-column
 <body>
 <header>
  <div class="brand"><span class="mark"><span>✳</span></span>AETHELGARD ATLAS</div>
- <div class="header-caption">Terrain Lab · Geographic Foundation / 2147</div>
+ <div class="header-caption">Victorian Cartography Lab · Geographic Foundation / 2147</div>
  <div class="header-right"><span><i class="status-dot"></i><span id="connectionState">CONNECTING TO MAP DATA</span></span><span id="viewState">ZOOM 10.5</span></div>
 </header>
 <main>
 <section id="map-wrap" aria-label="Интерактивная географическая карта">
  <div id="map"></div>
- <div class="map-label"><div class="eyebrow">Project / Geographic foundation</div><div class="map-title">Aethelgard Reference / Vaduz Local Plan</div><div class="map-subtitle">Стартуем с локального масштаба и отдаляемся к долине Рейна и Альпам · современные открытые геоданные как подложка</div></div>
+ <div class="map-label"><div class="eyebrow">Project / Geographic foundation</div><div class="map-title">Aethelgard Reference / Vaduz Local Plan</div><div class="map-subtitle">Старинная картографическая подача · реальные данные как редактируемая географическая подложка</div></div>
  <nav class="levels" aria-label="Уровни масштаба">
   <button class="level" data-view="europe">01 · Европа</button>
   <button class="level" data-view="alps">02 · Альпы</button>
@@ -91,24 +140,38 @@ main{height:calc(100% - 60px);min-height:520px;display:grid;grid-template-column
    <label class="switch"><input id="terrainToggle" type="checkbox" checked><span>Объёмный 3D-рельеф</span><small>DEM</small></label>
    <label class="switch"><input id="buildings3dToggle" type="checkbox"><span>Объёмные здания</span><small>3D BUILDINGS</small></label>
   </div>
-  <div class="btnrow" style="margin-top:10px"><button class="btn active" id="darkStyle">Оперативная карта</button><button class="btn" id="lightStyle">Светлая карта</button></div>
-  <p class="data-note" style="margin-top:9px">Рельеф берётся из открытой глобальной модели высот. 3D-режим визуально подчёркивает форму местности; при чтении детальной уличной сетки можно переключиться в 2D.</p>
+  <div class="btnrow" style="margin-top:10px"><button class="btn active" id="victorianStyle">Викторианский атлас</button><button class="btn" id="darkStyle">Тёмная</button><button class="btn" id="lightStyle">Современная светлая</button></div>
+  <p class="data-note" style="margin-top:9px">Викторианский режим перекрашивает доступные векторные слои в бумажно-сепийную палитру и добавляет лёгкую печатную фактуру. Это стиль отображения, а не копия исторической карты.</p>
+  <p class="data-note" style="margin-top:6px">Рельеф берётся из открытой модели высот. Собственные GeoJSON-слои можно накладывать отдельно и выключать независимо от подложки.</p>
  </section>
  <section class="section">
-  <h2>04 / Map layers</h2>
+  <h2>04 / Слои базовой карты</h2>
+  <p class="intro">Отключай ненужные детали исходной географии по группам. Рельеф, гидрография, растительность, транспорт и подписи управляются раздельно.</p>
   <div class="switch-list">
+   <label class="switch"><input id="landcoverToggle" type="checkbox" checked><span>Покров, парки и землепользование</span><small>LAND</small></label>
+   <label class="switch"><input id="waterToggle" type="checkbox" checked><span>Реки, озёра и водоёмы</span><small>WATER</small></label>
+   <label class="switch"><input id="boundariesToggle" type="checkbox" checked><span>Административные границы</span><small>BORDERS</small></label>
    <label class="switch"><input id="roadsToggle" type="checkbox" checked><span>Автодороги и улицы</span><small>ROADS</small></label>
    <label class="switch"><input id="railToggle" type="checkbox" checked><span>Железные дороги и транзит</span><small>RAIL</small></label>
    <label class="switch"><input id="buildingsToggle" type="checkbox" checked><span>Контуры зданий</span><small>BUILDINGS</small></label>
+   <label class="switch"><input id="poiToggle" type="checkbox" checked><span>Ориентиры и POI</span><small>PLACES</small></label>
    <label class="switch"><input id="labelsToggle" type="checkbox" checked><span>Подписи и названия</span><small>LABELS</small></label>
   </div>
  </section>
  <section class="section">
-  <h2>05 / Selected feature</h2>
+  <h2>05 / Авторские слои</h2>
+  <p class="intro">Накладывай собственные GeoJSON-файлы поверх базовой карты: будущие города, новые дороги, кварталы, зоны и другие придуманные объекты. Каждый файл станет отдельным слоем.</p>
+  <input id="overlayFileInput" type="file" accept=".geojson,.json,application/geo+json,application/json" multiple hidden>
+  <div class="btnrow"><button class="btn primary" id="importOverlayBtn" type="button">＋ Импорт GeoJSON</button><button class="btn" id="exportAllOverlaysBtn" type="button">↓ Экспорт всех</button></div>
+  <div id="overlayStatus" class="overlay-status">Пока нет авторских слоёв. Импортируй файл .geojson, чтобы добавить собственные объекты.</div>
+  <div id="overlayLayerList" class="overlay-list"><div class="overlay-empty">Свои слои появятся здесь.</div></div>
+ </section>
+ <section class="section">
+  <h2>06 / Selected feature</h2>
   <div class="info-card"><div id="featureName" class="info-name">Ничего не выбрано</div><div id="featureMeta" class="info-meta">Нажми на город, дорогу, железную дорогу или здание на карте, чтобы посмотреть данные объекта.</div></div>
  </section>
  <section class="section">
-  <h2>06 / Data provenance</h2>
+  <h2>07 / Data provenance</h2>
   <p class="data-note">Карта и дорожные/городские объекты: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap contributors</a>, через открытые векторные тайлы <a href="https://openfreemap.org/" target="_blank" rel="noreferrer">OpenFreeMap / OpenMapTiles</a>. Модель высот: <a href="https://registry.opendata.aws/" target="_blank" rel="noreferrer">AWS Open Data · Terrarium elevation tiles</a>. Поиск мест: <a href="https://github.com/komoot/photon" target="_blank" rel="noreferrer">Photon by Komoot</a>. Рендеринг: MapLibre GL JS.</p>
   <p class="data-note" style="margin-top:7px">Покрытие зависит от конкретного места. На высоком масштабе могут быть видны здания, переулки, пути и остановки, если они размечены в открытых данных. Это не автоматически созданный план каждого здания и не точная карта 2147 года.</p>
  </section>
@@ -117,7 +180,7 @@ main{height:calc(100% - 60px);min-height:520px;display:grid;grid-template-column
 <script>
 "use strict";
 const $=id=>document.getElementById(id);
-const STYLE_URLS={dark:"https://tiles.openfreemap.org/styles/dark",light:"https://tiles.openfreemap.org/styles/liberty"};
+const STYLE_URLS={dark:"https://tiles.openfreemap.org/styles/dark",light:"https://tiles.openfreemap.org/styles/liberty",victorian:"https://tiles.openfreemap.org/styles/liberty"};
 const PRESETS={
  europe:{center:[17,52],zoom:3.8,pitch:0,bearing:0,label:"EUROPEAN OVERVIEW"},
  alps:{center:[9.65,47.05],zoom:7.4,pitch:48,bearing:-15,label:"ALPINE RELIEF"},
@@ -125,11 +188,13 @@ const PRESETS={
  city:{center:[9.5215,47.1413],zoom:14.5,pitch:32,bearing:-14,label:"CITY / STREET NETWORK"},
  local:{center:[9.5215,47.1413],zoom:17.6,pitch:0,bearing:0,label:"LOCAL PLAN / BUILDINGS"}
 };
-const STORAGE_KEY="aethelgard-terrain-lab-v2";
-const state={style:"dark",hillshade:true,terrain3d:true,buildings3d:false,roads:true,rail:true,buildings:true,labels:true};
-let map=null,mapReady=false,baseVisibility=new Map(),mapErrorCount=0,lastFeature=null,lastPhotonRequestAt=0,photonSearchBusy=false;
+const STORAGE_KEY="aethelgard-terrain-lab-v3";
+const OVERLAY_STORAGE_KEY="aethelgard-atlas-overlays-v1";
+const state={style:"victorian",hillshade:true,terrain3d:true,buildings3d:false,landcover:true,water:true,boundaries:true,roads:true,rail:true,buildings:true,poi:true,labels:true};
+let map=null,mapReady=false,baseVisibility=new Map(),mapErrorCount=0,lastFeature=null,lastPhotonRequestAt=0,photonSearchBusy=false,userOverlays=[];
+const VICTORIAN_PALETTE={paper:"#e7dcc2",land:"#d8ccb0",water:"#91aaa4",waterLine:"#718e88",forest:"#a9b394",landuse:"#c5c8a7",buildings:"#c2b397",road:"#ad9c7e",roadMajor:"#84664b",rail:"#8d7060",boundary:"#9b8769",text:"#493f31",halo:"#e9dfc9",poi:"#805c3c"};
 function readSavedView(){try{const v=JSON.parse(localStorage.getItem(STORAGE_KEY)||"null");if(v&&Array.isArray(v.center)&&Number.isFinite(v.zoom))return v}catch(e){}return null}
-function saveView(){if(!map||!mapReady)return;try{localStorage.setItem(STORAGE_KEY,JSON.stringify({center:map.getCenter().toArray(),zoom:map.getZoom(),pitch:map.getPitch(),bearing:map.getBearing(),style:state.style,hillshade:state.hillshade,terrain3d:state.terrain3d,buildings3d:state.buildings3d,roads:state.roads,rail:state.rail,buildings:state.buildings,labels:state.labels}))}catch(e){}}
+function saveView(){if(!map||!mapReady)return;try{localStorage.setItem(STORAGE_KEY,JSON.stringify({center:map.getCenter().toArray(),zoom:map.getZoom(),pitch:map.getPitch(),bearing:map.getBearing(),style:state.style,hillshade:state.hillshade,terrain3d:state.terrain3d,buildings3d:state.buildings3d,landcover:state.landcover,water:state.water,boundaries:state.boundaries,roads:state.roads,rail:state.rail,buildings:state.buildings,poi:state.poi,labels:state.labels}))}catch(e){}}
 function setConnection(s,error){$("connectionState").textContent=s;$("connectionState").style.color=error?"#d79186":"#9bc8a5"}
 function updateScale(){
  if(!map)return;const z=map.getZoom(),c=map.getCenter();let label=z<6?"EUROPEAN OVERVIEW":z<8.8?"ALPINE REGION":z<11.8?"REGIONAL DETAIL":z<14.7?"CITY PLAN":z<16.6?"STREETS & RAIL":"LOCAL PLAN / BUILDINGS";
@@ -139,11 +204,16 @@ function presetForZoom(z){if(z<6)return "europe";if(z<8.8)return "alps";if(z<12)
 function styleCategory(layer){
  if(layer.id==="aethelgard-dem-hillshade")return "hillshade";
  if(layer.id==="aethelgard-buildings-3d")return "buildings3d";
+ if((layer.id||"").startsWith("aethelgard-user-"))return "custom";
  const id=(layer.id||"").toLowerCase(),src=(layer["source-layer"]||"").toLowerCase(),all=id+" "+src;
- if(layer.type==="symbol")return "labels";
- if(/rail|railway|subway|tram|transit/.test(all))return "rail";
- if(/building/.test(all))return "buildings";
+ if(/boundary|boundaries|admin|administrative|country_border|disputed/.test(all))return "boundaries";
+ if(/rail|railway|subway|tram|transit|ferry|monorail/.test(all))return "rail";
+ if(/water|river|lake|ocean|sea|canal|stream|waterway|wetland/.test(all))return "water";
+ if(/building|building_part|housenumber/.test(all))return "buildings";
  if(/road|transportation|motorway|highway|street|path|bridge|tunnel|pedestrian|track/.test(all))return "roads";
+ if(/landcover|land_cover|landuse|land_use|park|wood|forest|grass|scrub|farmland|residential|industrial|commercial|meadow|vegetation|earth|sand|glacier/.test(all))return "landcover";
+ if(/poi|point_of_interest|airport|aeroway|shop|amenity|station|stop/.test(all))return "poi";
+ if(layer.type==="symbol")return "labels";
  return null;
 }
 function addTerrainSourcesAndLayers(){
@@ -151,11 +221,13 @@ function addTerrainSourcesAndLayers(){
  baseVisibility=new Map();for(const layer of style.layers||[])baseVisibility.set(layer.id,(layer.layout&&layer.layout.visibility)||"visible");
  if(!map.getSource("aethelgard-dem"))map.addSource("aethelgard-dem",{type:"raster-dem",tiles:["https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"],tileSize:256,minzoom:0,maxzoom:15,encoding:"terrarium",attribution:"Elevation: AWS Open Data / Terrarium"});
  const firstSymbol=(map.getStyle().layers||[]).find(l=>l.type==="symbol");
- if(!map.getLayer("aethelgard-dem-hillshade"))map.addLayer({id:"aethelgard-dem-hillshade",type:"hillshade",source:"aethelgard-dem",paint:{"hillshade-method":"standard","hillshade-illumination-direction":315,"hillshade-exaggeration":0.38,"hillshade-shadow-color":"#13232b","hillshade-highlight-color":"#d3dcca","hillshade-accent-color":"#59746e"}},firstSymbol?firstSymbol.id:undefined);
+ if(!map.getLayer("aethelgard-dem-hillshade"))map.addLayer({id:"aethelgard-dem-hillshade",type:"hillshade",source:"aethelgard-dem",paint:{"hillshade-method":"standard","hillshade-illumination-direction":315,"hillshade-exaggeration":state.style==="victorian"?0.28:0.38,"hillshade-shadow-color":state.style==="victorian"?"#7c6a4b":"#13232b","hillshade-highlight-color":state.style==="victorian"?"#efe3c7":"#d3dcca","hillshade-accent-color":state.style==="victorian"?"#9a8d6b":"#59746e"}},firstSymbol?firstSymbol.id:undefined);
  add3DBuildingsLayer();
+ applyVictorianStyle();
+ addUserOverlayMapLayers();
  applyLayerVisibility();
  applyTerrainState();
- updateScale();mapReady=true;$("loading").classList.add("hidden");setConnection("MAP DATA CONNECTED");saveView();
+ updateScale();mapReady=true;$("loading").classList.add("hidden");setConnection("MAP DATA CONNECTED");renderUserOverlayList();saveView();
 }
 function add3DBuildingsLayer(){
  if(map.getLayer("aethelgard-buildings-3d"))return;
@@ -171,19 +243,171 @@ function add3DBuildingsLayer(){
 }
 function applyLayerVisibility(){
  if(!map||!map.isStyleLoaded())return;
- for(const layer of map.getStyle().layers||[]){const cat=styleCategory(layer);if(!cat)continue;let enabled=true;if(cat==="hillshade")enabled=state.hillshade;else if(cat==="buildings3d")enabled=state.buildings3d;else enabled=state[cat]!==false;const base=baseVisibility.get(layer.id)||"visible";try{map.setLayoutProperty(layer.id,"visibility",enabled?base:"none")}catch(e){}}
+ for(const layer of map.getStyle().layers||[]){
+  const cat=styleCategory(layer);if(!cat||cat==="custom")continue;
+  let enabled=true;
+  if(cat==="hillshade")enabled=state.hillshade;
+  else if(cat==="buildings3d")enabled=state.buildings3d;
+  else enabled=state[cat]!==false;
+  const base=baseVisibility.get(layer.id)||"visible";
+  try{map.setLayoutProperty(layer.id,"visibility",enabled?base:"none")}catch(e){}
+ }
  $("buildings3dToggle").checked=state.buildings3d;$("hillshadeToggle").checked=state.hillshade;$("terrainToggle").checked=state.terrain3d;
+ for(const id of ["landcover","water","boundaries","roads","rail","buildings","poi","labels"]){const el=$(id+"Toggle");if(el)el.checked=state[id]!==false}
+ applyUserOverlayVisibility();
 }
 function applyTerrainState(){
  if(!map||!map.getSource("aethelgard-dem"))return;
  try{map.setTerrain(state.terrain3d?{source:"aethelgard-dem",exaggeration:1.18}:null)}catch(e){console.warn("Terrain toggle failed",e)}
  applyLayerVisibility();
 }
+function applyVictorianStyle(){
+ if(!map||!map.isStyleLoaded()||state.style!=="victorian")return;
+ const palette=VICTORIAN_PALETTE;
+ for(const layer of map.getStyle().layers||[]){
+  if(layer.id.startsWith("aethelgard-"))continue;
+  const cat=styleCategory(layer),all=((layer.id||"")+" "+(layer["source-layer"]||"")).toLowerCase();
+  try{
+   if(layer.type==="background"){map.setPaintProperty(layer.id,"background-color",palette.paper);continue}
+   if(layer.type==="fill"){
+    let color=palette.land;
+    if(cat==="water"||/water|river|lake|ocean|sea|canal/.test(all))color=palette.water;
+    else if(cat==="buildings"||/building/.test(all))color=palette.buildings;
+    else if(/wood|forest|scrub|vegetation|park|garden/.test(all))color=palette.forest;
+    else if(cat==="landcover")color=palette.landuse;
+    else if(cat==="boundaries")color="#c3ae8a";
+    map.setPaintProperty(layer.id,"fill-color",color);
+    if(cat==="water")map.setPaintProperty(layer.id,"fill-opacity",0.92);
+   }else if(layer.type==="line"){
+    let color="#b6a789";
+    if(cat==="water")color=palette.waterLine;
+    else if(cat==="rail")color=palette.rail;
+    else if(cat==="boundaries")color=palette.boundary;
+    else if(cat==="roads")color=/motorway|trunk|primary|major/.test(all)?palette.roadMajor:palette.road;
+    map.setPaintProperty(layer.id,"line-color",color);
+    if(cat==="boundaries")map.setPaintProperty(layer.id,"line-dasharray",[3,2]);
+   }else if(layer.type==="symbol"){
+    const layout=layer.layout||{};
+    if(layout["text-field"]!==undefined){
+     map.setPaintProperty(layer.id,"text-color",palette.text);
+     map.setPaintProperty(layer.id,"text-halo-color",palette.halo);
+     map.setPaintProperty(layer.id,"text-halo-width",1.2);
+     map.setPaintProperty(layer.id,"text-halo-blur",0.25);
+    }
+    if(layout["icon-image"]!==undefined)map.setPaintProperty(layer.id,"icon-color",palette.poi);
+   }else if(layer.type==="circle"){
+    map.setPaintProperty(layer.id,"circle-color",palette.poi);
+    map.setPaintProperty(layer.id,"circle-stroke-color",palette.halo);
+   }
+  }catch(e){/* Some provider layers do not expose every paint property. */}
+ }
+ const hs=map.getLayer("aethelgard-dem-hillshade");
+ if(hs){try{map.setPaintProperty(hs.id,"hillshade-shadow-color","#7c6a4b");map.setPaintProperty(hs.id,"hillshade-highlight-color","#efe3c7");map.setPaintProperty(hs.id,"hillshade-accent-color","#9a8d6b");map.setPaintProperty(hs.id,"hillshade-exaggeration",0.28)}catch(e){}}
+}
+function overlayIds(overlay){
+ const token=String(overlay.id).replace(/[^a-zA-Z0-9_-]/g,"-"),prefix="aethelgard-user-"+token;
+ return {source:prefix+"-source",fill:prefix+"-fill",line:prefix+"-line",point:prefix+"-point",label:prefix+"-label"};
+}
+function loadUserOverlays(){
+ try{const parsed=JSON.parse(localStorage.getItem(OVERLAY_STORAGE_KEY)||"[]");userOverlays=Array.isArray(parsed)?parsed.filter(o=>o&&typeof o.id==="string"&&typeof o.name==="string"&&o.data&&o.data.type==="FeatureCollection"&&Array.isArray(o.data.features)):[]}catch(e){userOverlays=[]}
+}
+function persistUserOverlays(){
+ try{localStorage.setItem(OVERLAY_STORAGE_KEY,JSON.stringify(userOverlays));$("overlayStatus").textContent="Авторские слои сохранены в этом браузере."}
+ catch(e){$("overlayStatus").textContent="Слои отображаются, но не удалось сохранить их в браузере (возможно, превышен лимит хранилища). Экспортируй GeoJSON как резервную копию."}
+}
+function addUserOverlayMapLayers(){
+ if(!map||!map.isStyleLoaded())return;
+ const firstSymbol=(map.getStyle().layers||[]).find(l=>l.type==="symbol"),beforeId=firstSymbol?firstSymbol.id:undefined;
+ for(const overlay of userOverlays){
+  const ids=overlayIds(overlay);
+  if(!map.getSource(ids.source))map.addSource(ids.source,{type:"geojson",data:overlay.data});
+  const source=ids.source;
+  if(!map.getLayer(ids.fill))map.addLayer({id:ids.fill,type:"fill",source,paint:{"fill-color":["coalesce",["get","fill"],["get","color"],"#bf9d64"],"fill-opacity":0.27}},beforeId);
+  if(!map.getLayer(ids.line))map.addLayer({id:ids.line,type:"line",source,paint:{"line-color":["coalesce",["get","stroke"],["get","color"],"#8c4f32"],"line-width":["coalesce",["get","stroke-width"],2],"line-opacity":0.9}},beforeId);
+  if(!map.getLayer(ids.point))map.addLayer({id:ids.point,type:"circle",source,paint:{"circle-radius":["interpolate",["linear"],["zoom"],4,3,12,5,17,7],"circle-color":["coalesce",["get","marker-color"],["get","color"],"#8c4f32"],"circle-stroke-color":"#f0e3c6","circle-stroke-width":1.3}},beforeId);
+  if(!map.getLayer(ids.label))map.addLayer({id:ids.label,type:"symbol",source,layout:{"text-field":["coalesce",["get","name"],["get","title"],["get","label"],""],"text-size":11,"text-font":["Noto Sans Regular"],"text-offset":[0,1.1],"text-anchor":"top","text-allow-overlap":false},paint:{"text-color":state.style==="victorian"?"#4c3d2d":"#f4e8d0","text-halo-color":state.style==="victorian"?"#eee1c6":"#17242b","text-halo-width":1.4}},beforeId);
+ }
+ applyUserOverlayVisibility();
+}
+function applyUserOverlayVisibility(){
+ if(!map)return;
+ for(const overlay of userOverlays){
+  const ids=overlayIds(overlay),visibility=overlay.visible===false?"none":"visible";
+  for(const id of [ids.fill,ids.line,ids.point,ids.label])if(map.getLayer(id)){try{map.setLayoutProperty(id,"visibility",visibility)}catch(e){}}
+ }
+}
+function removeUserOverlayFromMap(overlay){
+ if(!map)return;const ids=overlayIds(overlay);
+ for(const id of [ids.label,ids.point,ids.line,ids.fill])if(map.getLayer(id)){try{map.removeLayer(id)}catch(e){}}
+ if(map.getSource(ids.source)){try{map.removeSource(ids.source)}catch(e){}}
+}
+function exportGeoJSON(overlay){
+ const blob=new Blob([JSON.stringify(overlay.data,null,2)],{type:"application/geo+json;charset=utf-8"});
+ const url=URL.createObjectURL(blob),a=document.createElement("a");
+ a.href=url;a.download=(overlay.name||"aethelgard-overlay").replace(/[^a-zA-Z0-9._-]+/g,"-").replace(/^-+|-+$/g,"")+".geojson";
+ document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function exportAllUserOverlays(){
+ if(!userOverlays.length){$("overlayStatus").textContent="Пока нет слоёв для экспорта.";return}
+ const features=userOverlays.flatMap(o=>o.data.features.map(f=>({...f,properties:{...(f.properties||{}),_atlas_layer:o.name}})));
+ exportGeoJSON({name:"aethelgard-all-overlays",data:{type:"FeatureCollection",features}});
+}
+function renderUserOverlayList(){
+ const list=$("overlayLayerList");if(!list)return;list.replaceChildren();
+ if(!userOverlays.length){const empty=document.createElement("div");empty.className="overlay-empty";empty.textContent="Свои слои появятся здесь после импорта GeoJSON.";list.append(empty);$("exportAllOverlaysBtn").disabled=true;return}
+ $("exportAllOverlaysBtn").disabled=false;
+ for(const overlay of userOverlays){
+  const item=document.createElement("div");item.className="overlay-item";
+  const main=document.createElement("div");main.className="overlay-item-main";
+  const name=document.createElement("div");name.className="overlay-item-name";name.textContent=overlay.name;
+  const meta=document.createElement("div");meta.className="overlay-item-meta";meta.textContent=overlay.data.features.length+" объектов · GeoJSON";
+  main.append(name,meta);
+  const actions=document.createElement("div");actions.className="overlay-item-actions";
+  const toggle=document.createElement("input");toggle.type="checkbox";toggle.checked=overlay.visible!==false;toggle.title="Показывать слой";toggle.setAttribute("aria-label","Показывать слой "+overlay.name);
+  toggle.addEventListener("change",()=>{overlay.visible=toggle.checked;applyUserOverlayVisibility();persistUserOverlays()});
+  const exp=document.createElement("button");exp.type="button";exp.className="btn";exp.textContent="↓";exp.title="Экспортировать этот слой";exp.addEventListener("click",()=>exportGeoJSON(overlay));
+  const del=document.createElement("button");del.type="button";del.className="btn";del.textContent="×";del.title="Удалить этот слой";del.addEventListener("click",()=>{if(!window.confirm("Удалить авторский слой «"+overlay.name+"»? Сначала экспортируй его, если хочешь сохранить копию."))return;removeUserOverlayFromMap(overlay);userOverlays=userOverlays.filter(o=>o.id!==overlay.id);persistUserOverlays();renderUserOverlayList()});
+  actions.append(toggle,exp,del);item.append(main,actions);list.append(item);
+ }
+}
+function normaliseGeoJSON(parsed){
+ if(parsed&&parsed.type==="FeatureCollection"&&Array.isArray(parsed.features))return parsed;
+ if(parsed&&parsed.type==="Feature")return {type:"FeatureCollection",features:[parsed]};
+ if(parsed&&typeof parsed.type==="string"&&/^(Point|MultiPoint|LineString|MultiLineString|Polygon|MultiPolygon|GeometryCollection)$/.test(parsed.type))return {type:"FeatureCollection",features:[{type:"Feature",properties:{},geometry:parsed}]};
+ throw new Error("Ожидался GeoJSON FeatureCollection, Feature или геометрия.");
+}
+async function importGeoJSONFiles(files){
+ let added=0;
+ for(const file of files){
+  try{
+   const parsed=JSON.parse(await file.text()),data=normaliseGeoJSON(parsed);
+   if(!data.features.length)throw new Error("В файле нет объектов.");
+   for(const feature of data.features){if(!feature||feature.type!=="Feature"||!feature.geometry)throw new Error("В FeatureCollection найден объект без геометрии.");if(!feature.properties||typeof feature.properties!=="object")feature.properties={};}
+   const overlay={id:"ov-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,8),name:file.name.replace(/\.(geo)?json$/i,"")||"Импортированный слой",visible:true,data};
+   userOverlays.push(overlay);addUserOverlayMapLayers();added++;
+  }catch(e){$("overlayStatus").textContent="Не удалось импортировать "+file.name+": "+(e.message||"неверный GeoJSON")}
+ }
+ if(added){persistUserOverlays();renderUserOverlayList();$("overlayStatus").textContent="Добавлено слоёв: "+added+". Они лежат отдельно от базовой карты и сохраняются в этом браузере."}
+}
 function styleLoaded(){
  mapReady=false;
  try{addTerrainSourcesAndLayers()}catch(e){console.error(e);setConnection("TERRAIN LAYER ERROR",true);$("loading").classList.add("hidden");$("searchStatus").textContent="Основная карта загрузилась, но не удалось подключить слой рельефа: "+(e.message||e)}
 }
-function changeStyle(name){if(!STYLE_URLS[name]||state.style===name)return;mapErrorCount=0;state.style=name;$("darkStyle").classList.toggle("active",name==="dark");$("lightStyle").classList.toggle("active",name==="light");$("loading").classList.remove("hidden");$("loading").querySelector(".loading-title").textContent="SWITCHING CARTOGRAPHIC STYLE";$("loading").querySelector(".loading-text").textContent="Перестраиваем базовую карту и восстанавливаем слои рельефа.";mapReady=false;map.setStyle(STYLE_URLS[name])}
+function updateStyleButtons(){
+ $("victorianStyle").classList.toggle("active",state.style==="victorian");
+ $("darkStyle").classList.toggle("active",state.style==="dark");
+ $("lightStyle").classList.toggle("active",state.style==="light");
+ document.body.classList.toggle("victorian-theme",state.style==="victorian");
+ $("map-wrap").classList.toggle("victorian-theme",state.style==="victorian");
+}
+function changeStyle(name){
+ if(!STYLE_URLS[name]||state.style===name)return;
+ mapErrorCount=0;state.style=name;updateStyleButtons();
+ $("loading").classList.remove("hidden");
+ $("loading").querySelector(".loading-title").textContent="SWITCHING CARTOGRAPHIC STYLE";
+ $("loading").querySelector(".loading-text").textContent="Перестраиваем карту и восстанавливаем рельеф и авторские слои.";
+ mapReady=false;map.setStyle(STYLE_URLS[name]);saveView();
+}
 function goTo(name){const p=PRESETS[name];if(!p||!map)return;map.flyTo({center:p.center,zoom:p.zoom,pitch:p.pitch,bearing:p.bearing,duration:1100,essential:true});$("detailLevel").textContent=p.label}
 function updateFeature(feature,lngLat){
  if(!feature||!feature.properties){$("featureName").textContent="Объект не распознан";$("featureMeta").textContent="Попробуй приблизить карту или нажми непосредственно на линию/здание.";return}
@@ -220,10 +444,13 @@ async function searchPlaces(event){
 function updateMapLayerState(){applyLayerVisibility();if(mapReady)saveView()}
 function applyPresetClicks(){document.querySelectorAll(".level").forEach(btn=>btn.addEventListener("click",()=>goTo(btn.dataset.view)))}
 function init(){
+ loadUserOverlays();
+ updateStyleButtons();
+ renderUserOverlayList();
  if(!window.maplibregl){$("loading").querySelector(".loading-title").textContent="MAP ENGINE UNAVAILABLE";$("loading").querySelector(".loading-text").textContent="Не удалось загрузить MapLibre GL JS. Проверь интернет или открой страницу через браузер с доступом к CDN.";setConnection("ENGINE ERROR",true);return}
- const saved=readSavedView();if(saved){state.style=STYLE_URLS[saved.style]?saved.style:"dark";state.hillshade=saved.hillshade!==false;state.terrain3d=saved.terrain3d!==false;state.buildings3d=saved.buildings3d===true;state.roads=saved.roads!==false;state.rail=saved.rail!==false;state.buildings=saved.buildings!==false;state.labels=saved.labels!==false}
- $("darkStyle").classList.toggle("active",state.style==="dark");$("lightStyle").classList.toggle("active",state.style==="light");
- map=new maplibregl.Map({container:"map",style:STYLE_URLS[state.style],center:saved?saved.center:PRESETS.local.center,zoom:saved?saved.zoom:PRESETS.local.zoom,pitch:saved?saved.pitch:PRESETS.local.pitch,bearing:saved?saved.bearing:PRESETS.local.bearing,minZoom:3.5,maxZoom:19.2,maxPitch:78,maxBounds:[[-25,34],[60,72]],renderWorldCopies:false,antialias:true,cooperativeGestures:true,attributionControl:false});
+ const saved=readSavedView();if(saved){state.style=STYLE_URLS[saved.style]?saved.style:"victorian";state.hillshade=saved.hillshade!==false;state.terrain3d=saved.terrain3d!==false;state.buildings3d=saved.buildings3d===true;state.landcover=saved.landcover!==false;state.water=saved.water!==false;state.boundaries=saved.boundaries!==false;state.roads=saved.roads!==false;state.rail=saved.rail!==false;state.buildings=saved.buildings!==false;state.poi=saved.poi!==false;state.labels=saved.labels!==false}
+ updateStyleButtons();
+ map=new maplibregl.Map({container:"map",style:STYLE_URLS[state.style]||STYLE_URLS.victorian,center:saved?saved.center:PRESETS.local.center,zoom:saved?saved.zoom:PRESETS.local.zoom,pitch:saved?saved.pitch:PRESETS.local.pitch,bearing:saved?saved.bearing:PRESETS.local.bearing,minZoom:3.5,maxZoom:19.2,maxPitch:78,maxBounds:[[-25,34],[60,72]],renderWorldCopies:false,antialias:true,cooperativeGestures:true,attributionControl:false});
  map.addControl(new maplibregl.NavigationControl({showCompass:true,showZoom:true,visualizePitch:true}),"top-right");
  map.addControl(new maplibregl.ScaleControl({maxWidth:130,unit:"metric"}),"bottom-left");
  map.addControl(new maplibregl.AttributionControl({compact:true,customAttribution:"© OpenFreeMap · © OpenMapTiles · © OpenStreetMap contributors · Elevation: AWS Open Data"}),"bottom-right");
@@ -234,8 +461,19 @@ function init(){
  $("hillshadeToggle").onchange=e=>{state.hillshade=e.target.checked;updateMapLayerState()};
  $("terrainToggle").onchange=e=>{state.terrain3d=e.target.checked;if(mapReady){try{map.setTerrain(state.terrain3d?{source:"aethelgard-dem",exaggeration:1.18}:null);if(state.terrain3d&&map.getPitch()<15)map.easeTo({pitch:42,duration:500});if(!state.terrain3d&&map.getPitch()>15)map.easeTo({pitch:0,duration:500})}catch(err){statusTerrainError(err)}}saveView()};
  $("buildings3dToggle").onchange=e=>{state.buildings3d=e.target.checked;updateMapLayerState();if(state.buildings3d&&map.getZoom()<14)map.easeTo({zoom:14.5,duration:500})};
- $("roadsToggle").onchange=e=>{state.roads=e.target.checked;updateMapLayerState()};$("railToggle").onchange=e=>{state.rail=e.target.checked;updateMapLayerState()};$("buildingsToggle").onchange=e=>{state.buildings=e.target.checked;updateMapLayerState()};$("labelsToggle").onchange=e=>{state.labels=e.target.checked;updateMapLayerState()};
- $("darkStyle").onclick=()=>changeStyle("dark");$("lightStyle").onclick=()=>changeStyle("light");$("searchForm").addEventListener("submit",searchPlaces);applyPresetClicks();
+ $("landcoverToggle").onchange=e=>{state.landcover=e.target.checked;updateMapLayerState()};
+ $("waterToggle").onchange=e=>{state.water=e.target.checked;updateMapLayerState()};
+ $("boundariesToggle").onchange=e=>{state.boundaries=e.target.checked;updateMapLayerState()};
+ $("roadsToggle").onchange=e=>{state.roads=e.target.checked;updateMapLayerState()};
+ $("railToggle").onchange=e=>{state.rail=e.target.checked;updateMapLayerState()};
+ $("buildingsToggle").onchange=e=>{state.buildings=e.target.checked;updateMapLayerState()};
+ $("poiToggle").onchange=e=>{state.poi=e.target.checked;updateMapLayerState()};
+ $("labelsToggle").onchange=e=>{state.labels=e.target.checked;updateMapLayerState()};
+ $("victorianStyle").onclick=()=>changeStyle("victorian");$("darkStyle").onclick=()=>changeStyle("dark");$("lightStyle").onclick=()=>changeStyle("light");
+ $("importOverlayBtn").onclick=()=> $("overlayFileInput").click();
+ $("overlayFileInput").addEventListener("change",async e=>{if(e.target.files&&e.target.files.length)await importGeoJSONFiles(Array.from(e.target.files));e.target.value=""});
+ $("exportAllOverlaysBtn").onclick=exportAllUserOverlays;
+ $("searchForm").addEventListener("submit",searchPlaces);applyPresetClicks();
 }
 function statusTerrainError(err){$("searchStatus").textContent="Не удалось переключить 3D-рельеф: "+(err.message||"ошибка источника высот");$("terrainToggle").checked=false;state.terrain3d=false}
 if(window.maplibregl){

@@ -28,6 +28,8 @@ Use **Import GeoJSON** to add one or more `.geojson` or compatible `.json` files
 
 For each overlay, the UI provides independent visibility, export and removal controls. **Export all** combines visible and hidden overlays into one GeoJSON file, preserving an `_atlas_layer` property to identify each feature's original layer. Imported data is persisted to local browser storage, so it is available again in the same browser profile on this machine. Export important work as a backup; browser storage is not cloud storage and may be cleared or run out of space.
 
+A ready-to-import example is available at [`examples/sample-aethelgard-proposals.geojson`](examples/sample-aethelgard-proposals.geojson). It contains an illustrative study polygon, a conceptual transit line and a test marker near the Vaduz reference area. These are **fictional demonstration features, not canon**.
+
 These first overlays are for adding reference geometry and future Aethelgard concepts without modifying the external basemap. They do **not yet** provide drawing/editing of individual vertices, moving roads/buildings, editing the terrain mesh, topology validation or a shared project database. Those are later development stages.
 
 ## Important limits

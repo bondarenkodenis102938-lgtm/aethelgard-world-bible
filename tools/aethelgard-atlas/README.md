@@ -1,48 +1,79 @@
-# Aethelgard Atlas · Victorian Terrain Lab
+# Aethelgard Atlas — Neo-Victorian Cartography Engine
 
-The active map is a terrain-first geographic workbench. The earlier schematic political-boundary editor is archived as `legacy-political-editor.html`.
+Активное приложение — terrain-first географическая карта, развиваемая в сторону полноценного редактора географии Aethelgard. Предыдущий схематический политический редактор сохранён отдельно: legacy-political-editor.html. Он является архивом ранних экспериментов, а не активной картой.
 
-## Development status
+## Направление проекта
 
-**The map is not being published yet.** The active file is developed and tested locally before any optional deployment.
+Главный приоритет — сначала сделать карту полезной и подробной как реальную географическую основу вокруг Альп и долины Рейна, начиная с района Вадуца. Политические границы отложены до тех пор, пока не будут проверены география, масштабы и локальная детализация.
 
-The default **Victorian Atlas** appearance is a first-pass cartographic treatment layered over OpenFreeMap's contemporary vector basemap: muted paper, sepia/olive lines, restrained water colours and a subtle print-like tint. It changes the way existing data is rendered; it is not a historical 19th-century dataset, and it does not claim that modern streets or borders are canon for Aethelgard in 2147.
+Общий замысел и долгосрочные решения собраны в [AETHELGARD_ATLAS_MASTER_PLAN.md](../../docs/AETHELGARD_ATLAS_MASTER_PLAN.md). План этапов находится в [ATLAS_ROADMAP.md](../../docs/ATLAS_ROADMAP.md).
 
-## Run locally
+## Статус разработки
 
-Serve this folder with a local static HTTP server and open `index.html` in a modern browser with internet access. MapLibre is loaded as an ES module from a CDN. Map tiles come from OpenFreeMap, elevation from AWS Terrain/Terrarium tiles, and place search from Photon. These public services do not guarantee availability.
+**Карта не опубликована.** Работа ведётся локально; публикация через GitHub Pages или workflow не должна запускаться без прямого разрешения автора.
 
-## Current controls
+## Визуальный стиль
 
-- Mouse wheel / map controls: continuous zoom; drag to pan.
-- Top shortcuts: Europe, Alps, Rhine Valley, city and local block. The map's navigation is constrained to Europe.
-- Relief controls: hillshade, 3D terrain and experimental 3D buildings.
-- Basemap appearance: Neo-Victorian Cartography Engine, graphite and light.
-- Basemap layer groups: land cover/parks, water, administrative boundaries, roads, rail/transit, building footprints, POIs and labels can be toggled separately. Layer matching follows the current provider style's layer names, so some provider-specific items may be grouped imperfectly.
-- Search: look up towns and streets within the European bounding area.
-- Click a named map feature to inspect the attributes exposed by the source.
+Активное направление — **Futuristic Neo-Victorian Cartography, 2147**. Это современная высокотехнологичная картографическая система с викторианским дизайнерским наследием, а не старинная бумажная карта.
 
-## Author-created GeoJSON overlays
+Основные признаки:
+- глубокая графитовая / сине-серая основа;
+- минеральные сине-зелёные оттенки суши и рельефа;
+- бирюзовые и циановые акценты воды и транспорта;
+- сдержанные латунные / золотистые акценты;
+- современная типографика, точные линии, ясная иерархия и приборные детали.
 
-Use **Import GeoJSON** to add one or more `.geojson` or compatible `.json` files. Each imported file becomes its own overlay above the basemap. Supported input forms are a GeoJSON `FeatureCollection`, `Feature`, or geometry object.
+Не использовать пергамент, общую сепию, состаренную бумагу или архаичный интерфейс. Доступны Neo-Victorian, Graphite и Light варианты оформления; Neo-Victorian — основной художественный вариант.
 
-For each overlay, the UI provides independent visibility, export and removal controls. **Export all** combines visible and hidden overlays into one GeoJSON file, preserving an `_atlas_layer` property to identify each feature's original layer. Imported data is persisted to local browser storage, so it is available again in the same browser profile on this machine. Export important work as a backup; browser storage is not cloud storage and may be cleared or run out of space.
+## Запуск локально
 
-A ready-to-import example is available at [`examples/sample-aethelgard-proposals.geojson`](examples/sample-aethelgard-proposals.geojson). It contains an illustrative study polygon, a conceptual transit line and a test marker near the Vaduz reference area. These are **fictional demonstration features, not canon**.
+Нужно обслуживать эту папку локальным статическим HTTP-сервером и открыть index.html в современном браузере с доступом к интернету. MapLibre загружается как ES module с CDN. Векторные тайлы идут от OpenFreeMap, высоты — от AWS Terrain / Terrarium, поиск мест — от Photon. Публичные сервисы являются внешними зависимостями и не гарантируют постоянную доступность.
 
-These first overlays are for adding reference geometry and future Aethelgard concepts without modifying the external basemap. They do **not yet** provide drawing/editing of individual vertices, moving roads/buildings, editing the terrain mesh, topology validation or a shared project database. Those are later development stages.
+## Текущие функции
 
-## Important limits
+- Плавное приближение и панорамирование.
+- Камерные переходы: Европа, Альпы, долина Рейна, город и локальный масштаб. Это быстрые пресеты камеры, а не отдельные карты.
+- Навигация ограничена европейской областью.
+- Переключатели hillshade, 3D terrain и экспериментальных 3D buildings.
+- Темы Neo-Victorian, Graphite и Light.
+- Независимые группы базовой карты: land cover/use, water, administrative boundaries, roads, rail/transit, buildings, POIs и labels.
+- Поиск географических объектов через Photon.
+- Выбор объектов базовой карты и просмотр доступных атрибутов.
 
-- The base map remains contemporary real-world geography and OSM-derived data, not an authoritative map of Aethelgard 2147.
-- Local detail depends on OpenStreetMap coverage and the published vector tiles. High zoom does not invent unmapped roads or building footprints.
-- The elevation tiles have a lower native maximum zoom than the vector map; at very close zooms the terrain may be overzoomed.
-- Neo-Victorian styling recolours provider layers where their style schema permits it and applies a very subtle technical-grid/vignette treatment. It is a first pass, not yet a full custom renderer with bespoke contour engraving and map symbols.
-- Layer grouping is inferred from provider layer/source-layer names. If a new provider style uses different names, some features may not follow the expected toggle.
-- Public services are external dependencies; keep attribution visible and follow their terms.
+Подробная информация о поставщиках, лицензиях и ограничениях содержится в [ATLAS_DATA_SOURCES.md](../../docs/ATLAS_DATA_SOURCES.md).
 
-## Publication
+## Авторские GeoJSON-слои
 
-`.github/workflows/deploy-atlas.yml` is manual-only and is not triggered by ordinary commits. Do not publish until explicitly requested.
+Через Import GeoJSON можно загрузить .geojson или совместимый .json файл. Поддерживаются GeoJSON FeatureCollection, Feature и отдельные geometry objects.
 
-See `../../docs/ATLAS_DATA_SOURCES.md`, `../../docs/ATLAS_ROADMAP.md` and `../../docs/ATLAS_DESIGN_DECISIONS.md` for sources, constraints and upcoming work.
+Каждый импортированный файл становится отдельным слоем. Для него доступны:
+- независимое включение и выключение видимости;
+- экспорт отдельного слоя;
+- удаление слоя;
+- включение в общий Export All.
+
+Общий экспорт добавляет свойство _atlas_layer, чтобы сохранить имя исходного слоя для каждой функции. Пользовательские слои сохраняются в localStorage текущего браузерного профиля и доступны после повторного открытия страницы в том же профиле на этом устройстве.
+
+**Важно:** это не облачное хранилище и не синхронизация с GitHub. Хранилище браузера можно очистить, оно может ограничиваться размером. Экспортируйте важные данные и храните резервные копии.
+
+Тестовый пример: [examples/sample-aethelgard-proposals.geojson](examples/sample-aethelgard-proposals.geojson). Он содержит демонстрационный полигон, концептуальную линию транзита и маркер около Вадуца. Все три элемента явно являются демонстрационными предложениями, не каноном Aethelgard.
+
+## Что пока не реализовано
+
+- Рисование и редактирование точек, линий и полигонов непосредственно на карте.
+- Редактирование отдельных вершин и перемещение пользовательских объектов.
+- Правка рельефной сетки, базовых дорог и контуров внешних зданий.
+- Топологический редактор общих политических границ.
+- Офлайн-режим, собственный сервер тайлов, облачная синхронизация и совместное редактирование.
+
+Высокий zoom не создаёт отсутствующие здания или дороги: доступная детализация ограничена OSM и опубликованными тайлами. Источник высот имеет меньший native max zoom, поэтому на очень близком масштабе рельеф может быть программно увеличен. Группы переключателей основаны на именах слоёв текущего стиля, поэтому после смены провайдера их нужно проверять.
+
+## Публикация
+
+Workflow .github/workflows/deploy-atlas.yml остаётся ручным. Не запускать публикацию и не включать автоматический деплой без прямого разрешения автора.
+
+См. также:
+- [Единый мастер-план](../../docs/AETHELGARD_ATLAS_MASTER_PLAN.md)
+- [Roadmap](../../docs/ATLAS_ROADMAP.md)
+- [Журнал решений](../../docs/ATLAS_DESIGN_DECISIONS.md)
+- [Источники данных](../../docs/ATLAS_DATA_SOURCES.md)

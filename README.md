@@ -41,3 +41,13 @@ This repository is the project's external source of truth, but it is not automat
 
 ## Character Bots
 - [DEEPSEEK BOT — Лиан и Юэ](bots/deepseek-lian-yue/README.md) — separate character package with profiles, updated emotional triggers, and roleplay rules. Use these files for the Lian/Yue bot; the older root-level trigger note has been superseded for this pair.
+
+
+## Interactive Atlas
+
+The active terrain-first geographic application and its long-term plan are documented separately from world canon:
+- [Aethelgard Atlas — unified master plan](docs/AETHELGARD_ATLAS_MASTER_PLAN.md)
+- [Atlas roadmap](docs/ATLAS_ROADMAP.md)
+- [Atlas design decisions and discussion history](docs/ATLAS_DESIGN_DECISIONS.md)
+- [Geodata sources, licences and limitations](docs/ATLAS_DATA_SOURCES.md)
+- [Active map application](tools/aethelgard-atlas/README.md)

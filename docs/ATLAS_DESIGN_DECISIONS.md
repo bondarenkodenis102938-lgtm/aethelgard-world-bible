@@ -1,8 +1,9 @@
 # Aethelgard Atlas — design decisions, discussion record, and implementation plan
 
-**Status:** living design document  
-**Last updated:** 2026-10-24  
-**Applies to:** tools/aethelgard-atlas/index.html, docs/ATLAS_ROADMAP.md, future map-data schema and storage.
+**Status:** living historical decision log and design record  
+**Last updated:** 2026-11-05  
+**Applies to:** active terrain-first Atlas, archived schematic editor, future map-data schema and storage.  
+**Current authority:** [AETHELGARD_ATLAS_MASTER_PLAN.md](AETHELGARD_ATLAS_MASTER_PLAN.md) and [ATLAS_ROADMAP.md](ATLAS_ROADMAP.md) define the current direction and priority order.
 
 This document preserves the ideas agreed in conversation, distinguishes user requirements from implementation proposals, and records what is implemented versus what is still aspirational. It is not a claim that the prototype is already a full GIS.
 
@@ -124,13 +125,13 @@ Quick navigation should include:
 - Boundary objects should be typed, for example international, administrative, corporate jurisdiction, disputed, demilitarized, or historical. Display style follows type/status, not colour alone.
 - Historical or alternative borders should be versioned alternatives, not accidental duplicates that fight with the active geometry.
 
-### Scope note
+### Scope note — archived schematic editor, not the active geographic Atlas
 
-The current prototype now includes separate map/edit modes, one-stroke freehand contour creation, stroke simplification, smoothed rendering for multi-vertex boundary sections, view-dependent display simplification, a render-pass geometry cache, and vertex handles only on the selected boundary. It also supports freehand redraw of a selected boundary chain, preserving its endpoint vertices so all territories using that boundary update together. Redrawing is blocked if a section contains interior junctions shared with other boundary objects. Deleting junction vertices, robust topology repair, snapping, arbitrary intersections, full geometry validation, and replacing an entire territory ring remain future work. The editor should state these limitations rather than silently corrupt shared topology.
+The archived schematic political editor described in this historical section included separate map/edit modes, one-stroke freehand contour creation, stroke simplification, smoothed rendering for multi-vertex boundary sections, view-dependent display simplification, a render-pass geometry cache, and vertex handles only on the selected boundary. It also supports freehand redraw of a selected boundary chain, preserving its endpoint vertices so all territories using that boundary update together. Redrawing is blocked if a section contains interior junctions shared with other boundary objects. Deleting junction vertices, robust topology repair, snapping, arbitrary intersections, full geometry validation, and replacing an entire territory ring remain future work. The editor should state these limitations rather than silently corrupt shared topology.
 
-## 5. Data architecture
+## 5. Historical data architecture of the archived schematic editor
 
-### 5.1 Prototype schema: version 2
+### 5.1 Legacy prototype schema: version 2
 
 The current browser project now uses a topological representation:
 
@@ -271,3 +272,50 @@ Approved direction:
 - no parchment-first UI, global sepia filter, faux antique paper or old-fashioned interface.
 
 The updated page is a first visual pass. Actual browser appearance still requires local verification; layer names/paint support vary by provider style. Future work should replace broad provider-style recolouring with a more deliberate bespoke style definition, contour/relief treatment and a custom symbol library while preserving independent user-authored layers.
+
+
+## 13. Consolidated project direction and status (5 November 2026)
+
+This section resolves documentation drift that accumulated as the project moved from the early schematic political editor to the active terrain-first geographic application.
+
+### 13.1 Current source of truth
+
+- The unified direction, canon separation, visual rules, architecture targets and long-term concept are in [AETHELGARD_ATLAS_MASTER_PLAN.md](AETHELGARD_ATLAS_MASTER_PLAN.md).
+- The ordered implementation stages and acceptance criteria are in [ATLAS_ROADMAP.md](ATLAS_ROADMAP.md).
+- Provider details, licensing and data limitations remain in [ATLAS_DATA_SOURCES.md](ATLAS_DATA_SOURCES.md).
+- The active application is [tools/aethelgard-atlas/index.html](../tools/aethelgard-atlas/index.html).
+- The previous schematic political editor is archived at [legacy-political-editor.html](../tools/aethelgard-atlas/legacy-political-editor.html).
+
+If an older paragraph in this log describes the archived editor as the current prototype, read it as historical context. Do not interpret its schematic x/y geometry, IndexedDB proposal, freehand drawing or boundary operations as features of the active geographic map.
+
+### 13.2 Current visual direction
+
+The user's explicit clarification is controlling: Victorian-era design heritage does not mean that future tools should look old. The approved target is a modern, high-tech Neo-Victorian Cartography Engine for 2147: midnight graphite / blue-grey interface, mineral blue-green land, cyan/teal water and transit accents, restrained brass/gold highlights, modern typography and instrument-like detail. No parchment, global sepia, faux antique paper or archaic UI.
+
+The active app contains Neo-Victorian, Graphite and Light presentations. The word "victorian" remains an internal style key in parts of the implementation; that implementation detail does not change the user-facing design direction.
+
+### 13.3 Current implementation status
+
+The active terrain-first map has a real OpenFreeMap / OpenStreetMap vector basemap, MapLibre rendering, AWS Terrarium elevation for hillshade and 3D terrain, Photon search, camera presets, independent basemap layer groups, feature inspection, GeoJSON overlay import, per-layer visibility, export/removal, and browser-local persistence.
+
+The active app does not yet provide direct drawing or vertex editing, road/building/terrain editing, political topology editing, offline maps, cloud synchronization or collaborative editing. Imported author layers are stored in the current browser profile through localStorage; this is not a shared database and is not automatically backed up to GitHub.
+
+A prior mocked DOM/MapLibre harness tested initialization, map paint, a group toggle, GeoJSON layer creation/visibility, and localStorage persistence. This does not constitute full visual verification in a real browser. Real-browser checks remain part of P0.
+
+### 13.4 Priority order and preserved future ideas
+
+The agreed order is:
+1. Verify and stabilize the real geographic base map and its actual data coverage around the Alpine/Rhine priority region.
+2. Build out a few important local study areas instead of detailing all of Europe.
+3. Add direct editing of author-created geographic objects.
+4. Develop the physical geography and infrastructure of Aethelgard 2147 on separate, provenance-aware layers.
+5. Return to political geography and shared-topology boundaries as a later module.
+6. Add spatial databases, cloud sync and collaboration only when justified by data volume or workflow needs.
+
+The earlier ideas about one shared boundary geometry, map/edit modes, freehand input with point sampling, view-dependent display simplification, topology validation, undo/redo, version history and optional PostGIS are preserved as future design requirements, not active features.
+
+### 13.5 Canon and geography safeguards
+
+The modern real-world basemap is only a geographic reference substrate. The author-selected regional anchors are recorded in canon/regional-atlas-aethelgard-2147.md and CANON_STATUS.md. Proposed names, borders, corridors and sample GeoJSON items remain proposals or demonstrations until the author approves them. A drawn or imported object must never become canon merely because it exists in the map or repository.
+
+The master plan supersedes older visual or priority statements where they conflict, while this file retains the historical record of how those decisions evolved.
